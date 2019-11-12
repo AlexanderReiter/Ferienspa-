@@ -1,4 +1,4 @@
-﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="site-master.master.vb" Inherits="Ferienpass.site_master" %>
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="site-master.master.vb" Inherits="Ferienspass.site_master" %>
 
 <!DOCTYPE html>
 

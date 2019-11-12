@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29424.173
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Ferienpass", "Ferienpass\Ferienpass.vbproj", "{EDAA9C15-272E-4862-B949-96E1379DA94A}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Ferienspass", "Ferienspass\Ferienspass.vbproj", "{EDAA9C15-272E-4862-B949-96E1379DA94A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
