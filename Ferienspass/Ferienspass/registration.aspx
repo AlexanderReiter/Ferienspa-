@@ -10,11 +10,11 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class="registration-container">
+        <div class="registration-container border border-secondary">
             <asp:literal ID="litAlert" runat="server"></asp:literal>
             <div class="row">
                 <div class="col">
-                    <h1>Registrierung</h1>
+                    <h3>Ferienspaß-Konto erstellen</h3>
                 </div>
             </div>
             <div class="row">
@@ -70,10 +70,10 @@
             </div>
             <div class="row">
                 <div class="col-6">
-                    <asp:Button ID="btnRegister" runat="server" Text="Registrieren" CssClass="btn btn-secondary btn-lg" />
+                    <asp:Button ID="btnCancel" runat="server" Text="Stattdessen anmelden" CssClass="btn btn-outline-secondary btn-lg" />
                 </div>
                 <div class="col-6">
-                    <asp:Button ID="btnCancel" runat="server" Text="Abbrechen" CssClass="btn btn-secondary btn-lg float-right" />
+                    <asp:Button ID="btnRegister" runat="server" Text="Registrieren" CssClass="btn btn-secondary btn-lg float-right" />
                 </div>
             </div>
         </div>
