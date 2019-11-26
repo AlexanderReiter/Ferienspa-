@@ -69,13 +69,13 @@ namespace Ferienspass
         protected global::System.Web.UI.WebControls.TextBox txtSurname;
 
         /// <summary>
-        /// txtPLZ-Steuerelement
+        /// txtZIP-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPLZ;
+        protected global::System.Web.UI.WebControls.TextBox txtZIP;
 
         /// <summary>
         /// txtCity-Steuerelement

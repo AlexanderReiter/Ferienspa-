@@ -47,7 +47,7 @@
             <div class="row">
                 <div class="col-3">
                     <div class="form-group">
-                        <asp:TextBox ID="txtPLZ" runat="server" placeholder="PLZ" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="txtZIP" runat="server" placeholder="PLZ" CssClass="form-control"></asp:TextBox>
                     </div>
                 </div>
                 <div class="col-9">
