@@ -24,11 +24,11 @@ namespace Ferienspass
             string pw = txtPassword.Text;
 
             DB db = new DB();
-            string sql = "SELECT password, passwordsalt WHERE email=?";
+            string sql = "SELECT password, passwordsalt FROM user WHERE email=?";
             DataTable sqlreturn = db.Query(sql, user);
-            if (sqlreturn==null)
+            if (sqlreturn.Rows.Count==0)
             {
-
+                litLoginFailed.Text = "Login fehlgeschlagen!";
             }
             else
             {
@@ -45,9 +45,22 @@ namespace Ferienspass
                 {
                     FormsAuthentication.RedirectFromLoginPage(user, false);
                 }
+                else
+                {
+                    litLoginFailed.Text = "Login fehlgeschlagen!";
+                }
             }
 
+        }
 
+        protected void btnRegister_Click(object sender, EventArgs e)
+        {
+            FormsAuthentication.RedirectFromLoginPage("registration", false);
+        }
+
+        protected void btnPasswortVergessen_Click(object sender, EventArgs e)
+        {
+            FormsAuthentication.RedirectFromLoginPage("pwforgotten", false);
         }
     }
 }
