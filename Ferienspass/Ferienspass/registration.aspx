@@ -70,10 +70,10 @@
             </div>
             <div class="row">
                 <div class="col-6">
-                    <asp:Button ID="btnCancel" runat="server" Text="Stattdessen anmelden" CssClass="btn btn-outline-secondary btn-lg" />
+                    <asp:Button ID="btnCancel" runat="server" Text="Stattdessen anmelden" CssClass="btn btn-outline-secondary btn-lg" OnClick="btnCancel_Click" />
                 </div>
                 <div class="col-6">
-                    <asp:Button ID="btnRegister" runat="server" Text="Registrieren" CssClass="btn btn-secondary btn-lg float-right" />
+                    <asp:Button ID="btnRegister" runat="server" Text="Registrieren" CssClass="btn btn-secondary btn-lg float-right" OnClick="btnRegister_Click" />
                 </div>
             </div>
         </div>
