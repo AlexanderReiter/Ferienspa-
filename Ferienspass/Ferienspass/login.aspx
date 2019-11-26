@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="Ferienspass.login" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="Ferienspass.login" Theme="default"%>
 
 <!DOCTYPE html>
 
@@ -9,10 +9,31 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class="loginform">
+        <div class="loginform shadow p-4 mb-4 bg-white">
             <div class="row">
-                <div class="col4">Text</div>
-                <div class="col8">Textbox</div>
+                <div class="col-12"><h1 style="text-align:center;">Login</h1></div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <asp:TextBox ID="txtEmailaddress" runat="server" placeholder="E-Mail (example@mail.com)" CssClass="form-control"></asp:TextBox>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <asp:TextBox ID="txtPassword" runat="server" placeholder="Passwort" CssClass="form-control"></asp:TextBox>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" CssClass="form-control"/>
+                    </div>
+                </div>
             </div>
         </div>
     </form>
