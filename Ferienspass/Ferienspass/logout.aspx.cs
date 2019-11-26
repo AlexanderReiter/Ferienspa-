@@ -2,16 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace Ferienspass
 {
-    public partial class WebForm1 : System.Web.UI.Page
+    public partial class logout : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (User.Identity.Name == "registration") Response.Redirect("~/registration.aspx");
+            Logout();
+        }
+
+        private void Logout()
+        {
+            FormsAuthentication.SignOut();
+            Response.Redirect("default.aspx");
         }
     }
 }

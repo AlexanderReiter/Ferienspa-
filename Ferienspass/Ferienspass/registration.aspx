@@ -10,13 +10,13 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class="registration-container border border-secondary">
-            <asp:literal ID="litAlert" runat="server"></asp:literal>
+        <div class="registration-container shadow p-4 mb-4 bg-white">
             <div class="row">
                 <div class="col">
                     <h3>Ferienspaß-Konto erstellen</h3>
                 </div>
             </div>
+            <asp:literal ID="litAlert" runat="server"></asp:literal>
             <div class="row">
                 <div class="col">
                     <div class="form-group">
@@ -35,19 +35,19 @@
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
-                        <asp:TextBox ID="txtFirstname" runat="server" placeholder="Vorname" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="txtGivenname" runat="server" placeholder="Vorname" CssClass="form-control"></asp:TextBox>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <asp:TextBox ID="txtLastname" runat="server" placeholder="Nachname" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="txtSurname" runat="server" placeholder="Nachname" CssClass="form-control"></asp:TextBox>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-3">
                     <div class="form-group">
-                        <asp:TextBox ID="txtPLZ" runat="server" placeholder="PLZ" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="txtZIP" runat="server" placeholder="PLZ" CssClass="form-control"></asp:TextBox>
                     </div>
                 </div>
                 <div class="col-9">
@@ -70,10 +70,10 @@
             </div>
             <div class="row">
                 <div class="col-6">
-                    <asp:Button ID="btnCancel" runat="server" Text="Stattdessen anmelden" CssClass="btn btn-outline-secondary btn-lg" />
+                    <asp:Button ID="btnCancel" runat="server" Text="Stattdessen anmelden" CssClass="btn btn-outline-secondary btn-lg" OnClick="btnCancel_Click" />
                 </div>
                 <div class="col-6">
-                    <asp:Button ID="btnRegister" runat="server" Text="Registrieren" CssClass="btn btn-secondary btn-lg float-right" />
+                    <asp:Button ID="btnRegister" runat="server" Text="Registrieren" CssClass="btn btn-secondary btn-lg float-right" OnClick="btnRegister_Click" />
                 </div>
             </div>
         </div>
