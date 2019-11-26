@@ -20,37 +20,52 @@ namespace Ferienspass
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            string user = txtEmailaddress.Text;
-            string pw = txtPassword.Text;
-
-            DB db = new DB();
-            string sql = "SELECT password, passwordsalt FROM user WHERE email=?";
-            DataTable sqlreturn = db.Query(sql, user);
-            if (sqlreturn.Rows.Count==0)
+            if (AllTxtsField())
             {
-                litLoginFailed.Text = "Login fehlgeschlagen!";
-            }
-            else
-            {
-                string pwSalt;
-                string pwHash;
-                try
-                {
-                    pwSalt = Convert.ToString(sqlreturn.Rows[0]["passwordsalt"]);
-                    pwHash = Convert.ToString(sqlreturn.Rows[0]["password"]);
-                }
-                catch { throw new ApplicationException("Internal Error! Salt not found"); }
+                string user = txtEmailaddress.Text;
+                string pw = txtPassword.Text;
 
-                if(pwHash == Password.EncryptPassword(pw, pwSalt))
+                DB db = new DB();
+                string sql = "SELECT password, passwordsalt FROM user WHERE email=?";
+                DataTable sqlreturn = db.Query(sql, user);
+                if (sqlreturn.Rows.Count == 0)
                 {
-                    FormsAuthentication.RedirectFromLoginPage(user, false);
+                    litLoginFailed.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>Login fehlgeschlagen!</div></div></div>";
                 }
                 else
                 {
-                    litLoginFailed.Text = "Login fehlgeschlagen!";
+                    string pwSalt;
+                    string pwHash;
+                    try
+                    {
+                        pwSalt = Convert.ToString(sqlreturn.Rows[0]["passwordsalt"]);
+                        pwHash = Convert.ToString(sqlreturn.Rows[0]["password"]);
+                    }
+                    catch { throw new ApplicationException("Internal Error! Salt not found"); }
+
+                    if (pwHash == Password.EncryptPassword(pw, pwSalt))
+                    {
+                        FormsAuthentication.RedirectFromLoginPage(user, false);
+                    }
+                    else
+                    {
+                        
+                        litLoginFailed.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>Login fehlgeschlagen!</div></div></div>";
+                    }
                 }
             }
+            else
+            {
+                
+                litLoginFailed.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>Nicht alle Felder sind ausgefüllt!</div></div></div>";
+            }
+        }
 
+        private bool AllTxtsField()
+        {
+            if (string.IsNullOrEmpty(txtEmailaddress.Text)) return false;
+            if (string.IsNullOrEmpty(txtPassword.Text)) return false;
+            return true;
         }
 
         protected void btnRegister_Click(object sender, EventArgs e)

@@ -14,7 +14,7 @@
                 <div class="col-12"><h1 style="text-align:center;">Login</h1></div>
             </div>
             <br />
-                <asp:literal ID="litLoginFailed" runat="server"></asp:literal>
+                <asp:Literal ID="litLoginFailed" runat="server"></asp:Literal>
             <div class="row">
                 <div class="col">
                     <div class="form-group">
@@ -32,14 +32,14 @@
             <div class="row">
                 <div class="col">
                     <div class="form-group">
-                        <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" CssClass="form-control"/>
+                        <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" CssClass="btn btn-secondary w-100"/>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
                     <div class="form-group">
-                        <asp:Button ID="btnRegister" runat="server" Text="Registrieren" OnClick="btnRegister_Click" CssClass="form-control" />
+                        <asp:Button ID="btnRegister" runat="server" Text="Registrieren" OnClick="btnRegister_Click" CssClass="btn btn-outline-secondary w-100" />
                     </div>
                 </div>
             </div>
