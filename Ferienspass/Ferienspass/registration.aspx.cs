@@ -24,16 +24,13 @@ namespace Ferienspass
         {
             if (AllTxtsFilled())
             {
+                if (EMailNotInDB(txtEMail.Text))
+                {
 
+                }
+                else litAlert.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>E-Mail ist bereits vorhanden!</div></div></div>";
             }
-            else
-            {
-                
-            }
-
-
-
-            throw new NotImplementedException();
+            else litAlert.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>Alle Felder müssen ausgefüllt werden!</div></div></div>";
         }
 
         private bool AllTxtsFilled()
@@ -61,6 +58,14 @@ namespace Ferienspass
             }
 
             return zips.Contains(zip);
+        }
+
+        private bool EMailNotInDB(string email)
+        {
+            DB db = new DB();
+
+            if (db.ExecuteScalar("SELECT * FROM user WHERE email=?", email) == null) return true;
+            return false;
         }
     }
 }
