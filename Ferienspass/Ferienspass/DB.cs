@@ -6,7 +6,7 @@ using System.Data.Odbc;
 using System.Linq;
 using System.Web;
 
-namespace Verwaltung_Themenfahrten
+namespace Ferienspass
 {
     public class DB
     {
