@@ -68,11 +68,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Themes\default\style.css" />
-<<<<<<< HEAD
     <Content Include="registration.aspx" />
-=======
     <Content Include="login.aspx" />
->>>>>>> 81a2ea6560b9748997b9cacf696c29ff1b2cb423
     <Content Include="Web.config" />
     <Content Include="default.aspx" />
   </ItemGroup>
