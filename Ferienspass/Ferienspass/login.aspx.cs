@@ -4,9 +4,10 @@ using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Verwaltung_Themenfahrten;
+
 
 namespace Ferienspass
 {
@@ -32,13 +33,18 @@ namespace Ferienspass
             else
             {
                 string pwSalt;
+                string pwHash;
                 try
                 {
                     pwSalt = Convert.ToString(sqlreturn.Rows[0]["passwordsalt"]);
+                    pwHash = Convert.ToString(sqlreturn.Rows[0]["password"]);
                 }
                 catch { throw new ApplicationException("Internal Error! Salt not found"); }
-                
-                
+
+                if(pwHash == Password.EncryptPassword(pw, pwSalt))
+                {
+                    FormsAuthentication.RedirectFromLoginPage(user, false);
+                }
             }
 
 
