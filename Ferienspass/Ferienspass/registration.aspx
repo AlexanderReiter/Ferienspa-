@@ -10,7 +10,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class="registration-container border border-secondary">
+        <div class="registration-container shadow p-4 mb-4 bg-white">
             <asp:literal ID="litAlert" runat="server"></asp:literal>
             <div class="row">
                 <div class="col">
@@ -35,12 +35,12 @@
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
-                        <asp:TextBox ID="txtFirstname" runat="server" placeholder="Vorname" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="txtGivenname" runat="server" placeholder="Vorname" CssClass="form-control"></asp:TextBox>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <asp:TextBox ID="txtLastname" runat="server" placeholder="Nachname" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="txtSurname" runat="server" placeholder="Nachname" CssClass="form-control"></asp:TextBox>
                     </div>
                 </div>
             </div>
