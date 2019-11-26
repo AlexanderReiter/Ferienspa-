@@ -13,5 +13,17 @@ namespace Ferienspass
         {
 
         }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/logout.aspx");
+        }
+
+        protected void btnRegister_Click(object sender, EventArgs e)
+        {
+
+
+            throw new NotImplementedException();
+        }
     }
 }
