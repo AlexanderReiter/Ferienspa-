@@ -75,6 +75,7 @@
     <Content Include="default.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\EmailMaker.cs" />
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
