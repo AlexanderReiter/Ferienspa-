@@ -8,9 +8,15 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+/// <summary>
+/// Programmer: Alexander Reiter
+/// Date: 26.11.2019
+/// //Verified by Josip
+/// </summary>
+
 namespace Ferienspass
 {
-    //Alexander Reiter
+
     public partial class registration : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
