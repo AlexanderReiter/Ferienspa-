@@ -76,6 +76,7 @@
     <Content Include="default.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Check.cs" />
     <Compile Include="EmailMaker.cs" />
     <Compile Include="DB.cs" />
     <Compile Include="login.aspx.cs">
@@ -101,19 +102,19 @@
     <Compile Include="registration.aspx.designer.cs">
       <DependentUpon>registration.aspx</DependentUpon>
     </Compile>
-    <Compile Include="site-master.Master.cs">
-      <DependentUpon>site-master.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="site-master.Master.designer.cs">
-      <DependentUpon>site-master.Master</DependentUpon>
-    </Compile>
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="user-master.Master.cs">
+      <DependentUpon>user-master.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="user-master.Master.designer.cs">
+      <DependentUpon>user-master.Master</DependentUpon>
     </Compile>
     <Compile Include="user-settings.aspx.cs">
       <DependentUpon>user-settings.aspx</DependentUpon>
@@ -125,7 +126,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="site-master.Master" />
+    <Content Include="user-master.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
