@@ -11,12 +11,12 @@
 <body>
     <form id="form1" runat="server">
         <div class="registration-container shadow p-4 mb-4 bg-white">
-            <asp:literal ID="litAlert" runat="server"></asp:literal>
             <div class="row">
                 <div class="col">
                     <h3>Ferienspaß-Konto erstellen</h3>
                 </div>
             </div>
+            <asp:literal ID="litAlert" runat="server"></asp:literal>
             <div class="row">
                 <div class="col">
                     <div class="form-group">

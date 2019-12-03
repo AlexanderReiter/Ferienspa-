@@ -11,7 +11,7 @@ namespace Ferienspass
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (User.Identity.Name == "registration") Response.Redirect("~/registration.aspx");
         }
     }
 }
