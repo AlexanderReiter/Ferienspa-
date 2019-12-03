@@ -31,21 +31,25 @@ namespace Ferienspass
             {
                 if (EMailMeetsCriteria(txtEMail.Text))
                 {
-                    if (EMailNotInDB(txtEMail.Text))
+                    if (CheckRepeatPassword())
                     {
-                        if (PasswordMeetsCriterias(txtPassword.Text))
+                        if (EMailNotInDB(txtEMail.Text))
                         {
-                            DB db = new DB();
-                            string salt = Password.GenerateSalt();
-                            db.ExecuteNonQuery("INSERT INTO user (userstatus, givenname, surname, zipcode, city, streetname, housenumber, " +
-                                "email, password, passwordsalt, failedlogins, blocked) VALUES (1, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0)", txtGivenname.Text,
-                                txtSurname.Text, txtZIP.Text, txtCity.Text, txtStreet.Text, txtNumber.Text, txtEMail.Text,
-                                Password.EncryptPassword(txtPassword.Text, salt), salt);
-                            Response.Redirect("~/logout.aspx");
+                            if (PasswordMeetsCriterias(txtPassword.Text))
+                            {
+                                DB db = new DB();
+                                string salt = Password.GenerateSalt();
+                                db.ExecuteNonQuery("INSERT INTO user (userstatus, givenname, surname, zipcode, city, streetname, housenumber, " +
+                                    "email, password, passwordsalt, failedlogins, blocked) VALUES (1, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0)", txtGivenname.Text,
+                                    txtSurname.Text, txtZIP.Text, txtCity.Text, txtStreet.Text, txtNumber.Text, txtEMail.Text,
+                                    Password.EncryptPassword(txtPassword.Text, salt), salt);
+                                Response.Redirect("~/logout.aspx");
+                            }
+                            else litAlert.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>Passwort muss ... enthalten!</div></div></div>";
                         }
-                        else litAlert.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>Passwort muss ... enthalten!</div></div></div>";
+                        else litAlert.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>E-Mail ist bereits vorhanden!</div></div></div>";
                     }
-                    else litAlert.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>E-Mail ist bereits vorhanden!</div></div></div>";
+                    else litAlert.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>Beide Passörter müssen übereinstimmen!</div></div></div>";
                 }
                 else litAlert.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>Keine gültige E-Mail!</div></div></div>";
             }
@@ -67,7 +71,12 @@ namespace Ferienspass
 
         private bool EMailMeetsCriteria(string text)
         {
-            throw new NotImplementedException();
+            return true;
+        }
+
+        private bool CheckRepeatPassword()
+        {
+            return txtPassword.Text == txtRepeatPassword.Text;
         }
 
         private bool CityIsAllowed(int zip)
