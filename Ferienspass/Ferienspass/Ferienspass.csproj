@@ -67,18 +67,42 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="agb_dsgv.aspx" />
     <Content Include="App_Themes\default\style.css" />
+    <Content Include="forgotpassword.aspx" />
     <Content Include="logout.aspx" />
-    <Content Include="User-Settings.aspx" />
+    <Content Include="resetpassword.aspx" />
+    <Content Include="user-settings.aspx" />
     <Content Include="registration.aspx" />
     <Content Include="login.aspx" />
     <Content Include="Web.config" />
     <Content Include="default.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="admin-master.Master.cs">
+      <DependentUpon>admin-master.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin-master.Master.designer.cs">
+      <DependentUpon>admin-master.Master</DependentUpon>
+    </Compile>
+    <Compile Include="agb_dsgv.aspx.cs">
+      <DependentUpon>agb_dsgv.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="agb_dsgv.aspx.designer.cs">
+      <DependentUpon>agb_dsgv.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Check.cs" />
     <Compile Include="EmailMaker.cs" />
     <Compile Include="DB.cs" />
+    <Compile Include="forgotpassword.aspx.cs">
+      <DependentUpon>forgotpassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forgotpassword.aspx.designer.cs">
+      <DependentUpon>forgotpassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -102,12 +126,19 @@
     <Compile Include="registration.aspx.designer.cs">
       <DependentUpon>registration.aspx</DependentUpon>
     </Compile>
-    <Compile Include="site-master.Master.cs">
-      <DependentUpon>site-master.Master</DependentUpon>
+    <Compile Include="resetpassword.aspx.cs">
+      <DependentUpon>resetpassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="site-master.Master.designer.cs">
-      <DependentUpon>site-master.Master</DependentUpon>
+    <Compile Include="resetpassword.aspx.designer.cs">
+      <DependentUpon>resetpassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="user-master.Master.cs">
+      <DependentUpon>user-master.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="user-master.Master.designer.cs">
+      <DependentUpon>user-master.Master</DependentUpon>
     </Compile>
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
@@ -116,23 +147,27 @@
     <Compile Include="default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="User-Settings.aspx.cs">
-      <DependentUpon>User-Settings.aspx</DependentUpon>
+    <Compile Include="user-settings.aspx.cs">
+      <DependentUpon>user-settings.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="User-Settings.aspx.designer.cs">
-      <DependentUpon>User-Settings.aspx</DependentUpon>
+    <Compile Include="user-settings.aspx.designer.cs">
+      <DependentUpon>user-settings.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="admin-master.Master" />
     <None Include="packages.config" />
-    <Content Include="site-master.Master" />
+    <Content Include="user-master.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

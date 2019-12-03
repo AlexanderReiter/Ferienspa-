@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
 </head>
 <body>
+    <%-- Alexander Reiter --%>
     <form id="form1" runat="server">
         <div class="registration-container shadow p-4 mb-4 bg-white">
             <div class="row">
@@ -27,7 +28,14 @@
             <div class="row">
                 <div class="col">
                     <div class="form-group">
-                        <asp:TextBox ID="txtPassword" runat="server" placeholder="Passwort" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="txtPassword" runat="server" placeholder="Passwort" CssClass="form-control" TextMode="Password"></asp:TextBox>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <asp:TextBox ID="txtRepeatPassword" runat="server" placeholder="Passwort wiederhohlen" CssClass="form-control" TextMode="Password"></asp:TextBox>
                     </div>
                 </div>
             </div>
@@ -65,6 +73,14 @@
                 <div class="col-2">
                     <div class="form-group">
                         <asp:TextBox ID="txtNumber" runat="server" placeholder="Nr." CssClass="form-control"></asp:TextBox>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <asp:CheckBox ID="chkAGB" runat="server" Text=""/>
+                        <label>(*) Ich habe die <a href=""> AGB</a> des Wirtschaftsverlages gelesen und stimme diesen zu.</label>
                     </div>
                 </div>
             </div>

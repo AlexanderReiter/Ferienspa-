@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/site-master.Master" AutoEventWireup="true" CodeBehind="User-Settings.aspx.cs" Inherits="Ferienspass.User_Settings" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/user-master.Master" AutoEventWireup="true" CodeBehind="user-settings.aspx.cs" Inherits="Ferienspass.User_Settings" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -11,7 +11,7 @@
             </div>
             <div class="col-1">
                 <div class="form-group">
-                    <asp:Button ID="btnChangeEmail" Text="Ändern" runat="server" CssClass="btn btn-secondary float-right" OnClick="btnChangeEmail_Click" />
+                    <asp:Button ID="btnChangeEmail" Text="Ändern" runat="server" CssClass="btn btn-secondary" OnClick="btnChangeEmail_Click" />
                 </div>
             </div>
         </div>
@@ -23,7 +23,7 @@
             </div>
             <div class="col-1">
                 <div class="form-group">
-                    <asp:Button ID="btnChangePassword" Text="Ändern" runat="server" CssClass="btn btn-secondary float-right" OnClick="btnChangePassword_Click" />
+                    <asp:Button ID="btnChangePassword" Text="Ändern" runat="server" CssClass="btn btn-secondary" OnClick="btnChangePassword_Click" />
                 </div>
             </div>
         </div>
@@ -41,10 +41,24 @@
             </div>
             <div class="col-1">
                 <div class="form-group">
-                    <asp:Button ID="btnChangeName" Text="Ändern" runat="server" CssClass="btn btn-secondary float-right" OnClick="btnChangeName_Click" />
+                    <asp:Panel ID="pnlChangeName" runat="server">
+                        <asp:Button ID="btnChangeName" Text="Ändern" runat="server" CssClass="btn btn-secondary" OnClick="btnChangeName_Click" />
+                    </asp:Panel>
+                    <asp:Panel ID="pnlSaveName" runat="server" Visible="false">
+                        <asp:Button ID="btnSaveName" Text="Speichern" runat="server" CssClass="btn btn-secondary" OnClick="btnSaveName_Click" />
+                    </asp:Panel>
                 </div>
             </div>
         </div>
+        <asp:Panel ID="pnlCancelName" runat="server" Visible="false">
+            <div class="row">
+                <div class="col-11">
+                </div>
+                <div class="col-1">
+                    <asp:Button ID="btnCancelName" Text="Abbrechen" runat="server" CssClass="btn btn-secondary" OnClick="btnCancelName_Click" />
+                </div>
+            </div>
+        </asp:Panel>
         <br />
         <div class="row">
             <div class="col-3">
@@ -59,7 +73,7 @@
             </div>
             <div class="col-1">
                 <div class="form-group">
-                    <asp:Button ID="btnChangeAdress" Text="Ändern" runat="server" CssClass="btn btn-secondary float-right" OnClick="btnChangeAdress_Click" />
+                    <asp:Button ID="btnChangeAdress" Text="Ändern" runat="server" CssClass="btn btn-secondary" OnClick="btnChangeAdress_Click" />
                 </div>
             </div>
         </div>
