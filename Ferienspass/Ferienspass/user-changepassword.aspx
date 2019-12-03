@@ -15,7 +15,7 @@
                     <div class="col-12"><h1 style="text-align:center;">Passwort ändern</h1></div>
                 </div>
                 <br />
-                <asp:Literal ID="litLoginFailed" runat="server"></asp:Literal>
+                <asp:Literal ID="litPasswordError" runat="server"></asp:Literal>
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
@@ -47,7 +47,7 @@
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
-                            <asp:Button ID="btnCancelPassword" runat="server" CssClass="btn btn-outline-secondary w-100" Text="Abbrechen" />
+                            <asp:Button ID="btnCancelPassword" runat="server" CssClass="btn btn-outline-secondary w-100" Text="Abbrechen" OnClick="btnCancelPassword_Click" />
                         </div>
                     </div>
                 </div>
