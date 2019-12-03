@@ -7,9 +7,11 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-//Mair Andreas
-//03.12.19
-// Pw vergessen Pw zurücksetzen
+// Programmer: Mair Andreas
+// Date: 03.12.19
+// Tasks: Pw vergessen Pw zurücksetzen
+
+
 
 namespace Ferienspass
 {
