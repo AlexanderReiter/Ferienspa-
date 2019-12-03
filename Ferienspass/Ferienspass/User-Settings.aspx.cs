@@ -9,6 +9,8 @@ using Ferienspass;
 
 /// <summary>
 /// Programmer: Kollross Marcel
+/// Date: 23.11.2019
+/// Verified by: N/A
 /// </summary>
 namespace Ferienspass
 {
@@ -44,16 +46,6 @@ namespace Ferienspass
             gvKids.DataBind();
         }
 
-        //protected void btnChangeEmail_Click(object sender, EventArgs e)
-        //{
-        //    txtEmail.Enabled = true;
-        //    pnlChangeEmail.Visible = false;
-        //    pnlSaveCancelEmail.Visible = true;
-        //    btnChangeAdress.Enabled = false;
-        //    btnChangeName.Enabled = false;
-        //    btnChangePassword.Enabled = false;
-        //}
-
         protected void btnChangePassword_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/user-changepassword.aspx");
@@ -66,7 +58,6 @@ namespace Ferienspass
             pnlChangeName.Visible = false;
             pnlSaveName.Visible = true;
             pnlCancelName.Visible = true;
-            //btnChangeEmail.Enabled = false;
             btnChangeAdress.Enabled = false;
             btnChangePassword.Enabled = false;
         }
@@ -80,7 +71,6 @@ namespace Ferienspass
             pnlChangeAdress.Visible = false;
             pnlSaveAdress.Visible = true;
             pnlCancelAdress.Visible = true;
-            //btnChangeEmail.Enabled = false;
             btnChangeName.Enabled = false;
             btnChangePassword.Enabled = false;
         }
@@ -98,7 +88,6 @@ namespace Ferienspass
             pnlChangeName.Visible = true;
             pnlSaveName.Visible = false;
             pnlCancelName.Visible = false;
-            //btnChangeEmail.Enabled = true;
             btnChangeAdress.Enabled = true;
             btnChangePassword.Enabled = true;
         }
@@ -110,7 +99,6 @@ namespace Ferienspass
             pnlChangeName.Visible = true;
             pnlSaveName.Visible = false;
             pnlCancelName.Visible = false;
-            //btnChangeEmail.Enabled = true;
             btnChangeAdress.Enabled = true;
             btnChangePassword.Enabled = true;
         }
@@ -132,7 +120,6 @@ namespace Ferienspass
             pnlChangeAdress.Visible = true;
             pnlSaveAdress.Visible = false;
             pnlCancelAdress.Visible = false;
-            //btnChangeEmail.Enabled = true;
             btnChangeName.Enabled = true;
             btnChangePassword.Enabled = true;
         }
@@ -146,34 +133,8 @@ namespace Ferienspass
             pnlChangeAdress.Visible = true;
             pnlSaveAdress.Visible = false;
             pnlCancelAdress.Visible = false;
-            //btnChangeEmail.Enabled = true;
             btnChangeName.Enabled = true;
             btnChangePassword.Enabled = true;
         }
-
-        //protected void btnSaveEmail_Click(object sender, EventArgs e)
-        //{
-        //    string newEmail = txtEmail.Text;
-
-        //    DB db = new DB();
-        //    db.Query("UPDATE user SET email=? WHERE email=?", newEmail, User.Identity.Name);
-
-        //    txtEmail.Enabled = false;
-        //    pnlChangeEmail.Visible = true;
-        //    pnlSaveCancelEmail.Visible = false;
-        //    btnChangeAdress.Enabled = true;
-        //    btnChangeName.Enabled = true;
-        //    btnChangePassword.Enabled = true;
-        //}
-
-        //protected void btnCancelEmail_Click(object sender, EventArgs e)
-        //{
-        //    txtEmail.Enabled = false;
-        //    pnlChangeEmail.Visible = true;
-        //    pnlSaveCancelEmail.Visible = false;
-        //    btnChangeAdress.Enabled = true;
-        //    btnChangeName.Enabled = true;
-        //    btnChangePassword.Enabled = true;
-        //}
     }
 }
