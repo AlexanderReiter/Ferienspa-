@@ -4,26 +4,26 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
         <div class="row">
-            <div class="col-11">
+            <div class="col-10">
                 <div class="form-group">
                     <asp:TextBox ID="txtEmail" placeholder="Email" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                 </div>
             </div>
-            <div class="col-1">
+<%--            <div class="col-4">
                 <div class="form-group">
-                    <asp:Button ID="btnChangeEmail" Text="Ändern" runat="server" CssClass="btn btn-secondary" OnClick="btnChangeEmail_Click" />
+                    <asp:Panel ID="pnlChangeEmail" runat="server">
+                        <asp:Button ID="btnChangeEmail" Text="Ändern" runat="server" CssClass="btn btn-secondary float-left" OnClick="btnChangeEmail_Click" />
+                    </asp:Panel>
+                    <asp:Panel ID="pnlSaveCancelEmail" runat="server" Visible="false">
+                        <asp:Button ID="btnSaveEmail" Text="Speichern" runat="server" CssClass="btn btn-secondary float-left" OnClick="btnSaveEmail_Click" />
+                        &nbsp;
+                        <asp:Button ID="btnCancelEmail" Text="Abbrechen" runat="server" CssClass="btn btn-secondary" OnClick="btnCancelEmail_Click" />
+                    </asp:Panel>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-11">
+            </div>--%>
+            <div class="col-2">
                 <div class="form-group">
-                    <asp:TextBox ID="txtPassword" placeholder="Passwort" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
-                </div>
-            </div>
-            <div class="col-1">
-                <div class="form-group">
-                    <asp:Button ID="btnChangePassword" Text="Ändern" runat="server" CssClass="btn btn-secondary" OnClick="btnChangePassword_Click" />
+                    <asp:Button ID="btnChangePassword" Text="Passwort ändern" runat="server" CssClass="btn btn-secondary float-right" OnClick="btnChangePassword_Click" />
                 </div>
             </div>
         </div>
@@ -34,28 +34,28 @@
                     <asp:TextBox ID="txtGivenname" placeholder="Vorname" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-5">
                 <div class="form-group">
                     <asp:TextBox ID="txtSurname" placeholder="Nachname" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                 </div>
             </div>
-            <div class="col-1">
+            <div class="col-2">
                 <div class="form-group">
                     <asp:Panel ID="pnlChangeName" runat="server">
-                        <asp:Button ID="btnChangeName" Text="Ändern" runat="server" CssClass="btn btn-secondary" OnClick="btnChangeName_Click" />
+                        <asp:Button ID="btnChangeName" Text="Ändern" runat="server" CssClass="btn btn-secondary float-right" OnClick="btnChangeName_Click" />
                     </asp:Panel>
                     <asp:Panel ID="pnlSaveName" runat="server" Visible="false">
-                        <asp:Button ID="btnSaveName" Text="Speichern" runat="server" CssClass="btn btn-secondary" OnClick="btnSaveName_Click" />
+                        <asp:Button ID="btnSaveName" Text="Speichern" runat="server" CssClass="btn btn-secondary float-right" OnClick="btnSaveName_Click" />
                     </asp:Panel>
                 </div>
             </div>
         </div>
         <asp:Panel ID="pnlCancelName" runat="server" Visible="false">
             <div class="row">
-                <div class="col-11">
+                <div class="col-10">
                 </div>
-                <div class="col-1">
-                    <asp:Button ID="btnCancelName" Text="Abbrechen" runat="server" CssClass="btn btn-secondary" OnClick="btnCancelName_Click" />
+                <div class="col-2">
+                    <asp:Button ID="btnCancelName" Text="Abbrechen" runat="server" CssClass="btn btn-secondary float-right" OnClick="btnCancelName_Click" />
                 </div>
             </div>
         </asp:Panel>
@@ -66,19 +66,24 @@
                     <asp:TextBox ID="txtZIP" placeholder="PLZ" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="form-group">
                     <asp:TextBox ID="txtCity" placeholder="Ort" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                 </div>
             </div>
-            <div class="col-1">
+            <div class="col-2">
                 <div class="form-group">
-                    <asp:Button ID="btnChangeAdress" Text="Ändern" runat="server" CssClass="btn btn-secondary" OnClick="btnChangeAdress_Click" />
+                    <asp:Panel ID="pnlChangeAdress" runat="server">
+                        <asp:Button ID="btnChangeAdress" Text="Ändern" runat="server" CssClass="btn btn-secondary float-right" OnClick="btnChangeAdress_Click" />
+                    </asp:Panel>
+                    <asp:Panel ID="pnlSaveAdress" runat="server" Visible="false">
+                        <asp:Button ID="btnSaveAdress" Text="Speichern" runat="server" CssClass="btn btn-secondary float-right" OnClick="btnSaveAdress_Click" />
+                    </asp:Panel>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-9">
+            <div class="col-8">
                 <div class="form-group">
                     <asp:TextBox ID="txtStreet" placeholder="Straße" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                 </div>
@@ -86,6 +91,13 @@
             <div class="col-2">
                 <div class="form-group">
                     <asp:TextBox ID="txtNr" placeholder="Hausnr." runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="form-group">
+                    <asp:Panel ID="pnlCancelAdress" runat="server" Visible="false">
+                        <asp:Button ID="btnCancelAdress" runat="server" Text="Abbrechen" CssClass="btn btn-secondary float-right" OnClick="btnCancelAdress_Click" />
+                    </asp:Panel>
                 </div>
             </div>
         </div>

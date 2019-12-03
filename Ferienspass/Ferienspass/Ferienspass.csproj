@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="App_Themes\default\style.css" />
     <Content Include="logout.aspx" />
+    <Content Include="user-changepassword.aspx" />
     <Content Include="User-Settings.aspx" />
     <Content Include="registration.aspx" />
     <Content Include="login.aspx" />
@@ -76,6 +77,13 @@
     <Content Include="default.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="admin-master.Master.cs">
+      <DependentUpon>admin-master.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin-master.Master.designer.cs">
+      <DependentUpon>admin-master.Master</DependentUpon>
+    </Compile>
     <Compile Include="Check.cs" />
     <Compile Include="EmailMaker.cs" />
     <Compile Include="DB.cs" />
@@ -102,6 +110,13 @@
     <Compile Include="registration.aspx.designer.cs">
       <DependentUpon>registration.aspx</DependentUpon>
     </Compile>
+    <Compile Include="user-changepassword.aspx.cs">
+      <DependentUpon>user-changepassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="user-changepassword.aspx.designer.cs">
+      <DependentUpon>user-changepassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="user-master.Master.cs">
       <DependentUpon>user-master.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -125,6 +140,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="admin-master.Master" />
     <None Include="packages.config" />
     <Content Include="user-master.Master" />
     <None Include="Web.Debug.config">
