@@ -56,14 +56,12 @@ namespace Ferienspass
                     }
                     else
                     {
-                        
                         litLoginFailed.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>Login fehlgeschlagen!</div></div></div>";
                     }
                 }
             }
             else
             {
-                
                 litLoginFailed.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>Nicht alle Felder sind ausgefüllt!</div></div></div>";
             }
         }
