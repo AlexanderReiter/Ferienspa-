@@ -117,7 +117,9 @@ namespace Ferienspass
 
         private void SendAuthenticationEmail(string toMail)
         {
-            EmailMaker.Send(toMail, "Bestätigung Ferienspaß Mondpichl", "Content");
+            string subject = "Bestätigung Ferienspaß Mondpichl";
+            string body = "Content";
+            EmailMaker.Send(toMail, subject, body);
         }
     }
 }

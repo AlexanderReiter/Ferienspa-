@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="agb_dsgv.aspx" />
     <Content Include="App_Themes\default\style.css" />
     <Content Include="forgotpassword.aspx" />
     <Content Include="logout.aspx" />
@@ -83,6 +84,13 @@
     </Compile>
     <Compile Include="admin-master.Master.designer.cs">
       <DependentUpon>admin-master.Master</DependentUpon>
+    </Compile>
+    <Compile Include="agb_dsgv.aspx.cs">
+      <DependentUpon>agb_dsgv.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="agb_dsgv.aspx.designer.cs">
+      <DependentUpon>agb_dsgv.aspx</DependentUpon>
     </Compile>
     <Compile Include="Check.cs" />
     <Compile Include="EmailMaker.cs" />
@@ -149,6 +157,9 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
