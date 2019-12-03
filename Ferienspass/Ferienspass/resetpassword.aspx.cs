@@ -5,6 +5,10 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+//Mair Andreas
+//03.12.19
+// Pw vergessen Pw zurücksetzen
+
 namespace Ferienspass
 {
     public partial class resetpassword : System.Web.UI.Page
@@ -20,7 +24,7 @@ namespace Ferienspass
             {
                 if (PwsMatch())
                 {
-                    string mail = Convert.ToString(Request.QueryString["email"]);
+                    string mail = Convert.ToString(Request.QueryString["email"])/*.Trim(Convert.ToChar("'"))*/;
                     string sql = "Update user SET password=?, passwordsalt=? WHERE email=?";
                     string salt = Password.GenerateSalt();
                     string pwHash = Password.EncryptPassword(txtNewPw1.Text, salt);
