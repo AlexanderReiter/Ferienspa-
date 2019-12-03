@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
 </head>
 <body>
+    <%-- Alexander Reiter --%>
     <form id="form1" runat="server">
         <div class="registration-container shadow p-4 mb-4 bg-white">
             <div class="row">
@@ -27,7 +28,7 @@
             <div class="row">
                 <div class="col">
                     <div class="form-group">
-                        <asp:TextBox ID="txtPassword" runat="server" placeholder="Passwort" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="txtPassword" runat="server" placeholder="Passwort" CssClass="form-control" TextMode="Password"></asp:TextBox>
                     </div>
                 </div>
             </div>

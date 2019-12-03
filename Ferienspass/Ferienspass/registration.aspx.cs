@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace Ferienspass
 {
+    //Alexander Reiter
     public partial class registration : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
@@ -30,7 +31,16 @@ namespace Ferienspass
             {
                 if (EMailNotInDB(txtEMail.Text))
                 {
-
+                    if (PasswordMeetsCriterias(txtPassword.Text))
+                    {
+                        DB db = new DB();
+                        string salt = Password.GenerateSalt();
+                        db.ExecuteNonQuery("INSERT INTO user (userstatus, givenname, surname, zipcode, city, streetname, housenumber, " +
+                            "email, password, passwordsalt, failedlogins, blocked) VALUES (1, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0)", txtGivenname.Text,
+                            txtSurname.Text, txtZIP.Text, txtCity.Text, txtStreet.Text, txtNumber.Text, txtEMail.Text,
+                            Password.EncryptPassword(txtPassword.Text, salt), salt);
+                        Response.Redirect("~/logout.aspx");
+                    }
                 }
                 else litAlert.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>E-Mail ist bereits vorhanden!</div></div></div>";
             }
@@ -68,8 +78,12 @@ namespace Ferienspass
         {
             DB db = new DB();
 
-            if (db.ExecuteScalar("SELECT * FROM user WHERE email=?", email) == null) return true;
-            return false;
+            return (db.ExecuteScalar("SELECT * FROM user WHERE email=?", email) == null);
+        }
+
+        private bool PasswordMeetsCriterias(string text)
+        {
+            return true;
         }
     }
 }
