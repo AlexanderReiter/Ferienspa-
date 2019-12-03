@@ -19,21 +19,21 @@
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
-                            <asp:TextBox ID="txtOldPassword" runat="server" CssClass="form-control" placeholder="Altes Passwort"></asp:TextBox>
+                            <asp:TextBox ID="txtOldPassword" runat="server" CssClass="form-control" TextMode="Password" AutoPostBack="true" placeholder="Altes Passwort"></asp:TextBox>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
-                            <asp:TextBox ID="txtNewPassword" runat="server" CssClass="form-control" placeholder="Neues Passwort"></asp:TextBox>
+                            <asp:TextBox ID="txtNewPassword" runat="server" CssClass="form-control" TextMode="Password" AutoPostBack="true" placeholder="Neues Passwort"></asp:TextBox>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
-                            <asp:TextBox ID="txtRepeatPassword" runat="server" CssClass="form-control" placeholder="Neues Passwort wiederholen"></asp:TextBox>
+                            <asp:TextBox ID="txtRepeatPassword" runat="server" CssClass="form-control" TextMode="Password" AutoPostBack="true" placeholder="Neues Passwort wiederholen"></asp:TextBox>
                         </div>
                     </div>
                 </div>

@@ -36,10 +36,22 @@ namespace Ferienspass
 
                     Response.Redirect("~/user-settings.aspx");
                 }
+                else if(string.IsNullOrEmpty(txtNewPassword.Text))
+                {
+                    litPasswordError.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>Neues Passwort eingeben!</div></div></div>";
+                }
+                else if(string.IsNullOrEmpty(txtRepeatPassword.Text))
+                {
+                    litPasswordError.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>Neues Passwort wiederholen!</div></div></div>";
+                }
                 else
                 {
                     litPasswordError.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>Neue Passwörter stimmen nicht überein!</div></div></div>";
                 }
+            }
+            else if(string.IsNullOrEmpty(txtOldPassword.Text))
+            {
+                litPasswordError.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>Altes Passwort eingeben!</div></div></div>";
             }
             else
             {
