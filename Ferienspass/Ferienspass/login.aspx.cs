@@ -8,9 +8,9 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-//Mair Andreas
-//26.11.19
-//Tasks: Login Formular erstellen + pw abgleichen
+// Programmer: Mair Andreas
+// Date: 26.11.19
+// Tasks: Login Formular erstellen + pw abgleichen
 
 /// <summary>
 /// Verified by Josip
@@ -22,7 +22,20 @@ namespace Ferienspass
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                try
+                {
+                    string mail = Convert.ToString(Request.QueryString["email"]);
+                    if (!string.IsNullOrEmpty(mail))
+                    {
+                        FormsAuthentication.RedirectFromLoginPage("getnewpw", false);
+                        Response.Redirect("logout", false);
+                    }
+                }
+                catch { }
+                
+            }
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
