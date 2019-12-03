@@ -8,6 +8,13 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+//Mair Andreas
+//26.11.19
+//Tasks: Login Formular erstellen + pw abgleichen
+
+/// <summary>
+/// Verified by Josip
+/// </summary>
 
 namespace Ferienspass
 {
@@ -20,7 +27,7 @@ namespace Ferienspass
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            if (AllTxtsField())
+            if (AllTxtsFilled())
             {
                 string user = txtEmailaddress.Text;
                 string pw = txtPassword.Text;
@@ -61,7 +68,7 @@ namespace Ferienspass
             }
         }
 
-        private bool AllTxtsField()
+        private bool AllTxtsFilled()
         {
             if (string.IsNullOrEmpty(txtEmailaddress.Text)) return false;
             if (string.IsNullOrEmpty(txtPassword.Text)) return false;

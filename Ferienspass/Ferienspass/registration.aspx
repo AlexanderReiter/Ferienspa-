@@ -32,6 +32,13 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <asp:TextBox ID="txtRepeatPassword" runat="server" placeholder="Passwort wiederhohlen" CssClass="form-control" TextMode="Password"></asp:TextBox>
+                    </div>
+                </div>
+            </div>
             <br />
             <div class="row">
                 <div class="col-6">
@@ -66,6 +73,14 @@
                 <div class="col-2">
                     <div class="form-group">
                         <asp:TextBox ID="txtNumber" runat="server" placeholder="Nr." CssClass="form-control"></asp:TextBox>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <asp:CheckBox ID="chkAGB" runat="server" Text=""/>
+                        <label>(*) Ich habe die <a href="agb.aspx">AGB</a> und <a href="dsgv.aspx">DsGV</a> des Wirtschaftsverlages gelesen und stimme diesen zu.</label>
                     </div>
                 </div>
             </div>
