@@ -5,6 +5,12 @@ using System.Linq;
 using System.Net.Mail;
 using System.Web;
 
+/// <summary>
+/// Programmer: ALexander Reiter
+/// Date: 03.12.2019
+/// Verfied by Josip
+/// </summary>
+
 namespace Ferienspass.Classes
 {
     public class EmailMaker
