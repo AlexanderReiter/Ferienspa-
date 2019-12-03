@@ -23,6 +23,7 @@ namespace Ferienspass
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            FormsAuthentication.RedirectFromLoginPage("getnewpw",false);
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
