@@ -69,9 +69,17 @@ namespace Ferienspass
             return true;
         }
 
-        private bool EMailMeetsCriteria(string text)
+        private bool EMailMeetsCriteria(string email)
         {
-            return true;
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         private bool CheckRepeatPassword()
