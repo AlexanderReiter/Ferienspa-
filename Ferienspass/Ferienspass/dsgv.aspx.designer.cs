@@ -11,7 +11,7 @@ namespace Ferienspass
 {
 
 
-    public partial class agb_dsgv
+    public partial class dsgv
     {
 
         /// <summary>
