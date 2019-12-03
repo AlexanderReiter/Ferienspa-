@@ -70,6 +70,7 @@
     <Content Include="App_Themes\default\style.css" />
     <Content Include="forgotpassword.aspx" />
     <Content Include="logout.aspx" />
+    <Content Include="resetpassword.aspx" />
     <Content Include="User-Settings.aspx" />
     <Content Include="registration.aspx" />
     <Content Include="login.aspx" />
@@ -109,6 +110,13 @@
     </Compile>
     <Compile Include="registration.aspx.designer.cs">
       <DependentUpon>registration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="resetpassword.aspx.cs">
+      <DependentUpon>resetpassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="resetpassword.aspx.designer.cs">
+      <DependentUpon>resetpassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="user-master.Master.cs">
       <DependentUpon>user-master.Master</DependentUpon>

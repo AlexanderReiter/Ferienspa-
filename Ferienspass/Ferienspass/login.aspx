@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="col">
                     <div class="form-group">
-                        <asp:TextBox ID="txtPassword" runat="server" placeholder="Passwort" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="txtPassword" runat="server" placeholder="Passwort" TextMode="Password" CssClass="form-control"></asp:TextBox>
                     </div>
                 </div>
             </div>

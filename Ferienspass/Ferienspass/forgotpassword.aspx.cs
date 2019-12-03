@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Ferienspass.Classes;
 
 //Mair Andreas
 //03.12.19
@@ -36,6 +37,7 @@ namespace Ferienspass
                 {
 
                     litEmailFailed.Text = "<div class='row'><div class='col'><div class='alert alert-success'>Erfolgreich! Überprüfen Sie Ihr Postfach!</div></div></div>";
+                    //if (SendMail(user)) litEmailFailed.Text = "";
                 }
             }
             else
@@ -44,6 +46,25 @@ namespace Ferienspass
             }
 
         }
+
+        //private bool SendMail(string user)
+        //{
+        //    var mail = new EmailMaker()
+        //    {
+        //        Sender = "ttt@web.de",
+        //        Receiver = new List<string>() { "bbb@web.de" },
+        //        Copy = new List<string>() { "hallo@web.de" },
+        //        Attachments = new List<Attachment> { new Attachment("C:\\ttt.txt") },
+        //        Subject = "Hallo",
+        //        Message = "Passwort zurücksetzen: https://localhost:44383/resetpassword.aspx?email='andi@gmx.at'",
+        //        Servername = "smtp.web.de",
+        //        Port = "25",
+        //        Username = "Username",
+        //        Password = "Password"
+        //    };
+
+        //    mail.Send();
+        //}
 
         private bool AllTxtsFilled()
         {
