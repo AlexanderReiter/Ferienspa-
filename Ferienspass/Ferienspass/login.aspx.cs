@@ -9,6 +9,10 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 
+/// <summary>
+/// Verified by Josip
+/// </summary>
+
 namespace Ferienspass
 {
     public partial class login : System.Web.UI.Page

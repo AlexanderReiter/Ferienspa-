@@ -76,6 +76,7 @@
     <Content Include="default.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Check.cs" />
     <Compile Include="EmailMaker.cs" />
     <Compile Include="DB.cs" />
     <Compile Include="login.aspx.cs">
