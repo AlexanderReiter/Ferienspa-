@@ -12,7 +12,7 @@ namespace Ferienspass
         protected void Page_Load(object sender, EventArgs e)
         {
             Response.ContentType = "pdf";
-            Response.AppendHeader("Content-Disposition", "attachment; filename=SailBig.jpg");
+            Response.AppendHeader("Content-Disposition", "attachment; filename=AGB.pdf");
             Response.TransmitFile(Server.MapPath("~/App_Data/AGB_Vorlage1.pdf"));
             Response.End();
         }

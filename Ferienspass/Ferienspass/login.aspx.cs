@@ -12,6 +12,10 @@ using System.Web.UI.WebControls;
 //26.11.19
 //Tasks: Login Formular erstellen + pw abgleichen
 
+/// <summary>
+/// Verified by Josip
+/// </summary>
+
 namespace Ferienspass
 {
     public partial class login : System.Web.UI.Page

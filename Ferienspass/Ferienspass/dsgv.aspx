@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="agb_dsgv.aspx.cs" Inherits="Ferienspass.agb_dsgv" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="dsgv.aspx.cs" Inherits="Ferienspass.dsgv" %>
 
 <!DOCTYPE html>
 

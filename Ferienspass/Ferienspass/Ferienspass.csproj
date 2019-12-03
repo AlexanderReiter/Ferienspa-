@@ -67,8 +67,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="agb_dsgv.aspx" />
+    <Content Include="agb.aspx" />
     <Content Include="App_Themes\default\style.css" />
+    <Content Include="dsgv.aspx" />
     <Content Include="forgotpassword.aspx" />
     <Content Include="logout.aspx" />
     <Content Include="resetpassword.aspx" />
@@ -86,14 +87,21 @@
     <Compile Include="admin-master.Master.designer.cs">
       <DependentUpon>admin-master.Master</DependentUpon>
     </Compile>
-    <Compile Include="agb_dsgv.aspx.cs">
-      <DependentUpon>agb_dsgv.aspx</DependentUpon>
+    <Compile Include="agb.aspx.cs">
+      <DependentUpon>agb.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="agb_dsgv.aspx.designer.cs">
-      <DependentUpon>agb_dsgv.aspx</DependentUpon>
+    <Compile Include="agb.aspx.designer.cs">
+      <DependentUpon>agb.aspx</DependentUpon>
     </Compile>
     <Compile Include="Check.cs" />
+    <Compile Include="dsgv.aspx.cs">
+      <DependentUpon>dsgv.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dsgv.aspx.designer.cs">
+      <DependentUpon>dsgv.aspx</DependentUpon>
+    </Compile>
     <Compile Include="EmailMaker.cs" />
     <Compile Include="DB.cs" />
     <Compile Include="forgotpassword.aspx.cs">
