@@ -67,6 +67,15 @@ namespace Ferienspass {
         protected global::System.Web.UI.WebControls.TextBox txtSurname;
         
         /// <summary>
+        /// pnlChangeName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlChangeName;
+        
+        /// <summary>
         /// btnChangeName control.
         /// </summary>
         /// <remarks>
@@ -74,6 +83,42 @@ namespace Ferienspass {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnChangeName;
+        
+        /// <summary>
+        /// pnlSaveName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlSaveName;
+        
+        /// <summary>
+        /// btnSaveName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSaveName;
+        
+        /// <summary>
+        /// pnlCancelName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlCancelName;
+        
+        /// <summary>
+        /// btnCancelName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancelName;
         
         /// <summary>
         /// txtZIP control.

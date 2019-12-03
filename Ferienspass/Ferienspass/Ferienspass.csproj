@@ -69,7 +69,7 @@
   <ItemGroup>
     <Content Include="App_Themes\default\style.css" />
     <Content Include="logout.aspx" />
-    <Content Include="User-Settings.aspx" />
+    <Content Include="user-settings.aspx" />
     <Content Include="registration.aspx" />
     <Content Include="login.aspx" />
     <Content Include="Web.config" />
@@ -115,12 +115,12 @@
     <Compile Include="default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="User-Settings.aspx.cs">
-      <DependentUpon>User-Settings.aspx</DependentUpon>
+    <Compile Include="user-settings.aspx.cs">
+      <DependentUpon>user-settings.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="User-Settings.aspx.designer.cs">
-      <DependentUpon>User-Settings.aspx</DependentUpon>
+    <Compile Include="user-settings.aspx.designer.cs">
+      <DependentUpon>user-settings.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

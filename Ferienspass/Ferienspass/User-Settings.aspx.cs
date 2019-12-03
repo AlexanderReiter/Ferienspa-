@@ -23,7 +23,7 @@ namespace Ferienspass
         public void LoadUser()
         {
             DB db = new DB();
-            DataRow dr = db.Query("SELECT * FROM user WHERE userId=?", User.Identity.Name).Rows[0];
+            DataRow dr = db.Query("SELECT * FROM user WHERE userId=?", 2).Rows[0];
 
             txtEmail.Text = Convert.ToString(dr["email"]);
             txtPassword.Text = Convert.ToString(dr["password"]);
@@ -54,12 +54,30 @@ namespace Ferienspass
 
         protected void btnChangeName_Click(object sender, EventArgs e)
         {
-
+            txtGivenname.Enabled = true;
+            txtSurname.Enabled = true;
+            pnlChangeName.Visible = false;
+            pnlSaveName.Visible = true;
+            pnlCancelName.Visible = true;
         }
 
         protected void btnChangeAdress_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void btnSaveName_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnCancelName_Click(object sender, EventArgs e)
+        {
+            txtGivenname.Enabled = false;
+            txtSurname.Enabled = false;
+            pnlChangeName.Visible = true;
+            pnlSaveName.Visible = false;
+            pnlCancelName.Visible = false;
         }
     }
 }
