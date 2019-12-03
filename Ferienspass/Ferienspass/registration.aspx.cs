@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ferienspass.Classes;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -43,6 +44,7 @@ namespace Ferienspass
                                     "email, password, passwordsalt, failedlogins, blocked) VALUES (1, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0)", txtGivenname.Text,
                                     txtSurname.Text, txtZIP.Text, txtCity.Text, txtStreet.Text, txtNumber.Text, txtEMail.Text,
                                     Password.EncryptPassword(txtPassword.Text, salt), salt);
+                                SendAuthenticationEmail(txtEMail.Text);
                                 Response.Redirect("~/logout.aspx");
                             }
                             else litAlert.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>Passwort muss ... enthalten!</div></div></div>";
@@ -111,6 +113,11 @@ namespace Ferienspass
         private bool PasswordMeetsCriterias(string text)
         {
             return true;
+        }
+
+        private void SendAuthenticationEmail(string toMail)
+        {
+            EmailMaker.Send(toMail, "Bestätigung Ferienspaß Mondpichl", "Content");
         }
     }
 }

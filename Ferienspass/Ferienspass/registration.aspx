@@ -77,6 +77,14 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <asp:CheckBox ID="chkAGB" runat="server" Text=""/>
+                        <label>(*) Ich habe die <a href="">AGB</a> des Wirtschaftsverlages gelesen und stimme diesen zu.</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-6">
                     <asp:Button ID="btnCancel" runat="server" Text="Stattdessen anmelden" CssClass="btn btn-outline-secondary btn-lg" OnClick="btnCancel_Click" />
                 </div>
