@@ -22,9 +22,9 @@ namespace Ferienspass
 
 
             // When userstatus == 1 then user is an admin --> return true
-            if(ret.Rows.Count == 1)
+            if(ret.Rows.Count > 0)
             {
-                if(ret.Columns.IndexOf("userstatus") == 1)
+                if(ret.Columns.IndexOf("userstatus") == 0)
                 {
                     return true; //User is a admin
                 }
@@ -50,9 +50,9 @@ namespace Ferienspass
             DataTable ret = db.Query(sql, email);
 
             //When userstatus == 0 then user is an ordinary user --> return true
-            if(ret.Rows.Count == 1)
+            if(ret.Rows.Count > 0)
             {
-                if(ret.Columns.IndexOf("userstatus") == 0)
+                if(ret.Columns.IndexOf("userstatus") == 1)
                 {
                     return true; //User is a ordinary user
                 } 
