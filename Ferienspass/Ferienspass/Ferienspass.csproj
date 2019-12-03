@@ -72,6 +72,7 @@
     <Content Include="dsgv.aspx" />
     <Content Include="forgotpassword.aspx" />
     <Content Include="logout.aspx" />
+    <Content Include="user-changepassword.aspx" />
     <Content Include="resetpassword.aspx" />
     <Content Include="user-settings.aspx" />
     <Content Include="registration.aspx" />
@@ -133,6 +134,14 @@
     </Compile>
     <Compile Include="registration.aspx.designer.cs">
       <DependentUpon>registration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="user-changepassword.aspx.cs">
+      <DependentUpon>user-changepassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="user-changepassword.aspx.designer.cs">
+      <DependentUpon>user-changepassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="resetpassword.aspx.cs">
       <DependentUpon>resetpassword.aspx</DependentUpon>

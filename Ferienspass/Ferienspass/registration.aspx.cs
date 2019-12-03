@@ -8,9 +8,15 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+/// <summary>
+/// Programmer: Alexander Reiter
+/// Date: 26.11.2019
+/// //Verified by Josip
+/// </summary>
+
 namespace Ferienspass
 {
-    //Alexander Reiter
+
     public partial class registration : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
@@ -38,14 +44,22 @@ namespace Ferienspass
                         {
                             if (PasswordMeetsCriterias(txtPassword.Text))
                             {
-                                DB db = new DB();
-                                string salt = Password.GenerateSalt();
-                                db.ExecuteNonQuery("INSERT INTO user (userstatus, givenname, surname, zipcode, city, streetname, housenumber, " +
-                                    "email, password, passwordsalt, failedlogins, blocked) VALUES (1, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0)", txtGivenname.Text,
-                                    txtSurname.Text, txtZIP.Text, txtCity.Text, txtStreet.Text, txtNumber.Text, txtEMail.Text,
-                                    Password.EncryptPassword(txtPassword.Text, salt), salt);
-                                SendAuthenticationEmail(txtEMail.Text);
-                                Response.Redirect("~/logout.aspx");
+                                if (CheckCities(txtZIP.Text))
+                                {
+                                    if (chkAGB.Checked)
+                                    {
+                                        DB db = new DB();
+                                        string salt = Password.GenerateSalt();
+                                        db.ExecuteNonQuery("INSERT INTO user (userstatus, givenname, surname, zipcode, city, streetname, housenumber, " +
+                                            "email, password, passwordsalt, failedlogins, blocked) VALUES (1, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0)", txtGivenname.Text,
+                                            txtSurname.Text, txtZIP.Text, txtCity.Text, txtStreet.Text, txtNumber.Text, txtEMail.Text,
+                                            Password.EncryptPassword(txtPassword.Text, salt), salt);
+                                        SendAuthenticationEmail(txtEMail.Text);
+                                        Response.Redirect("~/logout.aspx");
+                                    }
+                                    else litAlert.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>Sie müssen den AGBs zustimmen!</div></div></div>";
+                                }
+                                else litAlert.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>Ihre Gemeinde ist nicht beim Ferienspaß dabei!</div></div></div>";
                             }
                             else litAlert.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>Passwort muss ... enthalten!</div></div></div>";
                         }
@@ -120,6 +134,13 @@ namespace Ferienspass
             string subject = "Bestätigung Ferienspaß Mondpichl";
             string body = "Content";
             EmailMaker.Send(toMail, subject, body);
+        }
+
+        private bool CheckCities(string text)
+        {
+            DB db = new DB();
+
+            return (db.Query("SELECT * FROM neighbourcities WHERE zipcode=?", txtZIP.Text).Rows.Count != 0);
         }
     }
 }

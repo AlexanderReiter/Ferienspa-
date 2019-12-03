@@ -6,6 +6,12 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 
+/// <summary>
+/// Programmer: Alexander Reiter
+/// Date: 26.11.2019
+/// Verified by Josip
+/// </summary>
+
 namespace Ferienspass
 {
     public class Password
