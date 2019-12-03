@@ -70,14 +70,25 @@
     <Content Include="App_Themes\default\style.css" />
     <Content Include="forgotpassword.aspx" />
     <Content Include="logout.aspx" />
+<<<<<<< HEAD
     <Content Include="resetpassword.aspx" />
     <Content Include="User-Settings.aspx" />
+=======
+    <Content Include="user-settings.aspx" />
+>>>>>>> ec249bd97bd4e6bee2095e705e436a648c419a65
     <Content Include="registration.aspx" />
     <Content Include="login.aspx" />
     <Content Include="Web.config" />
     <Content Include="default.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="admin-master.Master.cs">
+      <DependentUpon>admin-master.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin-master.Master.designer.cs">
+      <DependentUpon>admin-master.Master</DependentUpon>
+    </Compile>
     <Compile Include="Check.cs" />
     <Compile Include="EmailMaker.cs" />
     <Compile Include="DB.cs" />
@@ -132,15 +143,16 @@
     <Compile Include="default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="User-Settings.aspx.cs">
-      <DependentUpon>User-Settings.aspx</DependentUpon>
+    <Compile Include="user-settings.aspx.cs">
+      <DependentUpon>user-settings.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="User-Settings.aspx.designer.cs">
-      <DependentUpon>User-Settings.aspx</DependentUpon>
+    <Compile Include="user-settings.aspx.designer.cs">
+      <DependentUpon>user-settings.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="admin-master.Master" />
     <None Include="packages.config" />
     <Content Include="user-master.Master" />
     <None Include="Web.Debug.config">
