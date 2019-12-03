@@ -69,7 +69,7 @@
   <ItemGroup>
     <Content Include="App_Themes\default\style.css" />
     <Content Include="logout.aspx" />
-    <Content Include="user-settings.aspx" />
+    <Content Include="User-Settings.aspx" />
     <Content Include="registration.aspx" />
     <Content Include="login.aspx" />
     <Content Include="Web.config" />
@@ -102,13 +102,6 @@
     <Compile Include="registration.aspx.designer.cs">
       <DependentUpon>registration.aspx</DependentUpon>
     </Compile>
-    <Compile Include="default.aspx.cs">
-      <DependentUpon>default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="default.aspx.designer.cs">
-      <DependentUpon>default.aspx</DependentUpon>
-    </Compile>
     <Compile Include="user-master.Master.cs">
       <DependentUpon>user-master.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -116,12 +109,19 @@
     <Compile Include="user-master.Master.designer.cs">
       <DependentUpon>user-master.Master</DependentUpon>
     </Compile>
-    <Compile Include="user-settings.aspx.cs">
-      <DependentUpon>user-settings.aspx</DependentUpon>
+    <Compile Include="default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="user-settings.aspx.designer.cs">
-      <DependentUpon>user-settings.aspx</DependentUpon>
+    <Compile Include="default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User-Settings.aspx.cs">
+      <DependentUpon>User-Settings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User-Settings.aspx.designer.cs">
+      <DependentUpon>User-Settings.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
