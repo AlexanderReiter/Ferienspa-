@@ -8,6 +8,11 @@ using System.Web.UI.WebControls;
 
 namespace Ferienspass
 {
+    /// <summary>
+    /// Programmer: Alexander Reiter
+    /// Date: 03.12.2019
+    /// Verified by: Josip Gabric
+    /// </summary>
     public partial class logout : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)

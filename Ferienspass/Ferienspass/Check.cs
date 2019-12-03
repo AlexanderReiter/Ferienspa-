@@ -7,7 +7,7 @@ using System.Data;
 /// <summary>
 /// Programmer: Josip
 /// Date: 03.12.2019
-/// Verified by ...
+/// Verified by: Alexander Reiter
 /// </summary>
 
 namespace Ferienspass

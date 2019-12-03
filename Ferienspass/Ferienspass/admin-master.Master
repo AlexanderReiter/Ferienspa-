@@ -1,7 +1,9 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="admin-master.master.cs" Inherits="Ferienspass.admin_master" %>
 
 <!DOCTYPE html>
-
+<%-- Programmer: Alexander Reiter
+    Date: 03.12.2019
+    Verified by: Josip Gabric--%>
 <html>
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -12,7 +14,24 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <asp:Button ID="btnLogout" runat="server" Text="Logout" OnClick="btnLogout_Click" />
+        <nav class="navbar navbar-expand-sm bg-dark">
+            <div class="container">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.aspx">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>

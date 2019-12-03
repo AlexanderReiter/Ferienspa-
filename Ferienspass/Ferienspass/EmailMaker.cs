@@ -15,6 +15,14 @@ namespace Ferienspass.Classes
 {
     public class EmailMaker
     {
+        /// <summary>
+        /// Programmer: Alexander Reiter
+        /// Date: 03.12.2019
+        /// Verified by: Josip Gabric
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="subject"></param>
+        /// <param name="body"></param>
         public static void Send(string email, string subject, string body)
         {
             DB db = new DB();

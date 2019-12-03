@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
 </head>
 <body>
-    <%-- Alexander Reiter --%>
+    <%-- Programmer: Alexander Reiter
+        Date: 03.12.2019
+        Verified by: Josip Gabric--%>
     <form id="form1" runat="server">
         <div class="registration-container shadow p-4 mb-4 bg-white">
             <div class="row">

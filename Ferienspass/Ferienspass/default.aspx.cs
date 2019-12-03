@@ -9,9 +9,15 @@ namespace Ferienspass
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
+        /// <summary>
+        /// Programmer: Alexander Reiter
+        /// Date: 03.12.2019
+        /// Verified by: Josip Gabric
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Alexander Reiter
             if (User.Identity.Name == "registration") Response.Redirect("~/registration.aspx");
             else if (User.Identity.Name == "pwforgotten") Response.Redirect("~/forgotpassword.aspx");
             else if (User.Identity.Name == "admin") Response.Redirect("~/admin");
