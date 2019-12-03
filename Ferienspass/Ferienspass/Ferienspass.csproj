@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Themes\default\style.css" />
+    <Content Include="forgotpassword.aspx" />
     <Content Include="logout.aspx" />
     <Content Include="user-settings.aspx" />
     <Content Include="registration.aspx" />
@@ -86,6 +87,13 @@
     <Compile Include="Check.cs" />
     <Compile Include="EmailMaker.cs" />
     <Compile Include="DB.cs" />
+    <Compile Include="forgotpassword.aspx.cs">
+      <DependentUpon>forgotpassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forgotpassword.aspx.designer.cs">
+      <DependentUpon>forgotpassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
