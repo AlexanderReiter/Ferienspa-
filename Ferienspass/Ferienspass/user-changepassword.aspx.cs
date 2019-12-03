@@ -8,6 +8,8 @@ using System.Web.UI.WebControls;
 
 /// <summary>
 /// Programmer: Kollross Marcel
+/// Date: 03.12.2019
+/// Verififed by: N/A
 /// </summary>
 namespace Ferienspass
 {
@@ -26,7 +28,11 @@ namespace Ferienspass
 
             if (Password.EncryptPassword(oldPassword, (string)dt.Rows[0]["passwordsalt"]) == (string)dt.Rows[0]["password"])
             {
-                if(txtNewPassword.Text == txtRepeatPassword.Text)
+                if (txtOldPassword.Text == txtNewPassword.Text)
+                {
+                    litPasswordError.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>Altes Passwort und neues Passwort dürfen nicht gleich sein!</div></div></div>";
+                }
+                else if (txtNewPassword.Text == txtRepeatPassword.Text)
                 {
                     string newPassword = txtNewPassword.Text;
                     string salt = Password.GenerateSalt();

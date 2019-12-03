@@ -1,5 +1,9 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="user-changepassword.aspx.cs" Inherits="Ferienspass.user_changepassword" Theme="default" %>
 
+<%-- Programmer: Kollross Marcel
+    Date: 03.12.2019
+    Verified by: N/A--%>
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -19,21 +23,21 @@
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
-                            <asp:TextBox ID="txtOldPassword" runat="server" CssClass="form-control" TextMode="Password" AutoPostBack="true" placeholder="Altes Passwort"></asp:TextBox>
+                            <asp:TextBox ID="txtOldPassword" runat="server" CssClass="form-control" TextMode="Password" placeholder="Altes Passwort"></asp:TextBox>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
-                            <asp:TextBox ID="txtNewPassword" runat="server" CssClass="form-control" TextMode="Password" AutoPostBack="true" placeholder="Neues Passwort"></asp:TextBox>
+                            <asp:TextBox ID="txtNewPassword" runat="server" CssClass="form-control" TextMode="Password" placeholder="Neues Passwort"></asp:TextBox>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
-                            <asp:TextBox ID="txtRepeatPassword" runat="server" CssClass="form-control" TextMode="Password" AutoPostBack="true" placeholder="Neues Passwort wiederholen"></asp:TextBox>
+                            <asp:TextBox ID="txtRepeatPassword" runat="server" CssClass="form-control" TextMode="Password" placeholder="Neues Passwort wiederholen"></asp:TextBox>
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/user-master.Master" AutoEventWireup="true" CodeBehind="user-settings.aspx.cs" Inherits="Ferienspass.User_Settings" %>
+
+<%-- Programmer: Kollross Marcel
+    Date: 26.11.2019
+    Verified by: N/A--%>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -9,18 +14,6 @@
                     <asp:TextBox ID="txtEmail" placeholder="Email" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                 </div>
             </div>
-<%--            <div class="col-4">
-                <div class="form-group">
-                    <asp:Panel ID="pnlChangeEmail" runat="server">
-                        <asp:Button ID="btnChangeEmail" Text="Ändern" runat="server" CssClass="btn btn-secondary float-left" OnClick="btnChangeEmail_Click" />
-                    </asp:Panel>
-                    <asp:Panel ID="pnlSaveCancelEmail" runat="server" Visible="false">
-                        <asp:Button ID="btnSaveEmail" Text="Speichern" runat="server" CssClass="btn btn-secondary float-left" OnClick="btnSaveEmail_Click" />
-                        &nbsp;
-                        <asp:Button ID="btnCancelEmail" Text="Abbrechen" runat="server" CssClass="btn btn-secondary" OnClick="btnCancelEmail_Click" />
-                    </asp:Panel>
-                </div>
-            </div>--%>
             <div class="col-2">
                 <div class="form-group">
                     <asp:Button ID="btnChangePassword" Text="Passwort ändern" runat="server" CssClass="btn btn-secondary float-right" OnClick="btnChangePassword_Click" />
@@ -108,21 +101,46 @@
                     <ItemTemplate>
                         <asp:Label ID="lblGivenname" runat="server" Text='<%# Eval("givenname") %>'></asp:Label>
                     </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:TextBox ID="txtGivennameChild" runat="server" Text='<%# Bind("givenname") %>'></asp:TextBox>
+                    </EditItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Nachname">
                     <ItemTemplate>
                         <asp:Label ID="lblSurname" runat="server" Text='<%# Eval("surname") %>'></asp:Label>
                     </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:TextBox ID="txtSurnameChild" runat="server" Text='<%# Bind("surname") %>'></asp:TextBox>
+                    </EditItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Geschlecht">
                     <ItemTemplate>
                         <asp:Label ID="lblGender" runat="server" Text='<%# Eval("gender") %>'></asp:Label>
                     </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:TextBox ID="txtGender" runat="server" Text='<%# Bind("gender") %>'></asp:TextBox>
+                    </EditItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Geburtstag">
                     <ItemTemplate>
                         <asp:Label ID="lblBirthday" runat="server" Text='<%# Eval("birthday", "{0:dd/MM/yyyy}") %>'></asp:Label>
                     </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:TextBox ID="txtBirthday" runat="server" Text='<%# Bind("birthday", "{0:dd/MM/yyyy}") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField>
+                    <HeaderTemplate>
+                        <asp:ImageButton ID="btnAddChild" runat="server" CommandName="Add" />
+                    </HeaderTemplate>
+                    <ItemTemplate>
+                        <asp:ImageButton ID="btnEditChild" runat="server" CommandName="Edit" />
+                        <asp:ImageButton ID="btnDeleteChild" runat="server" CommandName="Delete" />
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:ImageButton ID="btnUpdateChild" runat="server" CommandName="Update" />
+                        <asp:ImageButton ID="btnCancelChild" runat="server" CommandName="Cancel" />
+                    </EditItemTemplate>
                 </asp:TemplateField>
             </Columns>
         </asp:GridView> 
