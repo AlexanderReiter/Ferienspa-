@@ -24,6 +24,9 @@
                         <a class="nav-link" href="admin-courses.aspx">Kurse</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="admin-napeople.aspx">Not Allowed People</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="#">Link</a>
                     </li>
                     <li class="nav-item">
