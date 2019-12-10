@@ -41,6 +41,10 @@
     </div>
     <asp:Panel ID="panBlockBackground" runat="server" CssClass="panBlockBackground" Visible="false"></asp:Panel>
     <asp:Panel ID="panNewCours" runat="server" Enabled="false">
-
+        <div class="container">
+            <div class="addCoursForm ">
+                
+            </div>
+        </div>
     </asp:Panel>
 </asp:Content>
