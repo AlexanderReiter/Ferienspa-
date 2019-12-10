@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="admin-courses.aspx" />
     <Content Include="admin-home.aspx" />
+    <Content Include="admin-settings.aspx" />
     <Content Include="agb.aspx" />
     <Content Include="App_Themes\default\style.css" />
     <Content Include="dsgv.aspx" />
@@ -104,6 +105,13 @@
     </Compile>
     <Compile Include="admin-master.Master.designer.cs">
       <DependentUpon>admin-master.Master</DependentUpon>
+    </Compile>
+    <Compile Include="admin-settings.aspx.cs">
+      <DependentUpon>admin-settings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin-settings.aspx.designer.cs">
+      <DependentUpon>admin-settings.aspx</DependentUpon>
     </Compile>
     <Compile Include="agb.aspx.cs">
       <DependentUpon>agb.aspx</DependentUpon>
