@@ -18,10 +18,10 @@
             <div class="container">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link" href="admin-home.aspx">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link" href="admin-courses.aspx">Kurse</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Link</a>
