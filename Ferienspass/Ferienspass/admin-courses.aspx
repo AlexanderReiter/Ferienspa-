@@ -40,9 +40,9 @@
         </div>
     </div>
     <asp:Panel ID="panBlockBackground" runat="server" CssClass="panBlockBackground" Visible="false"></asp:Panel>
-    <asp:Panel ID="panNewCours" runat="server" Enabled="false">
+    <asp:Panel ID="panNewCours" runat="server" Visible="false">
         <div class="container">
-            <div class="addCoursForm ">
+            <div class="addCoursForm shadow p-4 mb-4 bg-white">
                 
             </div>
         </div>

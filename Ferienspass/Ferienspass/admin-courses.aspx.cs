@@ -54,6 +54,7 @@ namespace Ferienspass
         protected void btnNewCours_Click(object sender, EventArgs e)
         {
             panBlockBackground.Visible = true;
+            panNewCours.Visible = true;
         }
 
         protected void btnMail_Click(object sender, EventArgs e)
