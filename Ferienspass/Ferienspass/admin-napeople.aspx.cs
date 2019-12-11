@@ -28,5 +28,11 @@ namespace Ferienspass
             gvNAPeople.DataSource = dt;
             gvNAPeople.DataBind();
         }
+
+        protected void btnSendMail_Click(object sender, EventArgs e)
+        {
+            string Text = "Hallo,\nSie dürfen leider nicht mehr teilnehmen. \nLG SOEK";
+            string Sender = "";
+        }
     }
 }
