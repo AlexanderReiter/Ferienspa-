@@ -3,8 +3,22 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <script type="text/javascript">
+        function Delete() {
+            if (confirm("Sind Sie sicher, dass der Datensatz gelöscht werden soll?\n")) {
+                return true;
+            }
+            return false;
+        }
+    </script>
+
+
+
     <div class="container">
-        <asp:GridView ID="gvNeighbourcities" runat="server" AutoGenerateColumns="false" ShowHeaderWhenEmpty="true" CssClass="table table-striped">
+        Unsere Nachbargemeinden:
+        <asp:GridView ID="gvNeighbourcities" runat="server" AutoGenerateColumns="false" ShowHeaderWhenEmpty="true" CssClass="table table-striped" 
+            OnRowEditing="gvNeighbourcities_RowEditing" OnRowCancelingEdit="gvNeighbourcities_RowCancelingEdit" OnRowDeleting="gvNeighbourcities_RowDeleting"
+            OnRowCommand="gvNeighbourcities_RowCommand">
             <Columns>
                 <asp:TemplateField HeaderText="PLZ">
                     <ItemTemplate>
@@ -24,15 +38,15 @@
                 </asp:TemplateField>
                 <asp:TemplateField>
                     <HeaderTemplate>
-                        <asp:ImageButton ID="btnAddCity" runat="server" CommandName="Add" />
+                        <asp:LinkButton ID="btnAddCity" runat="server" CommandName="Add" ForeColor="Black" ><i class="fa fa-plus-square"></i></asp:LinkButton>
                     </HeaderTemplate>
                     <ItemTemplate>
-                        <asp:ImageButton ID="btnEditCity" runat="server" CommandName="Edit" />
-                        <asp:ImageButton ID="btnDeleteCity" runat="server" CommandName="Delete" />
+                        <asp:LinkButton ID="btnEditCity" runat="server" CommandName="Edit" ForeColor="Black"><i class="fa fa-pen"></i></asp:LinkButton>
+                        <asp:LinkButton ID="btnDeleteCity" runat="server" CommandName="Delete" OnClientClick="return Delete()" ForeColor="Black"><i class="fa fa-trash"></i></asp:LinkButton>
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <asp:ImageButton ID="btnUpdateCity" runat="server" CommandName="Update" />
-                        <asp:ImageButton ID="btnCancelCity" runat="server" CommandName="Cancel" />
+                        <asp:LinkButton ID="btnUpdateCity" runat="server" CommandName="Update" ForeColor="Black"><i class="fa fa-check"></i></asp:LinkButton>
+                        <asp:LinkButton ID="btnCancelCity" runat="server" CommandName="Cancel" ForeColor="Black"><i class="fa fa-times"></i></asp:LinkButton>
                     </EditItemTemplate>
                 </asp:TemplateField>
             </Columns>
