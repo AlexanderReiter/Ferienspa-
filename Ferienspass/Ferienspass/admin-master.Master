@@ -25,14 +25,10 @@
                         <a class="nav-link" href="admin-courses.aspx">Kurse</a>
                     </li>
                     <li class="nav-item">
-<<<<<<< HEAD
                         <a class="nav-link" href="admin-napeople.aspx">Not Allowed People</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-=======
                         <a class="nav-link" href="admin-settings.aspx">Settings</a>
->>>>>>> a280dc7480b7f9a35b92e697e6b203d87b4497bc
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="logout.aspx">Logout</a>
