@@ -1,6 +1,12 @@
 ﻿body { 
 }
 
+.napeopleform {
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 10%;
+}
+
 .registration-container{
     margin-left:30%;
     margin-right:30%;
@@ -21,8 +27,7 @@
     margin-top: 10%;
 }
 
-.GridView{
-
+.GridView {
 }
 
 .panBlockBackground {

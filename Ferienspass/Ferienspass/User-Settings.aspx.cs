@@ -155,13 +155,11 @@ namespace Ferienspass
             {
                 case "Add":
                     DB db = new DB();
-                    DataTable dt = db.Query("SELECT * FROM kids LIMIT 1");
-                    dt.Clear();
+                    DataTable dt = db.Query("SELECT * FROM kids");
                     DataRow newRow = dt.NewRow();
-                    newRow["kidId"] = -1;
                     dt.Rows.Add(newRow);
+                    gvKids.EditIndex = dt.Rows.Count;
                     gvKids.DataSource = dt;
-                    gvKids.EditIndex = 0;
                     gvKids.DataBind();
                     break;
             }
@@ -179,7 +177,7 @@ namespace Ferienspass
             }
             else
             {
-                db.Query("INSERT INTO kids (givenname, surname, gender, birthday) VALUES(?,?,?,?)", e.NewValues["givenname"], e.NewValues["surname"], e.NewValues["gender"], e.NewValues["birthday"]);
+                db.Query("INSERT INTO kids (givenname, surname, gender, birthday, email) VALUES(?,?,?,?,?)", e.NewValues["givenname"], e.NewValues["surname"], e.NewValues["gender"], e.NewValues["birthday"], User.Identity.Name);
             }
 
             gvKids.EditIndex = -1;

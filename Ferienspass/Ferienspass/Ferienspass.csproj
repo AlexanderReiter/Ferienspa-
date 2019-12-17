@@ -83,6 +83,7 @@
     <Content Include="login.aspx" />
     <Content Include="Web.config" />
     <Content Include="default.aspx" />
+    <Content Include="admin-napeople.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="admin-courses.aspx.cs">
@@ -202,6 +203,13 @@
     </Compile>
     <Compile Include="user-settings.aspx.designer.cs">
       <DependentUpon>user-settings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin-napeople.aspx.cs">
+      <DependentUpon>admin-napeople.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin-napeople.aspx.designer.cs">
+      <DependentUpon>admin-napeople.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

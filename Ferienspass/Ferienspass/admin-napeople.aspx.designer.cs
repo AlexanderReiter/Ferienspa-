@@ -7,18 +7,20 @@
 // </automatisch generiert>
 //------------------------------------------------------------------------------
 
-namespace Ferienspass {
-    
-    
-    public partial class admin_settings {
-        
+namespace Ferienspass
+{
+
+
+    public partial class WebForm2
+    {
+
         /// <summary>
-        /// gvNeighbourcities-Steuerelement
+        /// gvNAPeople-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvNeighbourcities;
+        protected global::System.Web.UI.WebControls.GridView gvNAPeople;
     }
 }
