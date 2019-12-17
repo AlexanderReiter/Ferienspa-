@@ -18,7 +18,7 @@
         Unsere Nachbargemeinden:
         <asp:GridView ID="gvNeighbourcities" runat="server" AutoGenerateColumns="false" ShowHeaderWhenEmpty="true" CssClass="table table-striped" 
             OnRowEditing="gvNeighbourcities_RowEditing" OnRowCancelingEdit="gvNeighbourcities_RowCancelingEdit" OnRowDeleting="gvNeighbourcities_RowDeleting"
-            OnRowCommand="gvNeighbourcities_RowCommand">
+            OnRowCommand="gvNeighbourcities_RowCommand" OnRowUpdating="gvNeighbourcities_RowUpdating">
             <Columns>
                 <asp:TemplateField HeaderText="PLZ">
                     <ItemTemplate>

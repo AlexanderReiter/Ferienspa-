@@ -37,6 +37,25 @@ namespace Ferienspass
             Fill_gvNeighbourcities();
         }
 
+        protected void gvNeighbourcities_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            string[] currentZip = GetCurrentDatatable();
+
+            DB db = new DB();
+            db.Query("UPDATE neighbourcities SET zipcode=?, city=? WHERE zipcode=?", e.NewValues["zipcode"], e.NewValues["city"], currentZip[Convert.ToInt32(e.RowIndex)]);
+
+            gvNeighbourcities.EditIndex = -1;
+            Fill_gvNeighbourcities();
+        }
+
+        private string[] GetCurrentDatatable()
+        {
+            DB db = new DB();
+            DataTable dt = db.Query("SELECT zipcode FROM neighbourcities");
+            string[] zipcodes = dt.Rows.OfType<DataRow>().Select(k => k[0].ToString()).ToArray();
+            return zipcodes;
+        }
+
         protected void gvNeighbourcities_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             DB db = new DB();
