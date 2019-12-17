@@ -13,12 +13,11 @@
     </script>
 
 
-
     <div class="container">
-        Unsere Nachbargemeinden:
+        <h3>Unsere Nachbargemeinden</h3> 
         <asp:GridView ID="gvNeighbourcities" runat="server" AutoGenerateColumns="false" ShowHeaderWhenEmpty="true" CssClass="table table-striped" 
             OnRowEditing="gvNeighbourcities_RowEditing" OnRowCancelingEdit="gvNeighbourcities_RowCancelingEdit" OnRowDeleting="gvNeighbourcities_RowDeleting"
-            OnRowCommand="gvNeighbourcities_RowCommand">
+            OnRowCommand="gvNeighbourcities_RowCommand" OnRowUpdating="gvNeighbourcities_RowUpdating">
             <Columns>
                 <asp:TemplateField HeaderText="PLZ">
                     <ItemTemplate>
@@ -51,5 +50,64 @@
                 </asp:TemplateField>
             </Columns>
         </asp:GridView> 
+        <br />
+        <br />
+
+        <h3>Email-Einstellungen</h3>
+        Host und Port:
+        <div class="row">
+            <div class="col-4">
+                <div class="form-group">
+                    <asp:TextBox ID="txtHost" placeholder="Host" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <asp:TextBox ID="txtPort" placeholder="Port" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+            </div>
+
+        </div>
+
+        Email und Passwort:
+        <div class="row">
+            <div class="col-4">
+                <div class="form-group">
+                    <asp:TextBox ID="txtEmail" placeholder="Email" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <asp:TextBox ID="txtPassword" placeholder="Passwort" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+            </div>
+        </div>
+
+        Gültigkeitsdauer des PW-Forgotten-Links [in Tagen]:
+        <div class="row">
+            <div class="col-2">
+                <div class="form-group">
+                    <asp:TextBox ID="txtResetDauer" placeholder="Reset-Passwort-Dauer" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+            </div>
+
+            <div class="col-10">
+                <div class="form-group">
+                    <asp:Panel ID="pnlChangeSettings" runat="server">
+                        <asp:Button ID="btnChangeSettings" Text="Ändern" runat="server" CssClass="btn btn-secondary float-right" OnClick="btnChangeSettings_Click" />
+                    </asp:Panel>
+                </div>
+            </div>
+            <div class="col-10">
+                <div class="form-group">
+                    <asp:Panel ID="pnlCancelSettings" runat="server" Visible="false">
+                        <asp:Button ID="btnCancelAdress" runat="server" Text="Abbrechen" CssClass="btn btn-secondary float-right" OnClick="btnCancelSettings_Click"/>
+                    </asp:Panel>
+                    <asp:Panel ID="pnlSaveSettings" runat="server" Visible="false">
+                        <asp:Button ID="btnSaveSettings" Text="Speichern" runat="server" CssClass="btn btn-secondary float-right" OnClick="btnSaveSettings_Click" />
+                    </asp:Panel>
+                </div>
+            </div>
+        </div>
     </div>
 </asp:Content>
