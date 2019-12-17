@@ -16,6 +16,7 @@
                 </div>
                 <br />
                     <asp:Literal ID="litLoginFailed" runat="server"></asp:Literal>
+                    <asp:Literal ID="litLoginInfo" runat="server"></asp:Literal>
                 <div class="row">
                     <div class="col">
                         <div class="form-group">

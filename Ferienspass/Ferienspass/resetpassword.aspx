@@ -19,14 +19,14 @@
             <div class="row">
                 <div class="col">
                     <div class="form-group">
-                        <asp:TextBox ID="txtNewPw1" runat="server" placeholder="Neues Passwort" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="txtNewPw1" runat="server" TextMode="Password" placeholder="Neues Passwort" CssClass="form-control"></asp:TextBox>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
                     <div class="form-group">
-                        <asp:TextBox ID="txtNewPw2" runat="server" placeholder="Passwort wiederholen" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="txtNewPw2" runat="server" TextMode="Password" placeholder="Passwort wiederholen" CssClass="form-control"></asp:TextBox>
                     </div>
                 </div>
             </div>
@@ -34,6 +34,13 @@
                 <div class="col">
                     <div class="form-group">
                         <asp:Button ID="btnResetPw" runat="server" Text="Passwort zurücksetzen" OnClick="btnResetPw_Click" CssClass="btn btn-secondary w-100" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <asp:Button ID="btnBackToLogin" runat="server" Text="Zurück zum Login" OnClick="btnBackToLogin_Click" CssClass="btn btn-outline-secondary w-100" />
                     </div>
                 </div>
             </div>
