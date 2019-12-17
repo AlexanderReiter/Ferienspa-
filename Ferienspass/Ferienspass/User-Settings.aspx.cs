@@ -136,5 +136,74 @@ namespace Ferienspass
             btnChangeName.Enabled = true;
             btnChangePassword.Enabled = true;
         }
+
+        protected void gvKids_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            gvKids.EditIndex = -1;
+            Fill_gvKids();
+        }
+
+        protected void gvKids_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            gvKids.EditIndex = e.NewEditIndex;
+            Fill_gvKids();
+        }
+
+        protected void gvKids_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            switch (e.CommandName)
+            {
+                case "Add":
+                    DB db = new DB();
+                    DataTable dt = db.Query("SELECT * FROM kids");
+                    DataRow newRow = dt.NewRow();
+                    dt.Rows.Add(newRow);
+                    gvKids.EditIndex = dt.Rows.Count;
+                    gvKids.DataSource = dt;
+                    gvKids.DataBind();
+                    break;
+            }
+        }
+
+        protected void gvKids_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            GridViewRow gvr = gvKids.Rows[e.RowIndex];
+            DB db = new DB();
+            int kidID = Convert.ToInt32(e.Keys[0]);
+
+            if(kidID != -1)
+            {
+                db.Query("UPDATE kids SET givenname=?, surname=?, gender=?, birthday=? WHERE kidId=?", e.NewValues["givenname"], e.NewValues["surname"], e.NewValues["gender"], e.NewValues["birthday"], e.Keys[0]);
+            }
+            else
+            {
+                db.Query("INSERT INTO kids (givenname, surname, gender, birthday, email) VALUES(?,?,?,?,?)", e.NewValues["givenname"], e.NewValues["surname"], e.NewValues["gender"], e.NewValues["birthday"], User.Identity.Name);
+            }
+
+            gvKids.EditIndex = -1;
+            Fill_gvKids();
+        }
+
+        private string DataKey
+        {
+            get
+            {
+                return Convert.ToString(ViewState["DataKey"]);
+            }
+            set
+            {
+                ViewState["DataKey"] = value;
+            }
+        }
+
+        protected void gvKids_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            DB db = new DB();
+            DataKey = Convert.ToString(e.Keys[0]);
+
+            db.Query("DELETE FROM kids WHERE kidId=?", DataKey);
+
+            Fill_gvKids();
+        }
     }
 }

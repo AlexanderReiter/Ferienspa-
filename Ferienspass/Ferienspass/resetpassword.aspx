@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="resetpassword.aspx.cs" Inherits="Ferienspass.resetpassword" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="resetpassword.aspx.cs" Inherits="Ferienspass.resetpassword" Theme="default" %>
 
 <!DOCTYPE html>
 

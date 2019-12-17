@@ -95,7 +95,7 @@
             </div>
         </div>
         <br />
-        <asp:GridView ID="gvKids" runat="server" AutoGenerateColumns="false" ShowHeaderWhenEmpty="true" CssClass="table table-striped">
+        <asp:GridView ID="gvKids" runat="server" AutoGenerateColumns="false" DataKeyNames="kidId" ShowHeaderWhenEmpty="true" CssClass="table table-striped" OnRowCancelingEdit="gvKids_RowCancelingEdit" OnRowEditing="gvKids_RowEditing" OnRowCommand="gvKids_RowCommand" OnRowUpdating="gvKids_RowUpdating" OnRowDeleting="gvKids_RowDeleting">
             <Columns>
                 <asp:TemplateField HeaderText="Vorname">
                     <ItemTemplate>
@@ -131,15 +131,15 @@
                 </asp:TemplateField>
                 <asp:TemplateField>
                     <HeaderTemplate>
-                        <asp:ImageButton ID="btnAddChild" runat="server" CommandName="Add" />
+                        <asp:LinkButton ID="btnAddChild" runat="server" CommandName="Add" ForeColor="Black" ><i class="fa fa-plus-square"></i></asp:LinkButton>
                     </HeaderTemplate>
                     <ItemTemplate>
-                        <asp:ImageButton ID="btnEditChild" runat="server" CommandName="Edit" />
-                        <asp:ImageButton ID="btnDeleteChild" runat="server" CommandName="Delete" />
+                        <asp:LinkButton ID="btnEditChild" runat="server" CommandName="Edit" ForeColor="Black"><i class="fa fa-pen"></i></asp:LinkButton>
+                        <asp:LinkButton ID="btnDeleteChild" runat="server" CommandName="Delete" ForeColor="Black"><i class="fa fa-trash"></i></asp:LinkButton>
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <asp:ImageButton ID="btnUpdateChild" runat="server" CommandName="Update" />
-                        <asp:ImageButton ID="btnCancelChild" runat="server" CommandName="Cancel" />
+                        <asp:LinkButton ID="btnUpdateChild" runat="server" CommandName="Update" ForeColor="Black"><i class="fa fa-check"></i></asp:LinkButton>
+                        <asp:LinkButton ID="btnCancelChild" runat="server" CommandName="Cancel" ForeColor="Black"><i class="fa fa-times"></i></asp:LinkButton>
                     </EditItemTemplate>
                 </asp:TemplateField>
             </Columns>
