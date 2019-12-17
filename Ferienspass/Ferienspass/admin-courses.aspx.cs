@@ -59,7 +59,7 @@ namespace Ferienspass
 
         protected void btnMail_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         protected void gvCourses_RowEditing(object sender, GridViewEditEventArgs e)
@@ -85,6 +85,12 @@ namespace Ferienspass
         protected void gvCourses_Sorting(object sender, GridViewSortEventArgs e)
         {
 
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            panNewCours.Visible = false;
+            panBlockBackground.Visible = false;
         }
     }
 }
