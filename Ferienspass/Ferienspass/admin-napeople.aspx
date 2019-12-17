@@ -6,6 +6,8 @@
         <div class="row">
             <h1>Not allowed People:</h1>
         </div>
+            <br />
+        <asp:Literal ID="litEmailStatus" runat="server"></asp:Literal>
         <div class="row">
             <div class="col-12">
                 <asp:GridView CssClass="table" ID="gvNAPeople" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="email" PageSize="20">

@@ -35,12 +35,11 @@ namespace Ferienspass
                 }
                 else
                 {
-
-                    litEmailFailed.Text = "<div class='row'><div class='col'><div class='alert alert-success'>Erfolgreich! Überprüfen Sie Ihr Postfach!</div></div></div>";
                     string VerificationCode = Password.GenerateSalt();
                     string sqlVerificationCode = "INSERT INTO resetpwcodes (email, code) VALUES (?,?)";
                     db.ExecuteNonQuery(sqlVerificationCode, user, VerificationCode);
                     EmailMaker.Send(user, "Reset Passwort für Ferienspass", string.Format("Resetlink: https://localhost:44383/resetpassword.aspx?email=andi@gmx.at&code="+VerificationCode));
+                    litEmailFailed.Text = "<div class='row'><div class='col'><div class='alert alert-success'>Erfolgreich! Überprüfen Sie Ihr Postfach!</div></div></div>";
                 }
             }
             else
