@@ -31,7 +31,7 @@ namespace Ferienspass
                 DataTable dt = db.Query(sqlCheckCode, mail, code, date, time);
                 if (dt.Rows.Count == 0)
                 {
-                    Response.Redirect("logout.aspx");
+                    Response.Redirect("login.aspx");
                 }
             }
         }

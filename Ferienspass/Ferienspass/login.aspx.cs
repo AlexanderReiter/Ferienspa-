@@ -29,7 +29,7 @@ namespace Ferienspass
                     string mail = Convert.ToString(Request.QueryString["email"]);
                     if (!string.IsNullOrEmpty(mail))
                     {
-                        FormsAuthentication.RedirectFromLoginPage("getnewpw", false);
+                        //FormsAuthentication.RedirectFromLoginPage("resetpw", false);
                         Response.Redirect("logout", false);
                     }
                 }
