@@ -25,7 +25,7 @@ namespace Ferienspass
                 string mail = Convert.ToString(Request.QueryString["email"]);
                 string code = Convert.ToString(Request.QueryString["code"]);
                 DateTime date = Convert.ToDateTime(Request.QueryString["date"]);
-                DateTime time = Convert.ToDateTime(Request.QueryString["time"]);
+                DateTime time = new DateTime(Convert.ToInt64(Request.QueryString["time"])); // zeit ist im link als ticks
                 DB db = new DB();
                 string sqlCheckCode = "SELECT * FROM resetpwcodes WHERE email=? AND code=? AND date=? AND time=?";
                 DataTable dt = db.Query(sqlCheckCode, mail, code, date, time);

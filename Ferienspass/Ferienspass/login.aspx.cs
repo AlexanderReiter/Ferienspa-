@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
+using System.Security.Policy;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
@@ -29,11 +30,10 @@ namespace Ferienspass
                     string mail = Convert.ToString(Request.QueryString["email"]);
                     if (!string.IsNullOrEmpty(mail))
                     {
-                        //FormsAuthentication.RedirectFromLoginPage("resetpw", false);
-                        Response.Redirect("logout", false);
+                        FormsAuthentication.RedirectFromLoginPage("hansl", false);
                     }
                 }
-                catch { }
+                catch(Exception ex) { throw new ApplicationException(ex.Message); }
                 
             }
         }
