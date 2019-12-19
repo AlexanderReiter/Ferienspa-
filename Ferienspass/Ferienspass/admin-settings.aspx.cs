@@ -15,96 +15,11 @@ namespace Ferienspass
             if (!Page.IsPostBack)
             {
                 Fill_gvNeighbourcities();
-                LoadSettings();
+                LoadEmailSettings();
+                LoadOtherSettings();
             }
         }
 
-        #region Settings
-        private void LoadSettings()
-        {
-            string[] values = GetValuesFromSettings();
-
-            txtEmail.Text = Convert.ToString(values[0]);
-            txtHost.Text = Convert.ToString(values[1]);
-            for (int i = 0; i < Convert.ToString(values[2]).Length; i++)    //Das Passwort wird nicht im Klartext angezeigt
-            {
-                txtPassword.Text += "•";
-            }
-            txtPort.Text = Convert.ToString(values[3]);
-            txtResetDauer.Text = Convert.ToString(values[4]);
-        }
-
-        protected void btnChangeSettings_Click(object sender, EventArgs e)
-        {
-            string[] values = GetValuesFromSettings();
-
-            txtEmail.Enabled = true;
-            txtHost.Enabled = true;
-            txtPassword.Enabled = true;
-            txtPassword.Text = Convert.ToString(values[2]);
-            txtPort.Enabled = true;
-            txtResetDauer.Enabled = true;
-            pnlChangeSettings.Visible = false;
-            pnlCancelSettings.Visible = true;
-            pnlSaveSettings.Visible = true;
-        }
-
-        protected void btnSaveSettings_Click(object sender, EventArgs e)
-        {
-            string newEmail = txtEmail.Text;
-            string newHost = txtHost.Text;
-            string newPassword = txtPassword.Text;
-            string newPort = txtPort.Text;
-            string newResetDauer = txtResetDauer.Text;
-
-            DB db = new DB();
-            db.Query("UPDATE settings SET VALUE=? WHERE settingId='email'", newEmail);
-            db.Query("UPDATE settings SET VALUE=? WHERE settingId='host'", newHost);
-            db.Query("UPDATE settings SET VALUE=? WHERE settingId='password'", newPassword);
-            db.Query("UPDATE settings SET VALUE=? WHERE settingId='port'", newPort);
-            db.Query("UPDATE settings SET VALUE=? WHERE settingId='resetpwdauer'", newResetDauer);
-
-            txtEmail.Enabled = false;
-            txtHost.Enabled = false;
-            txtPassword.Enabled = false;
-            txtPort.Enabled = false;
-            txtResetDauer.Enabled = false;
-            pnlChangeSettings.Visible = true;
-            pnlCancelSettings.Visible = false;
-            pnlSaveSettings.Visible = false;
-
-            txtPassword.Text = "";
-            LoadSettings();
-        }
-
-        protected void btnCancelSettings_Click(object sender, EventArgs e)
-        {
-            string[] values = GetValuesFromSettings();
-
-            txtEmail.Enabled = false;
-            txtHost.Enabled = false;
-            txtPassword.Enabled = false;
-            txtPassword.Text = "";
-            string pw = Convert.ToString(values[2]);
-            for (int i = 0; i < pw.Length; i++)
-            {
-                txtPassword.Text += "•";
-            }
-            txtPort.Enabled = false;
-            txtResetDauer.Enabled = false;
-            pnlChangeSettings.Visible = true;
-            pnlCancelSettings.Visible = false;
-            pnlSaveSettings.Visible = false;
-        }
-
-        private string[] GetValuesFromSettings()
-        {
-            DB db = new DB();
-            DataTable dt = db.Query("SELECT value FROM settings");
-            string[] values = dt.Rows.OfType<DataRow>().Select(k => k[0].ToString()).ToArray();
-            return values;
-        }
-        #endregion
 
         #region Neighbourcities
 
@@ -175,6 +90,146 @@ namespace Ferienspass
             }
 
         }
+        #endregion
+
+        #region Email-Settings
+        private void LoadEmailSettings()
+        {
+            string[] values = GetValuesFromSettings();
+
+            txtEmail.Text = Convert.ToString(values[1]);
+            txtHost.Text = Convert.ToString(values[2]);
+            for (int i = 0; i < Convert.ToString(values[3]).Length; i++)    //Das Passwort wird nicht im Klartext angezeigt
+            {
+                txtPassword.Text += "•";
+            }
+            txtPort.Text = Convert.ToString(values[4]);
+            txtResetDauer.Text = Convert.ToString(values[5]);
+        }
+
+        protected void btnChangeSettings_Click(object sender, EventArgs e)
+        {
+            string[] values = GetValuesFromSettings();
+
+            txtEmail.Enabled = true;
+            txtHost.Enabled = true;
+            txtPassword.Enabled = true;
+            txtPassword.Text = Convert.ToString(values[2]);
+            txtPort.Enabled = true;
+            txtResetDauer.Enabled = true;
+            pnlChangeSettings.Visible = false;
+            pnlCancelSettings.Visible = true;
+            pnlSaveSettings.Visible = true;
+        }
+
+        protected void btnSaveSettings_Click(object sender, EventArgs e)
+        {
+            string newEmail = txtEmail.Text;
+            string newHost = txtHost.Text;
+            string newPassword = txtPassword.Text;
+            string newPort = txtPort.Text;
+            string newResetDauer = txtResetDauer.Text;
+
+            DB db = new DB();
+            db.Query("UPDATE settings SET VALUE=? WHERE settingId='email'", newEmail);
+            db.Query("UPDATE settings SET VALUE=? WHERE settingId='host'", newHost);
+            db.Query("UPDATE settings SET VALUE=? WHERE settingId='password'", newPassword);
+            db.Query("UPDATE settings SET VALUE=? WHERE settingId='port'", newPort);
+            db.Query("UPDATE settings SET VALUE=? WHERE settingId='resetpwdauer'", newResetDauer);
+
+            txtEmail.Enabled = false;
+            txtHost.Enabled = false;
+            txtPassword.Enabled = false;
+            txtPort.Enabled = false;
+            txtResetDauer.Enabled = false;
+            pnlChangeSettings.Visible = true;
+            pnlCancelSettings.Visible = false;
+            pnlSaveSettings.Visible = false;
+
+            txtPassword.Text = "";
+            LoadEmailSettings();
+        }
+
+        protected void btnCancelSettings_Click(object sender, EventArgs e)
+        {
+            string[] values = GetValuesFromSettings();
+
+            txtEmail.Enabled = false;
+            txtHost.Enabled = false;
+            txtPassword.Enabled = false;
+            txtPassword.Text = "";
+            string pw = Convert.ToString(values[2]);
+            for (int i = 0; i < pw.Length; i++)
+            {
+                txtPassword.Text += "•";
+            }
+            txtPort.Enabled = false;
+            txtResetDauer.Enabled = false;
+            pnlChangeSettings.Visible = true;
+            pnlCancelSettings.Visible = false;
+            pnlSaveSettings.Visible = false;
+        }
+
+        #endregion
+
+        private string[] GetValuesFromSettings()
+        {
+            DB db = new DB();
+            DataTable dt = db.Query("SELECT value FROM settings");
+            string[] values = dt.Rows.OfType<DataRow>().Select(k => k[0].ToString()).ToArray();
+            return values;
+        }
+
+
+        #region Other-Settings
+        private void LoadOtherSettings()
+        {
+            string[] values = GetValuesFromSettings();
+
+            txtStartRegistrationSpan.Text = values[6];
+            txtStopRegistrationSpan.Text = values[7];
+            txtDiscount.Text = values[0];
+        }
+
+        protected void btnChangeOtherSettings_Click(object sender, EventArgs e)
+        {
+            txtStartRegistrationSpan.Enabled = true;
+            txtStopRegistrationSpan.Enabled = true;
+            txtDiscount.Enabled = true;
+            pnlChangeOtherSettings.Visible = false;
+            pnlCancelOtherSettings.Visible = true;
+            pnlSaveOtherSettings.Visible = true;
+        }
+        protected void btnSaveOtherSettings_Click(object sender, EventArgs e)
+        {
+            string newStartDate = txtStartRegistrationSpan.Text;
+            string newEndDate = txtStopRegistrationSpan.Text;
+            string newDiscount = txtDiscount.Text;
+
+            DB db = new DB();
+            db.Query("UPDATE settings SET VALUE=? WHERE settingId='startregistration'", newStartDate);
+            db.Query("UPDATE settings SET VALUE=? WHERE settingId='stopregistration'", newEndDate);
+            db.Query("UPDATE settings SET VALUE=? WHERE settingId='discount'", newDiscount);
+
+            txtStartRegistrationSpan.Enabled = false;
+            txtStopRegistrationSpan.Enabled = false;
+            txtDiscount.Enabled = false;
+            pnlChangeOtherSettings.Visible = true;
+            pnlCancelOtherSettings.Visible = false;
+            pnlSaveOtherSettings.Visible = false;
+        }
+
+        protected void btnCancelOtherSettings_Click(object sender, EventArgs e)
+        {
+            txtStartRegistrationSpan.Enabled = false;
+            txtStopRegistrationSpan.Enabled = false;
+            txtDiscount.Enabled = false;
+            pnlChangeOtherSettings.Visible = true;
+            pnlCancelOtherSettings.Visible = false;
+            pnlSaveOtherSettings.Visible = false;
+        }
+
+
         #endregion
     }
 }

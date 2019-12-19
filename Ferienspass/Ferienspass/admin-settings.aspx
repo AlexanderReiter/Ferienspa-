@@ -14,7 +14,7 @@
 
 
     <div class="container">
-        <h3>Unsere Nachbargemeinden</h3> 
+        <h3>Unsere Nachbargemeinden</h3> <br />
         <asp:GridView ID="gvNeighbourcities" runat="server" AutoGenerateColumns="false" ShowHeaderWhenEmpty="true" CssClass="table table-striped" 
             OnRowEditing="gvNeighbourcities_RowEditing" OnRowCancelingEdit="gvNeighbourcities_RowCancelingEdit" OnRowDeleting="gvNeighbourcities_RowDeleting"
             OnRowCommand="gvNeighbourcities_RowCommand" OnRowUpdating="gvNeighbourcities_RowUpdating">
@@ -66,7 +66,6 @@
                     <asp:TextBox ID="txtPort" placeholder="Port" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                 </div>
             </div>
-
         </div>
 
         Email und Passwort:
@@ -105,6 +104,46 @@
                     </asp:Panel>
                     <asp:Panel ID="pnlSaveSettings" runat="server" Visible="false">
                         <asp:Button ID="btnSaveSettings" Text="Speichern" runat="server" CssClass="btn btn-secondary float-right" OnClick="btnSaveSettings_Click" />
+                    </asp:Panel>
+                </div>
+            </div>
+        </div>
+
+        <h3>Sonstige Einstellungen</h3>
+        Anmeldezeitraum:
+        <div class="row">
+            <div class="col-4">
+                <div class="form-group">
+                    Von: <asp:TextBox ID="txtStartRegistrationSpan" placeholder="Startdatum" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    Bis: <asp:TextBox ID="txtStopRegistrationSpan" placeholder="Enddatum" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+            </div>
+        </div>
+        Rabatt:
+        <div class="row">
+            <div class="col-4">
+                <div class="form-group">
+                    <asp:TextBox ID="txtDiscount" placeholder="Rabatt" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+            </div>
+            <div class="col-10">
+                <div class="form-group">
+                    <asp:Panel ID="pnlChangeOtherSettings" runat="server">
+                        <asp:Button ID="btnChangeOtherSettings" Text="Ändern" runat="server" CssClass="btn btn-secondary float-right" OnClick="btnChangeOtherSettings_Click" />
+                    </asp:Panel>
+                </div>
+            </div>
+            <div class="col-10">
+                <div class="form-group">
+                    <asp:Panel ID="pnlCancelOtherSettings" runat="server" Visible="false">
+                        <asp:Button ID="btnCancelOtherSettings" runat="server" Text="Abbrechen" CssClass="btn btn-secondary float-right" OnClick="btnCancelOtherSettings_Click"/>
+                    </asp:Panel>
+                    <asp:Panel ID="pnlSaveOtherSettings" runat="server" Visible="false">
+                        <asp:Button ID="btnSaveOtherSettings" Text="Speichern" runat="server" CssClass="btn btn-secondary float-right" OnClick="btnSaveOtherSettings_Click" />
                     </asp:Panel>
                 </div>
             </div>
