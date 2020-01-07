@@ -198,6 +198,9 @@ namespace Ferienspass
             if (txtManagerName.Text == string.Empty) return false;
             if (txtContactMail.Text == string.Empty) return false;
             if (ddlOrganisation.SelectedIndex == 0) return false;
+            if (Convert.ToInt32(txtMinParticipants.Text) < 0) return false;
+            if (Convert.ToInt32(txtMaxParticipants.Text) < 0) return false;
+            if (Convert.ToInt32(txtMinParticipants.Text) > Convert.ToInt32(txtMaxParticipants.Text)) return false;
             return true;
         }
 
