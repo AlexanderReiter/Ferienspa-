@@ -265,18 +265,13 @@ namespace Ferienspass
             db.Query("SELECT * FROM kidparticipates LEFT JOIN kids ON kidparticipates.kidId = kids.Id WHERE courseId=? " +
                 "LEFT JOIN users ON users.id=kids.parentid");
 
-            try
-            {
+            
 
                 EmailMaker.Send(user, "Kursabsage", MailText);
 
-                litEmailStatus.Text = "<div class='row'><div class='col'><div class='alert alert-success'>E-Mail erfolgreich gesendet!</div></div></div>";
-            }
-            catch
-            {
-                litEmailStatus.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>E-Mail senden fehlgeschlagen!</div></div></div>";
-            }
-
+                
+            
+          
             
         }
     }
