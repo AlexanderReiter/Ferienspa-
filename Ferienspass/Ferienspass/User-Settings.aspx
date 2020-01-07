@@ -7,6 +7,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<br />
     <div class="container">
         <div class="row">
             <div class="col-10">
@@ -95,14 +96,15 @@
             </div>
         </div>
         <br />
-        <asp:GridView ID="gvKids" runat="server" AutoGenerateColumns="false" DataKeyNames="kidId" ShowHeaderWhenEmpty="true" CssClass="table table-striped" OnRowCancelingEdit="gvKids_RowCancelingEdit" OnRowEditing="gvKids_RowEditing" OnRowCommand="gvKids_RowCommand" OnRowUpdating="gvKids_RowUpdating" OnRowDeleting="gvKids_RowDeleting">
+        <asp:Literal ID="litGenderError" runat="server"></asp:Literal>
+        <asp:GridView ID="gvKids" runat="server" AutoGenerateColumns="false" DataKeyNames="kidId" ShowHeaderWhenEmpty="true" CssClass="table table-striped" OnRowCancelingEdit="gvKids_RowCancelingEdit" OnRowEditing="gvKids_RowEditing" OnRowCommand="gvKids_RowCommand" OnRowUpdating="gvKids_RowUpdating" OnRowDeleting="gvKids_RowDeleting" OnRowDataBound="gvKids_RowDataBound">
             <Columns>
                 <asp:TemplateField HeaderText="Vorname">
                     <ItemTemplate>
                         <asp:Label ID="lblGivenname" runat="server" Text='<%# Eval("givenname") %>'></asp:Label>
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <asp:TextBox ID="txtGivennameChild" runat="server" Text='<%# Bind("givenname") %>'></asp:TextBox>
+                        <asp:TextBox ID="txtGivennameChild" runat="server" placeholder="Vorname" Text='<%# Bind("givenname") %>'></asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Nachname">
@@ -110,15 +112,15 @@
                         <asp:Label ID="lblSurname" runat="server" Text='<%# Eval("surname") %>'></asp:Label>
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <asp:TextBox ID="txtSurnameChild" runat="server" Text='<%# Bind("surname") %>'></asp:TextBox>
+                        <asp:TextBox ID="txtSurnameChild" runat="server" placeholder="Nachname" Text='<%# Bind("surname") %>'></asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Geschlecht">
                     <ItemTemplate>
-                        <asp:Label ID="lblGender" runat="server" Text='<%# Eval("gender") %>'></asp:Label>
+                        <asp:Label ID="lblGender" runat="server" Text='<%# Eval("gendername") %>'></asp:Label>
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <asp:TextBox ID="txtGender" runat="server" Text='<%# Bind("gender") %>'></asp:TextBox>
+                        <asp:DropDownList ID="ddlGender" runat="server"></asp:DropDownList>
                     </EditItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Geburtstag">
@@ -126,7 +128,7 @@
                         <asp:Label ID="lblBirthday" runat="server" Text='<%# Eval("birthday", "{0:dd/MM/yyyy}") %>'></asp:Label>
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <asp:TextBox ID="txtBirthday" runat="server" Text='<%# Bind("birthday", "{0:dd/MM/yyyy}") %>'></asp:TextBox>
+                        <asp:TextBox ID="txtBirthday" runat="server" TextMode="Date" Text='<%# Bind("birthday", "{0:yyyy-MM-dd}") %>'></asp:TextBox>
                     </EditItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField>
@@ -134,7 +136,7 @@
                         <asp:LinkButton ID="btnAddChild" runat="server" CommandName="Add" ForeColor="Black" ><i class="fa fa-plus-square"></i></asp:LinkButton>
                     </HeaderTemplate>
                     <ItemTemplate>
-                        <asp:LinkButton ID="btnEditChild" runat="server" CommandName="Edit" ForeColor="Black"><i class="fa fa-pen"></i></asp:LinkButton>
+                        <asp:LinkButton ID="btnEditChild" runat="server" CommandName="Edit" ForeColor="Black"><i class="fas fa-pen"></i></asp:LinkButton>
                         <asp:LinkButton ID="btnDeleteChild" runat="server" CommandName="Delete" ForeColor="Black"><i class="fa fa-trash"></i></asp:LinkButton>
                     </ItemTemplate>
                     <EditItemTemplate>

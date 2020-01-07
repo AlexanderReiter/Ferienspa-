@@ -13,6 +13,7 @@
     </script>
 
     <div class="container">
+        <br />
         <div class="row">
             <h1>Kurse</h1>
             <p>
@@ -26,6 +27,11 @@
                     <asp:TemplateField HeaderText="Kursname">
                         <ItemTemplate>
                             <asp:Label ID="lblCourseName" runat="server" Text='<%# Eval("coursename") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Datum">
+                        <ItemTemplate>
+                            <asp:Label ID="lblDate" runat="server" Text='<%# Eval("date", "{0:d}") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Organisation">
@@ -43,7 +49,7 @@
                             <asp:LinkButton ID="btnNewCourse" runat="server" OnClick="btnNewCourse_Click" ForeColor="Black"><i class='fas fa-plus-square' style='font-size:24px;'></i></asp:LinkButton>
                         </HeaderTemplate>
                         <ItemTemplate>
-                            <asp:LinkButton ID="btnUpdate" runat="server" CommandName="Edit" ForeColor="Black"><i class='fa fa-pen' style='font-size:24px;'></i></asp:LinkButton>
+                            <asp:LinkButton ID="btnUpdate" runat="server" CommandName="Edit" ForeColor="Black"><i class='fas fa-pen' style='font-size:24px;'></i></asp:LinkButton>
                             <asp:LinkButton ID="btnMail" runat="server" OnClick="btnMail_Click" ForeColor="Black"><i class="fas fa-envelope" style='font-size:24px;'></i></asp:LinkButton>
                             <asp:LinkButton ID="btnDelete" runat="server" CommandName="Delete" OnClientClick="return Delete()" ForeColor="Black"><i class='fa fa-pen' style='font-size:24px'></i></asp:LinkButton>
                         </ItemTemplate>
@@ -52,11 +58,12 @@
             </asp:GridView>
         </div>
     </div>
-    <asp:Panel ID="panBlockBackground" runat="server" CssClass="panBlockBackground" Visible="false"></asp:Panel>
+    <asp:Panel ID="panBlockBackground" runat="server" CssClass="panBlockBackground sticky" Visible="false"></asp:Panel>
     <asp:Panel ID="panCourse" runat="server" Visible="false">
         <div class="container">
             <div class="addCourseForm shadow p-4 mb-4 bg-white">
                 <h1><asp:Literal ID="litPanHeadline" runat="server"></asp:Literal></h1>
+                <asp:Literal ID="litAlert" runat="server"></asp:Literal>
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
@@ -76,16 +83,28 @@
                 <div class="row">
                     <div class="col-8">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-3">
                                 <div class="form-group">
                                     <label for="txtFrom">Von:</label>
                                     <asp:TextBox ID="txtFrom" runat="server" CssClass="form-control" TextMode="Time" format="HH:mm" ></asp:TextBox>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-3">
                                 <div class="form-group">
                                     <label for="txtTo">Bis:</label>
                                     <asp:TextBox ID="txtTo" runat="server" CssClass="form-control" TextMode="Time" format="HH:mm" ></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="txtMinParticipants">Min:</label>
+                                    <asp:TextBox ID="txtMinParticipants" runat="server" CssClass="form-control" TextMode="Number" ></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <label for="txtMaxParticipants">Max:</label>
+                                    <asp:TextBox ID="txtMaxParticipants" runat="server" CssClass="form-control" TextMode="Number" ></asp:TextBox>
                                 </div>
                             </div>
                         </div>

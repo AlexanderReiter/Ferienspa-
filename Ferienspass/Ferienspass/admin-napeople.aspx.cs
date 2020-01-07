@@ -9,6 +9,11 @@ using System.Web.UI.WebControls;
 
 namespace Ferienspass
 {
+    //Programmer: Andreas Mair
+    //Date: 07.01.2020
+    //Verified by: Elias Werth
+
+
     public partial class WebForm2 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
@@ -24,7 +29,8 @@ namespace Ferienspass
                     "WHERE t1.zipcode NOT IN " +
                     "(SELECT t2.zipcode " +
                     "FROM neighbourcities AS t2 " +
-                    "WHERE t2.zipcode IS NOT NULL)";
+                    "WHERE t2.zipcode IS NOT NULL)" +
+                    "AND t1.userstatus = 1";
             DataTable dt = db.Query(sqlGetNAPeople);
             gvNAPeople.DataSource = dt;
             gvNAPeople.DataKeyNames.Append("email");    // DataKeyNames wird gesetzt um später einfacher die email herauszufinden
@@ -46,7 +52,7 @@ namespace Ferienspass
                 
                 litEmailStatus.Text= "<div class='row'><div class='col'><div class='alert alert-success'>E-mail erfolgreich gesendet!</div></div></div>";
             }
-            catch
+            catch(Exception ex)
             {
                 litEmailStatus.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>E-mail senden fehlgeschlagen!</div></div></div>";
             }

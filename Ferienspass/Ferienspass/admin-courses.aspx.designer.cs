@@ -51,6 +51,15 @@ namespace Ferienspass
         protected global::System.Web.UI.WebControls.Literal litPanHeadline;
 
         /// <summary>
+        /// litAlert-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litAlert;
+
+        /// <summary>
         /// txtCourseName-Steuerelement
         /// </summary>
         /// <remarks>
@@ -85,6 +94,24 @@ namespace Ferienspass
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtTo;
+
+        /// <summary>
+        /// txtMinParticipants-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMinParticipants;
+
+        /// <summary>
+        /// txtMaxParticipants-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMaxParticipants;
 
         /// <summary>
         /// txtZIP-Steuerelement

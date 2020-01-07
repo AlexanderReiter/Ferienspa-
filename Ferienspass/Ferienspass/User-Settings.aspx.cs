@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -42,7 +43,7 @@ namespace Ferienspass
         public void Fill_gvKids()
         {
             DB db = new DB();
-            gvKids.DataSource = db.Query("SELECT * FROM kids WHERE email=?", User.Identity.Name);
+            gvKids.DataSource = db.Query("SELECT *, gender.name AS gendername FROM kids LEFT JOIN gender ON gender.id=kids.gender WHERE email=?", User.Identity.Name);
             gvKids.DataBind();
         }
 
@@ -111,7 +112,7 @@ namespace Ferienspass
             string newNr = txtNr.Text;
 
             DB db = new DB();
-            db.Query("UPDATE user SET city=?, street=?, zipcode=?, housenumber=? WHERE email=?", newCity, newStreet, newZIP, newNr, User.Identity.Name);
+            db.Query("UPDATE user SET city=?, streetname=?, zipcode=?, housenumber=? WHERE email=?", newCity, newStreet, newZIP, newNr, User.Identity.Name);
 
             txtCity.Enabled = false;
             txtStreet.Enabled = false;
@@ -155,10 +156,10 @@ namespace Ferienspass
             {
                 case "Add":
                     DB db = new DB();
-                    DataTable dt = db.Query("SELECT * FROM kids");
+                    DataTable dt = db.Query("SELECT *, gender.name AS gendername FROM kids LEFT JOIN gender ON gender.id=kids.gender");
                     DataRow newRow = dt.NewRow();
                     dt.Rows.Add(newRow);
-                    gvKids.EditIndex = dt.Rows.Count;
+                    gvKids.EditIndex = dt.Rows.Count - 1;
                     gvKids.DataSource = dt;
                     gvKids.DataBind();
                     break;
@@ -169,15 +170,54 @@ namespace Ferienspass
         {
             GridViewRow gvr = gvKids.Rows[e.RowIndex];
             DB db = new DB();
-            int kidID = Convert.ToInt32(e.Keys[0]);
-
-            if(kidID != -1)
+            int kidID;
+            if(Convert.ToString(e.Keys[0]) == "")
             {
-                db.Query("UPDATE kids SET givenname=?, surname=?, gender=?, birthday=? WHERE kidId=?", e.NewValues["givenname"], e.NewValues["surname"], e.NewValues["gender"], e.NewValues["birthday"], e.Keys[0]);
+                kidID = -1;
             }
             else
             {
-                db.Query("INSERT INTO kids (givenname, surname, gender, birthday, email) VALUES(?,?,?,?,?)", e.NewValues["givenname"], e.NewValues["surname"], e.NewValues["gender"], e.NewValues["birthday"], User.Identity.Name);
+                kidID = Convert.ToInt32(e.Keys[0]);
+            }
+            DateTime date = Convert.ToDateTime(e.NewValues["birthday"]);
+
+            if (kidID != -1)
+            {
+                Control ctrlSurname = gvKids.Rows[e.RowIndex].FindControl("txtSurnameChild");
+                TextBox txtSurname = ctrlSurname as TextBox;
+                Control ctrlGivenname = gvKids.Rows[e.RowIndex].FindControl("txtGivennameChild");
+                TextBox txtGivenname = ctrlGivenname as TextBox;
+                Control ctrlBirthday = gvKids.Rows[e.RowIndex].FindControl("txtBirthday");
+                TextBox txtBirthday = ctrlBirthday as TextBox;
+                Control ctrlGender = gvKids.Rows[e.RowIndex].FindControl("ddlGender");
+                DropDownList ddl = ctrlGender as DropDownList;
+                if (ddl.SelectedItem.Text == "" || ddl.SelectedItem.Text == "Nicht ausgewählt" || txtGivenname.Text == "" || txtSurname.Text == "" || txtBirthday.Text == "")
+                {
+                    litGenderError.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>Alle Felder müssen ausgefühlt werden!</div></div></div>";
+                }
+                else
+                {
+                    db.Query("UPDATE kids SET givenname=?, surname=?, gender=?, birthday=? WHERE kidId=?", e.NewValues["givenname"], e.NewValues["surname"], ddl.SelectedIndex, date, e.Keys[0]);
+                }
+            }
+            else
+            {
+                Control ctrlSurname = gvKids.Rows[e.RowIndex].FindControl("txtSurnameChild");
+                TextBox txtSurname = ctrlSurname as TextBox;
+                Control ctrlGivenname = gvKids.Rows[e.RowIndex].FindControl("txtGivennameChild");
+                TextBox txtGivenname = ctrlGivenname as TextBox;
+                Control ctrlBirthday = gvKids.Rows[e.RowIndex].FindControl("txtBirthday");
+                TextBox txtBirthday = ctrlBirthday as TextBox;
+                Control ctrlGender = gvKids.Rows[e.RowIndex].FindControl("ddlGender");
+                DropDownList ddl = ctrlGender as DropDownList;
+                if (ddl.SelectedItem.Text == "" || txtGivenname.Text == "" || txtSurname.Text == "" || txtBirthday.Text == "")
+                {
+                    litGenderError.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>Alle Felder müssen ausgefühlt werden!</div></div></div>";
+                }
+                else
+                {
+                    db.ExecuteNonQuery($"INSERT INTO kids (givenname, surname, gender, birthday, email) VALUES(?,?,?,?,?)", e.NewValues["givenname"], e.NewValues["surname"], ddl.SelectedIndex, date, User.Identity.Name);
+                }
             }
 
             gvKids.EditIndex = -1;
@@ -204,6 +244,31 @@ namespace Ferienspass
             db.Query("DELETE FROM kids WHERE kidId=?", DataKey);
 
             Fill_gvKids();
+        }
+
+        protected void gvKids_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if(e.Row.RowType == DataControlRowType.DataRow && gvKids.EditIndex == e.Row.RowIndex)
+            {
+                Control ctrl = e.Row.FindControl("ddlGender");
+                DropDownList ddl = ctrl as DropDownList;
+                DataTable dt = GetGender();
+
+                for(int i = 0;i<dt.Rows.Count;i++)
+                {
+                    ddl.Items.Add(new ListItem(dt.Rows[i]["name"].ToString(), dt.Rows[i]["id"].ToString()));
+                }
+                DataRowView drv = e.Row.DataItem as DataRowView;
+                ddl.SelectedValue = drv["id"].ToString();
+                ddl.SelectedItem.Text = drv["name"].ToString();
+            }           
+        }
+
+        public DataTable GetGender()
+        {
+            DB db = new DB();
+            DataTable dt = db.Query("SELECT * FROM gender");
+            return dt;
         }
     }
 }

@@ -4,8 +4,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <script type="text/javascript">
-        function Delete() {
-            if (confirm("Sind Sie sicher, dass der Datensatz gelöscht werden soll?\n")) {
+        function DeleteCity() {
+            if (confirm("Es könnten bereits Personen unter dieser Gemeinde registriert sein! Soll die Gemeinde trotzdem entfernt werden?")) {
                 return true;
             }
             return false;
@@ -15,6 +15,7 @@
 
     <div class="container">
         <h3>Unsere Nachbargemeinden</h3> <br />
+        <asp:Literal ID="litAlertNeighbourcities" runat="server"></asp:Literal>
         <asp:GridView ID="gvNeighbourcities" runat="server" AutoGenerateColumns="false" ShowHeaderWhenEmpty="true" CssClass="table table-striped" 
             OnRowEditing="gvNeighbourcities_RowEditing" OnRowCancelingEdit="gvNeighbourcities_RowCancelingEdit" OnRowDeleting="gvNeighbourcities_RowDeleting"
             OnRowCommand="gvNeighbourcities_RowCommand" OnRowUpdating="gvNeighbourcities_RowUpdating">
@@ -40,7 +41,7 @@
                         <asp:LinkButton ID="btnAddCity" runat="server" CommandName="Add" ForeColor="Black" ><i class="fa fa-plus-square"></i></asp:LinkButton>
                     </HeaderTemplate>
                     <ItemTemplate>
-                        <asp:LinkButton ID="btnEditCity" runat="server" CommandName="Edit" ForeColor="Black"><i class="fa fa-pen"></i></asp:LinkButton>
+                        <asp:LinkButton ID="btnEditCity" runat="server" CommandName="Edit" ForeColor="Black"><i class="fas fa-pen"></i></asp:LinkButton>
                         <asp:LinkButton ID="btnDeleteCity" runat="server" CommandName="Delete" OnClientClick="return Delete()" ForeColor="Black"><i class="fa fa-trash"></i></asp:LinkButton>
                     </ItemTemplate>
                     <EditItemTemplate>
@@ -110,6 +111,7 @@
         </div>
 
         <h3>Sonstige Einstellungen</h3>
+        <asp:Literal ID="litAlertOtherSettings" runat="server"></asp:Literal>
         Anmeldezeitraum:
         <div class="row">
             <div class="col-4">
@@ -123,7 +125,7 @@
                 </div>
             </div>
         </div>
-        Rabatt:
+        Rabatt (bei Anmeldung von mind. 2 Kindern):
         <div class="row">
             <div class="col-4">
                 <div class="form-group">
