@@ -260,7 +260,7 @@ namespace Ferienspass
 
             
             string MailText =
-              $"Sehr geehrte Damen und Herren, <br><br>Der Kurst wurde leider abgesagt. Um den Grund der Absage zu erfahren, " +
+              $"Sehr geehrte Damen und Herren, <br><br>der Kurs wurde leider abgesagt. Um den Grund der Absage zu erfahren, " +
               $"melden Sie sich bitte bei dem Kursmanager. Die Nummer bzw. Email-Adresse können Sie auf unserer Webseite finden." +
               $"Bitte entschuldigen Sie die Unnanehmlichkeiten." + $"" +
               $"<br><br> Mit freundlichen Grüßen,<br>Gemeinde Mondpichl";
