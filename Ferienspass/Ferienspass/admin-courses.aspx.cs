@@ -262,17 +262,12 @@ namespace Ferienspass
               $"Bitte entschuldigen Sie die Unnanehmlichkeiten." + $"" +
               $"<br><br> Mit freundlichen Grüßen,<br>Gemeinde Mondpichl";
 
-            db.Query("SELECT * FROM kidparticipates LEFT JOIN kids ON kidparticipates.kidId = kids.Id WHERE courseId=? " +
-                "LEFT JOIN users ON users.id=kids.parentid");
+            DataTable dtEmails = db.Query("SELECT DISTINCT email FROM kidparticipates LEFT JOIN kids ON kidparticipates.kidId = kids.kidId WHERE courseId=?", e.Keys[0]);
 
-            
-
-                EmailMaker.Send(user, "Kursabsage", MailText);
-
-                
-            
-          
-            
+            foreach (DataRow dr in dtEmails.Rows)
+            {
+                EmailMaker.Send((string)dr["email"], "Kursabsage", MailText);
+            }
         }
     }
 }
