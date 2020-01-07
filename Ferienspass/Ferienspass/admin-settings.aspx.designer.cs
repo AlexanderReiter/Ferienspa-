@@ -7,11 +7,22 @@
 // </automatisch generiert>
 //------------------------------------------------------------------------------
 
-namespace Ferienspass {
-    
-    
-    public partial class admin_settings {
-        
+namespace Ferienspass
+{
+
+
+    public partial class admin_settings
+    {
+
+        /// <summary>
+        /// litAlertNeighbourcities-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litAlertNeighbourcities;
+
         /// <summary>
         /// gvNeighbourcities-Steuerelement
         /// </summary>
@@ -20,7 +31,7 @@ namespace Ferienspass {
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvNeighbourcities;
-        
+
         /// <summary>
         /// txtHost-Steuerelement
         /// </summary>
@@ -29,7 +40,7 @@ namespace Ferienspass {
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtHost;
-        
+
         /// <summary>
         /// txtPort-Steuerelement
         /// </summary>
@@ -38,7 +49,7 @@ namespace Ferienspass {
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPort;
-        
+
         /// <summary>
         /// txtEmail-Steuerelement
         /// </summary>
@@ -47,7 +58,7 @@ namespace Ferienspass {
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEmail;
-        
+
         /// <summary>
         /// txtPassword-Steuerelement
         /// </summary>
@@ -56,7 +67,7 @@ namespace Ferienspass {
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPassword;
-        
+
         /// <summary>
         /// txtResetDauer-Steuerelement
         /// </summary>
@@ -65,7 +76,7 @@ namespace Ferienspass {
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtResetDauer;
-        
+
         /// <summary>
         /// pnlChangeSettings-Steuerelement
         /// </summary>
@@ -74,7 +85,7 @@ namespace Ferienspass {
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlChangeSettings;
-        
+
         /// <summary>
         /// btnChangeSettings-Steuerelement
         /// </summary>
@@ -83,7 +94,7 @@ namespace Ferienspass {
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnChangeSettings;
-        
+
         /// <summary>
         /// pnlCancelSettings-Steuerelement
         /// </summary>
@@ -92,7 +103,7 @@ namespace Ferienspass {
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlCancelSettings;
-        
+
         /// <summary>
         /// btnCancelAdress-Steuerelement
         /// </summary>
@@ -101,7 +112,7 @@ namespace Ferienspass {
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCancelAdress;
-        
+
         /// <summary>
         /// pnlSaveSettings-Steuerelement
         /// </summary>
@@ -110,7 +121,7 @@ namespace Ferienspass {
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlSaveSettings;
-        
+
         /// <summary>
         /// btnSaveSettings-Steuerelement
         /// </summary>
@@ -119,7 +130,7 @@ namespace Ferienspass {
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSaveSettings;
-        
+
         /// <summary>
         /// txtStartRegistrationSpan-Steuerelement
         /// </summary>
@@ -128,7 +139,7 @@ namespace Ferienspass {
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtStartRegistrationSpan;
-        
+
         /// <summary>
         /// txtStopRegistrationSpan-Steuerelement
         /// </summary>
@@ -137,7 +148,7 @@ namespace Ferienspass {
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtStopRegistrationSpan;
-        
+
         /// <summary>
         /// txtDiscount-Steuerelement
         /// </summary>
@@ -146,7 +157,7 @@ namespace Ferienspass {
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDiscount;
-        
+
         /// <summary>
         /// pnlChangeOtherSettings-Steuerelement
         /// </summary>
@@ -155,7 +166,7 @@ namespace Ferienspass {
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlChangeOtherSettings;
-        
+
         /// <summary>
         /// btnChangeOtherSettings-Steuerelement
         /// </summary>
@@ -164,7 +175,7 @@ namespace Ferienspass {
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnChangeOtherSettings;
-        
+
         /// <summary>
         /// pnlCancelOtherSettings-Steuerelement
         /// </summary>
@@ -173,7 +184,7 @@ namespace Ferienspass {
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlCancelOtherSettings;
-        
+
         /// <summary>
         /// btnCancelOtherSettings-Steuerelement
         /// </summary>
@@ -182,7 +193,7 @@ namespace Ferienspass {
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCancelOtherSettings;
-        
+
         /// <summary>
         /// pnlSaveOtherSettings-Steuerelement
         /// </summary>
@@ -191,7 +202,7 @@ namespace Ferienspass {
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlSaveOtherSettings;
-        
+
         /// <summary>
         /// btnSaveOtherSettings-Steuerelement
         /// </summary>
