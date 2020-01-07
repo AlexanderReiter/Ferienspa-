@@ -119,41 +119,57 @@ namespace Ferienspass
             dtOrganisations.Rows.Add(0, "Nicht ausgewählt");
             dtOrganisations.DefaultView.Sort = "organisationId ASC";
             ddlOrganisation.DataSource = dtOrganisations;
+            ddlOrganisation.DataValueField = "organisationId";
             ddlOrganisation.DataTextField = "organisationname";
             ddlOrganisation.DataBind();
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
+            litAlert.Text = string.Empty;
             panCourse.Visible = false;
             panBlockBackground.Visible = false;
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            if (TXTsFilled())
+            if (AllFilldOrSelected())
             {
-                if (Convert.ToDateTime(txtFrom).TimeOfDay < Convert.ToDateTime(txtTo).TimeOfDay)
+                if (Convert.ToDateTime(txtFrom.Text).TimeOfDay < Convert.ToDateTime(txtTo.Text).TimeOfDay)
                 {
                     if (calendar.SelectedDate > DateTime.Now)
                     {
                         DB db = new DB();
                         db.ExecuteNonQuery("INSERT INTO courses (coursename, description, zipcode, city, streetname, housenumber, date, timefrom, timeto, " +
                             "managername, organisationId, contactemail, minparticipants, maxparticipants) " +
-                            "VALUES (?,?,?,?,?,?,?,?,?)", txtCourseName.Text, txtDesciption.InnerText, txtZIP.Text, txtCity.Text, txtStreet.Text, txtNr.Text, 
-                            calendar.SelectedDate, txtFrom.Text, txtTo);
+                            "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)", txtCourseName.Text, txtDesciption.InnerText, txtZIP.Text, txtCity.Text, txtStreet.Text, 
+                            txtNr.Text, calendar.SelectedDate, txtFrom.Text, txtTo.Text, txtManagerName.Text, ddlOrganisation.SelectedIndex, txtContactMail.Text, 
+                            Convert.ToInt32(txtMinParticipants.Text), Convert.ToInt32(txtMaxParticipants.Text));
                     }
+                    else litAlert.Text = "<div class='alert alert-danger'><strong>Fehler!</strong> Ausgewähltes Datum ist nicht zulässig.</div>";
                 }
+                else litAlert.Text = "<div class='alert alert-danger'><strong>Fehler!</strong> Die Zeit muss richtig eingegeben werden.</div>";
             }
             else
             {
-
+                litAlert.Text = "<div class='alert alert-danger'><strong>Fehler!</strong> Alle Felder müssen mit zulässigen Werten ausgefüllt werden.</div>";
             }
         }
 
-        private bool TXTsFilled()
+        private bool AllFilldOrSelected()
         {
-            throw new NotImplementedException();
+            if (txtCourseName.Text == string.Empty) return false;
+            if (txtDesciption.Value == string.Empty || txtDesciption.Value.Length < 20) return false;
+            if (txtFrom.Text == string.Empty) return false;
+            if (txtTo.Text == string.Empty) return false;
+            if (txtZIP.Text == string.Empty) return false;
+            if (txtCity.Text == string.Empty) return false;
+            if (txtStreet.Text == string.Empty) return false;
+            if (txtNr.Text == string.Empty) return false;
+            if (txtManagerName.Text == string.Empty) return false;
+            if (txtContactMail.Text == string.Empty) return false;
+            if (ddlOrganisation.SelectedIndex == 0) return false;
+            return true;
         }
 
         protected void btnSave_Click(object sender, EventArgs e)

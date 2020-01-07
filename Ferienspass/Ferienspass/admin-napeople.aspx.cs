@@ -24,7 +24,8 @@ namespace Ferienspass
                     "WHERE t1.zipcode NOT IN " +
                     "(SELECT t2.zipcode " +
                     "FROM neighbourcities AS t2 " +
-                    "WHERE t2.zipcode IS NOT NULL)";
+                    "WHERE t2.zipcode IS NOT NULL)" +
+                    "AND t1.userstatus = 1";
             DataTable dt = db.Query(sqlGetNAPeople);
             gvNAPeople.DataSource = dt;
             gvNAPeople.DataKeyNames.Append("email");    // DataKeyNames wird gesetzt um später einfacher die email herauszufinden
