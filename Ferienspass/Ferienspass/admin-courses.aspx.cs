@@ -201,6 +201,9 @@ namespace Ferienspass
             if (txtManagerName.Text == string.Empty) return false;
             if (txtContactMail.Text == string.Empty) return false;
             if (ddlOrganisation.SelectedIndex == 0) return false;
+            if (Convert.ToInt32(txtMinParticipants.Text) < 0) return false;
+            if (Convert.ToInt32(txtMaxParticipants.Text) < 0) return false;
+            if (Convert.ToInt32(txtMinParticipants.Text) > Convert.ToInt32(txtMaxParticipants.Text)) return false;
             return true;
         }
 
@@ -250,7 +253,7 @@ namespace Ferienspass
 
             
             string MailText =
-              $"Sehr geehrte Damen und Herren, <br><br>Der Kurst wurde leider abgesagt. Um den Grund der Absage zu erfahren, " +
+              $"Sehr geehrte Damen und Herren, <br><br>der Kurs wurde leider abgesagt. Um den Grund der Absage zu erfahren, " +
               $"melden Sie sich bitte bei dem Kursmanager. Die Nummer bzw. Email-Adresse können Sie auf unserer Webseite finden." +
               $"Bitte entschuldigen Sie die Unnanehmlichkeiten." + $"" +
               $"<br><br> Mit freundlichen Grüßen,<br>Gemeinde Mondpichl";
