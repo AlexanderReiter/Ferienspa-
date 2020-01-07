@@ -112,7 +112,7 @@ namespace Ferienspass
             string newNr = txtNr.Text;
 
             DB db = new DB();
-            db.Query("UPDATE user SET city=?, street=?, zipcode=?, housenumber=? WHERE email=?", newCity, newStreet, newZIP, newNr, User.Identity.Name);
+            db.Query("UPDATE user SET city=?, streetname=?, zipcode=?, housenumber=? WHERE email=?", newCity, newStreet, newZIP, newNr, User.Identity.Name);
 
             txtCity.Enabled = false;
             txtStreet.Enabled = false;
