@@ -60,17 +60,22 @@ namespace Ferienspass
 
         protected void btnNewCourse_Click(object sender, EventArgs e)
         {
+            Fill_ddlOrganisation();
             txtCourseName.Text = string.Empty;
             txtDesciption.InnerText = string.Empty;
             txtFrom.Text = string.Empty;
             txtTo.Text = string.Empty;
+            txtMinParticipants.Text = string.Empty;
+            txtMaxParticipants.Text = string.Empty;
             txtZIP.Text = string.Empty;
             txtCity.Text = string.Empty;
             txtStreet.Text = string.Empty;
             txtNr.Text = string.Empty;
+            txtManagerName.Text = string.Empty;
+            txtContactMail.Text = string.Empty;
+            ddlOrganisation.SelectedIndex = 0;
             litPanHeadline.Text = "Neuer Kurs";
             calendar.SelectedDate = DateTime.Now;
-            Fill_ddlOrganisation();
 
             btnAdd.Visible = true;
             btnSave.Visible = false;
@@ -91,6 +96,8 @@ namespace Ferienspass
             TimeSpan timeTo = (TimeSpan)dr["timeto"];
             txtFrom.Text = timeFrom.ToString();
             txtTo.Text = timeTo.ToString();
+            txtMinParticipants.Text = Convert.ToString((int)dr["minparticipants"]);
+            txtMaxParticipants.Text = Convert.ToString((int)dr["maxparticipants"]);
             txtZIP.Text = (string)dr["zipcode"];
             txtCity.Text = (string)dr["city"];
             txtStreet.Text = (string)dr["streetname"];
@@ -174,7 +181,27 @@ namespace Ferienspass
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-
+            if (AllFilldOrSelected())
+            {
+                if (Convert.ToDateTime(txtFrom.Text).TimeOfDay < Convert.ToDateTime(txtTo.Text).TimeOfDay)
+                {
+                    if (calendar.SelectedDate > DateTime.Now)
+                    {
+                        DB db = new DB();
+                        db.ExecuteNonQuery("UPDATE courses SET coursename=?, description=?, zipcode=?, city=?, streetname=?, housenumber=?, date=?, timefrom=?, " +
+                            "timeto=?, managername=?, organisationId=?, contactemail=?, minparticipants=?, maxparticipants=? WHERE courseId=?", 
+                            txtCourseName.Text, txtDesciption.InnerText, txtZIP.Text, txtCity.Text, txtStreet.Text,
+                            txtNr.Text, calendar.SelectedDate, txtFrom.Text, txtTo.Text, txtManagerName.Text, ddlOrganisation.SelectedIndex, txtContactMail.Text,
+                            Convert.ToInt32(txtMinParticipants.Text), Convert.ToInt32(txtMaxParticipants.Text));
+                    }
+                    else litAlert.Text = "<div class='alert alert-danger'><strong>Fehler!</strong> Ausgewähltes Datum ist nicht zulässig.</div>";
+                }
+                else litAlert.Text = "<div class='alert alert-danger'><strong>Fehler!</strong> Die Zeit muss richtig eingegeben werden.</div>";
+            }
+            else
+            {
+                litAlert.Text = "<div class='alert alert-danger'><strong>Fehler!</strong> Alle Felder müssen mit zulässigen Werten ausgefüllt werden.</div>";
+            }
         }
 
         protected void btnMail_Click(object sender, EventArgs e)
