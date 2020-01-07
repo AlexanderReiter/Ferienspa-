@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ferienspass.Classes;
+using System;
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -19,7 +20,7 @@ namespace Ferienspass
             }
         }
 
-        public string SortExpresssion 
+        public string SortExpresssion
         {
             set
             {
@@ -132,6 +133,8 @@ namespace Ferienspass
             panCourse.Visible = true;
         }
 
+       
+
         private void Fill_ddlOrganisation()
         {
             DB db = new DB();
@@ -230,7 +233,41 @@ namespace Ferienspass
 
         protected void btnMail_Click(object sender, EventArgs e)
         {
+           
+              
+            
+        }
 
+        protected void gvCourses_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            //Kurs löschen
+
+            DB db = new DB();          
+
+            db.Query("DELETE FROM courses WHERE courseId=?", e.Keys[0]);
+            gvCourses.EditIndex = -1;
+
+            Fill_gvcourses();     
+
+            //Panel für die Bestätigung bzw. Abbruch erstellen
+            
+
+
+            //Falls bestätigt, dann E-Mail versenden
+
+            
+            string MailText =
+              $"Sehr geehrte Damen und Herren, <br><br>Der Kurst wurde leider abgesagt. Um den Grund der Absage zu erfahren, " +
+              $"melden Sie sich bitte bei dem Kursmanager. Die Nummer bzw. Email-Adresse können Sie auf unserer Webseite finden." +
+              $"Bitte entschuldigen Sie die Unnanehmlichkeiten." + $"" +
+              $"<br><br> Mit freundlichen Grüßen,<br>Gemeinde Mondpichl";
+
+            DataTable dtEmails = db.Query("SELECT DISTINCT email FROM kidparticipates LEFT JOIN kids ON kidparticipates.kidId = kids.kidId WHERE courseId=?", e.Keys[0]);
+
+            foreach (DataRow dr in dtEmails.Rows)
+            {
+                EmailMaker.Send((string)dr["email"], "Kursabsage", MailText);
+            }
         }
     }
 }

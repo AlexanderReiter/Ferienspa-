@@ -2,14 +2,27 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+     <script type="text/javascript">
+        function Delete() {
+            if (confirm("Sind Sie sicher, dass der Kurs gelöscht werden soll?\n")) {
+                return true;
+            }
+            return false;
+        }
+    </script>
+
     <div class="container">
         <br />
         <div class="row">
             <h1>Kurse</h1>
+            <p>
+                 
+            </p>
         </div>
         <div class="gvcourses">
             <asp:GridView ID="gvCourses" runat="server" CssClass="table" AutoGenerateColumns="False" AllowPaging="True" PageSize="20" DataKeyNames="courseID"
-                ShowHeaderWhenEmpty="true" OnRowEditing="gvCourses_RowEditing" OnPageIndexChanging="gvCourses_PageIndexChanging" OnSorting="gvCourses_Sorting">
+                ShowHeaderWhenEmpty="true" OnRowEditing="gvCourses_RowEditing" OnPageIndexChanging="gvCourses_PageIndexChanging" OnSorting="gvCourses_Sorting" OnRowDeleting="gvCourses_RowDeleting">
                 <Columns>
                     <asp:TemplateField HeaderText="Kursname">
                         <ItemTemplate>
@@ -38,6 +51,7 @@
                         <ItemTemplate>
                             <asp:LinkButton ID="btnUpdate" runat="server" CommandName="Edit" ForeColor="Black"><i class='fas fa-pen' style='font-size:24px;'></i></asp:LinkButton>
                             <asp:LinkButton ID="btnMail" runat="server" OnClick="btnMail_Click" ForeColor="Black"><i class="fas fa-envelope" style='font-size:24px;'></i></asp:LinkButton>
+                            <asp:LinkButton ID="btnDelete" runat="server" CommandName="Delete" OnClientClick="return Delete()" ForeColor="Black"><i class='fa fa-pen' style='font-size:24px'></i></asp:LinkButton>
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
