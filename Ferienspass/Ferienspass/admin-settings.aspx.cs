@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -235,17 +236,26 @@ namespace Ferienspass
             string newEndDate = txtStopRegistrationSpan.Text;
             string newDiscount = txtDiscount.Text;
 
-            DB db = new DB();
-            db.Query("UPDATE settings SET VALUE=? WHERE settingId='startregistration'", newStartDate);
-            db.Query("UPDATE settings SET VALUE=? WHERE settingId='stopregistration'", newEndDate);
-            db.Query("UPDATE settings SET VALUE=? WHERE settingId='discount'", newDiscount);
+            if (newDiscount.Contains("%"))
+            {
+                if (DateTime.TryParseExact(newStartDate, "dd/mm/yyyy", null, DateTimeStyles.None, out DateTime startdate) &&
+                    DateTime.TryParseExact(newEndDate, "dd/mm/yyyy", null, DateTimeStyles.None, out DateTime enddate))
+                {
+                    DB db = new DB();
+                    db.Query("UPDATE settings SET VALUE=? WHERE settingId='startregistration'", newStartDate);
+                    db.Query("UPDATE settings SET VALUE=? WHERE settingId='stopregistration'", newEndDate);
+                    db.Query("UPDATE settings SET VALUE=? WHERE settingId='discount'", newDiscount);
 
-            txtStartRegistrationSpan.Enabled = false;
-            txtStopRegistrationSpan.Enabled = false;
-            txtDiscount.Enabled = false;
-            pnlChangeOtherSettings.Visible = true;
-            pnlCancelOtherSettings.Visible = false;
-            pnlSaveOtherSettings.Visible = false;
+                    txtStartRegistrationSpan.Enabled = false;
+                    txtStopRegistrationSpan.Enabled = false;
+                    txtDiscount.Enabled = false;
+                    pnlChangeOtherSettings.Visible = true;
+                    pnlCancelOtherSettings.Visible = false;
+                    pnlSaveOtherSettings.Visible = false;
+                }
+                else throw new ApplicationException("Das eingegebene Datum ist ungültig!");
+            }
+            else throw new ApplicationException("Die Eingabe muss ein Prozentwert sein!");
         }
 
         protected void btnCancelOtherSettings_Click(object sender, EventArgs e)
