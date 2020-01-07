@@ -111,6 +111,7 @@
         </div>
 
         <h3>Sonstige Einstellungen</h3>
+        <asp:Literal ID="litAlertOtherSettings" runat="server"></asp:Literal>
         Anmeldezeitraum:
         <div class="row">
             <div class="col-4">

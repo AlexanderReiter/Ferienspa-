@@ -123,6 +123,9 @@ namespace Ferienspass
         #endregion
 
         #region Email-Settings
+        // Email Sendedaten anzeigen, ändern
+        // Verified by Mair Andreas
+        // 07.01.2020
         private void LoadEmailSettings()
         {
             string[] values = GetValuesFromSettings();
@@ -212,6 +215,10 @@ namespace Ferienspass
 
 
         #region Other-Settings
+        // Anmeldezeitraum anzeigen, ändern
+        // Rabatt anzeigen, ändern
+        // Verified by Mair Andreas
+        // 07.01.2020
         private void LoadOtherSettings()
         {
             string[] values = GetValuesFromSettings();
@@ -241,6 +248,7 @@ namespace Ferienspass
                 if (DateTime.TryParseExact(newStartDate, "dd/mm/yyyy", null, DateTimeStyles.None, out DateTime startdate) &&
                     DateTime.TryParseExact(newEndDate, "dd/mm/yyyy", null, DateTimeStyles.None, out DateTime enddate))
                 {
+                    litAlertOtherSettings.Text = "";
                     DB db = new DB();
                     db.Query("UPDATE settings SET VALUE=? WHERE settingId='startregistration'", newStartDate);
                     db.Query("UPDATE settings SET VALUE=? WHERE settingId='stopregistration'", newEndDate);
@@ -253,13 +261,14 @@ namespace Ferienspass
                     pnlCancelOtherSettings.Visible = false;
                     pnlSaveOtherSettings.Visible = false;
                 }
-                else throw new ApplicationException("Das eingegebene Datum ist ungültig!");
+                else litAlertOtherSettings.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>Das eingegebene Datum ist ungültig!</div></div></div>";
             }
-            else throw new ApplicationException("Die Eingabe muss ein Prozentwert sein!");
+            else litAlertOtherSettings.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>Die Eingabe muss ein Prozentwert sein!</div></div></div>";
         }
 
         protected void btnCancelOtherSettings_Click(object sender, EventArgs e)
         {
+            litAlertOtherSettings.Text = "";
             txtStartRegistrationSpan.Enabled = false;
             txtStopRegistrationSpan.Enabled = false;
             txtDiscount.Enabled = false;
