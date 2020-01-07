@@ -15,6 +15,7 @@
 
     <div class="container">
         <h3>Unsere Nachbargemeinden</h3> <br />
+        <asp:Literal ID="litAlertNeighbourcities" runat="server"></asp:Literal>
         <asp:GridView ID="gvNeighbourcities" runat="server" AutoGenerateColumns="false" ShowHeaderWhenEmpty="true" CssClass="table table-striped" 
             OnRowEditing="gvNeighbourcities_RowEditing" OnRowCancelingEdit="gvNeighbourcities_RowCancelingEdit" OnRowDeleting="gvNeighbourcities_RowDeleting"
             OnRowCommand="gvNeighbourcities_RowCommand" OnRowUpdating="gvNeighbourcities_RowUpdating">
@@ -123,7 +124,7 @@
                 </div>
             </div>
         </div>
-        Rabatt:
+        Rabatt (bei Anmeldung von mind. 2 Kindern):
         <div class="row">
             <div class="col-4">
                 <div class="form-group">
