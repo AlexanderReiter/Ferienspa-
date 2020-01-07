@@ -7,6 +7,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<br />
     <div class="container">
         <div class="row">
             <div class="col-10">
@@ -95,6 +96,7 @@
             </div>
         </div>
         <br />
+        <asp:Literal ID="litGenderError" runat="server"></asp:Literal>
         <asp:GridView ID="gvKids" runat="server" AutoGenerateColumns="false" DataKeyNames="kidId" ShowHeaderWhenEmpty="true" CssClass="table table-striped" OnRowCancelingEdit="gvKids_RowCancelingEdit" OnRowEditing="gvKids_RowEditing" OnRowCommand="gvKids_RowCommand" OnRowUpdating="gvKids_RowUpdating" OnRowDeleting="gvKids_RowDeleting" OnRowDataBound="gvKids_RowDataBound">
             <Columns>
                 <asp:TemplateField HeaderText="Vorname">
@@ -134,7 +136,7 @@
                         <asp:LinkButton ID="btnAddChild" runat="server" CommandName="Add" ForeColor="Black" ><i class="fa fa-plus-square"></i></asp:LinkButton>
                     </HeaderTemplate>
                     <ItemTemplate>
-                        <asp:LinkButton ID="btnEditChild" runat="server" CommandName="Edit" ForeColor="Black"><i class="fa fa-pen"></i></asp:LinkButton>
+                        <asp:LinkButton ID="btnEditChild" runat="server" CommandName="Edit" ForeColor="Black"><i class="fas fa-pen"></i></asp:LinkButton>
                         <asp:LinkButton ID="btnDeleteChild" runat="server" CommandName="Delete" ForeColor="Black"><i class="fa fa-trash"></i></asp:LinkButton>
                     </ItemTemplate>
                     <EditItemTemplate>
