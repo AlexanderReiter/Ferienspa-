@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ferienspass.Classes;
+using System;
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -7,7 +8,7 @@ namespace Ferienspass
 {
     public partial class admin_courses : System.Web.UI.Page
     {
-        public string SortExpresssion 
+        public string SortExpresssion
         {
             set
             {
@@ -112,6 +113,8 @@ namespace Ferienspass
             panCourse.Visible = true;
         }
 
+       
+
         private void Fill_ddlOrganisation()
         {
             DB db = new DB();
@@ -163,7 +166,51 @@ namespace Ferienspass
 
         protected void btnMail_Click(object sender, EventArgs e)
         {
+           
+              
+            
+        }
 
+        protected void gvCourses_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            //Kurs löschen
+
+            DB db = new DB();          
+
+            db.Query("DELETE FROM courses WHERE courseId=?", e.Keys[0]);
+            gvCourses.EditIndex = -1;
+
+            Fill_gvcourses();     
+
+            //Panel für die Bestätigung bzw. Abbruch erstellen
+            
+
+
+            //Falls bestätigt, dann E-Mail versenden
+
+            
+            string MailText =
+              $"Sehr geehrte Damen und Herren, <br><br>Der Kurst wurde leider abgesagt. Um den Grund der Absage zu erfahren, " +
+              $"melden Sie sich bitte bei dem Kursmanager. Die Nummer bzw. Email-Adresse können Sie auf unserer Webseite finden." +
+              $"Bitte entschuldigen Sie die Unnanehmlichkeiten." + $"" +
+              $"<br><br> Mit freundlichen Grüßen,<br>Gemeinde Mondpichl";
+
+            db.Query("SELECT * FROM kidparticipates LEFT JOIN kids ON kidparticipates.kidId = kids.Id WHERE courseId=? " +
+                "LEFT JOIN users ON users.id=kids.parentid");
+
+            try
+            {
+
+                EmailMaker.Send(user, "Kursabsage", MailText);
+
+                litEmailStatus.Text = "<div class='row'><div class='col'><div class='alert alert-success'>E-Mail erfolgreich gesendet!</div></div></div>";
+            }
+            catch
+            {
+                litEmailStatus.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>E-Mail senden fehlgeschlagen!</div></div></div>";
+            }
+
+            
         }
     }
 }
