@@ -156,7 +156,7 @@ namespace Ferienspass
             {
                 case "Add":
                     DB db = new DB();
-                    DataTable dt = db.Query("SELECT *, gender.name AS gendername FROM kids LEFT JOIN gender ON gender.id=kids.gender");
+                    DataTable dt = db.Query("SELECT *, gender.name AS gendername FROM kids LEFT JOIN gender ON gender.id=kids.gender WHERE email=?", User.Identity.Name);
                     DataRow newRow = dt.NewRow();
                     dt.Rows.Add(newRow);
                     gvKids.EditIndex = dt.Rows.Count - 1;
