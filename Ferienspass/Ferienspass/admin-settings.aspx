@@ -123,7 +123,7 @@
                 </div>
             </div>
         </div>
-        Rabatt:
+        Rabatt (bei Anmeldung von mind. 2 Kindern):
         <div class="row">
             <div class="col-4">
                 <div class="form-group">
