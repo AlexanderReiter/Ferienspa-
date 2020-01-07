@@ -13,12 +13,13 @@ namespace Ferienspass
 
     public partial class admin_settings
     {
+
         /// <summary>
-        /// litAlertNeighbourcities-Steuerelement
+        /// litAlertNeighbourcities control.
         /// </summary>
         /// <remarks>
-        /// Automatisch generiertes Feld
-        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litAlertNeighbourcities;
 

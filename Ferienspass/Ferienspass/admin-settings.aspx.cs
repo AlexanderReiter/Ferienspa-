@@ -144,7 +144,7 @@ namespace Ferienspass
             txtEmail.Enabled = true;
             txtHost.Enabled = true;
             txtPassword.Enabled = true;
-            txtPassword.Text = Convert.ToString(values[2]);
+            txtPassword.Text = Convert.ToString(values[3]);
             txtPort.Enabled = true;
             txtResetDauer.Enabled = true;
             pnlChangeSettings.Visible = false;
