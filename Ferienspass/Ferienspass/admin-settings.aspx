@@ -41,8 +41,8 @@
                         <asp:LinkButton ID="btnAddCity" runat="server" CommandName="Add" ForeColor="Black" ><i class="fa fa-plus-square"></i></asp:LinkButton>
                     </HeaderTemplate>
                     <ItemTemplate>
-                        <asp:LinkButton ID="btnEditCity" runat="server" CommandName="Edit" ForeColor="Black"><i class="fa fa-pen"></i></asp:LinkButton>
-                        <asp:LinkButton ID="btnDeleteCity" runat="server" CommandName="Delete" OnClientClick="return DeleteCity()" ForeColor="Black"><i class="fa fa-trash"></i></asp:LinkButton>
+                        <asp:LinkButton ID="btnEditCity" runat="server" CommandName="Edit" ForeColor="Black"><i class="fas fa-pen"></i></asp:LinkButton>
+                        <asp:LinkButton ID="btnDeleteCity" runat="server" CommandName="Delete" OnClientClick="return Delete()" ForeColor="Black"><i class="fa fa-trash"></i></asp:LinkButton>
                     </ItemTemplate>
                     <EditItemTemplate>
                         <asp:LinkButton ID="btnUpdateCity" runat="server" CommandName="Update" ForeColor="Black"><i class="fa fa-check"></i></asp:LinkButton>
