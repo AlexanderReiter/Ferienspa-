@@ -7,6 +7,18 @@ namespace Ferienspass
 {
     public partial class admin_courses : System.Web.UI.Page
     {
+        public int EditingCustomerID
+        {
+            set
+            {
+                ViewState["editingcustomerid"] = value;
+            }
+            get 
+            { 
+                return Convert.ToInt32(ViewState["editingcustomerid"]); 
+            }
+        }
+
         public string SortExpresssion 
         {
             set
@@ -86,6 +98,7 @@ namespace Ferienspass
 
         protected void gvCourses_RowEditing(object sender, GridViewEditEventArgs e)
         {
+            EditingCustomerID = Convert.ToInt32(gvCourses.DataKeys[e.NewEditIndex].Value);
             DB db = new DB();
             DataTable dt = db.Query("SELECT * FROM courses WHERE courseId=?", gvCourses.DataKeys[e.NewEditIndex].Value);
             DataRow dr = dt.Rows[0];
@@ -133,9 +146,16 @@ namespace Ferienspass
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
+            ClosePanel();
+        }
+
+        protected void ClosePanel()
+        {
             litAlert.Text = string.Empty;
             panCourse.Visible = false;
             panBlockBackground.Visible = false;
+
+            Fill_gvcourses();
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
@@ -152,6 +172,8 @@ namespace Ferienspass
                             "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)", txtCourseName.Text, txtDesciption.InnerText, txtZIP.Text, txtCity.Text, txtStreet.Text, 
                             txtNr.Text, calendar.SelectedDate, txtFrom.Text, txtTo.Text, txtManagerName.Text, ddlOrganisation.SelectedIndex, txtContactMail.Text, 
                             Convert.ToInt32(txtMinParticipants.Text), Convert.ToInt32(txtMaxParticipants.Text));
+
+                        ClosePanel();
                     }
                     else litAlert.Text = "<div class='alert alert-danger'><strong>Fehler!</strong> Ausgewähltes Datum ist nicht zulässig.</div>";
                 }
@@ -192,7 +214,9 @@ namespace Ferienspass
                             "timeto=?, managername=?, organisationId=?, contactemail=?, minparticipants=?, maxparticipants=? WHERE courseId=?", 
                             txtCourseName.Text, txtDesciption.InnerText, txtZIP.Text, txtCity.Text, txtStreet.Text,
                             txtNr.Text, calendar.SelectedDate, txtFrom.Text, txtTo.Text, txtManagerName.Text, ddlOrganisation.SelectedIndex, txtContactMail.Text,
-                            Convert.ToInt32(txtMinParticipants.Text), Convert.ToInt32(txtMaxParticipants.Text));
+                            Convert.ToInt32(txtMinParticipants.Text), Convert.ToInt32(txtMaxParticipants.Text), EditingCustomerID);
+
+                        ClosePanel();
                     }
                     else litAlert.Text = "<div class='alert alert-danger'><strong>Fehler!</strong> Ausgewähltes Datum ist nicht zulässig.</div>";
                 }
