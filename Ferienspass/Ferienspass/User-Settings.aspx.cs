@@ -156,7 +156,7 @@ namespace Ferienspass
             {
                 case "Add":
                     DB db = new DB();
-                    DataTable dt = db.Query("SELECT * FROM kids");
+                    DataTable dt = db.Query("SELECT *, gender.name AS gendername FROM kids LEFT JOIN gender ON gender.id=kids.gender");
                     DataRow newRow = dt.NewRow();
                     dt.Rows.Add(newRow);
                     gvKids.EditIndex = dt.Rows.Count - 1;
@@ -183,11 +183,41 @@ namespace Ferienspass
 
             if (kidID != -1)
             {
-                db.Query("UPDATE kids SET givenname=?, surname=?, gender=?, birthday=? WHERE kidId=?", e.NewValues["givenname"], e.NewValues["surname"], e.NewValues["gender"], date, e.Keys[0]);
+                Control ctrlSurname = gvKids.Rows[e.RowIndex].FindControl("txtSurnameChild");
+                TextBox txtSurname = ctrlSurname as TextBox;
+                Control ctrlGivenname = gvKids.Rows[e.RowIndex].FindControl("txtGivennameChild");
+                TextBox txtGivenname = ctrlGivenname as TextBox;
+                Control ctrlBirthday = gvKids.Rows[e.RowIndex].FindControl("txtBirthday");
+                TextBox txtBirthday = ctrlBirthday as TextBox;
+                Control ctrlGender = gvKids.Rows[e.RowIndex].FindControl("ddlGender");
+                DropDownList ddl = ctrlGender as DropDownList;
+                if (ddl.SelectedItem.Text == "" || ddl.SelectedItem.Text == "Nicht ausgewählt" || txtGivenname.Text == "" || txtSurname.Text == "" || txtBirthday.Text == "")
+                {
+                    litGenderError.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>Alle Felder müssen ausgefühlt werden!</div></div></div>";
+                }
+                else
+                {
+                    db.Query("UPDATE kids SET givenname=?, surname=?, gender=?, birthday=? WHERE kidId=?", e.NewValues["givenname"], e.NewValues["surname"], ddl.SelectedIndex, date, e.Keys[0]);
+                }
             }
             else
             {
-                db.ExecuteNonQuery($"INSERT INTO kids (givenname, surname, gender, birthday, email) VALUES(?,?,?,?,?)", e.NewValues["givenname"], e.NewValues["surname"], e.NewValues["gender"],date, User.Identity.Name);
+                Control ctrlSurname = gvKids.Rows[e.RowIndex].FindControl("txtSurnameChild");
+                TextBox txtSurname = ctrlSurname as TextBox;
+                Control ctrlGivenname = gvKids.Rows[e.RowIndex].FindControl("txtGivennameChild");
+                TextBox txtGivenname = ctrlGivenname as TextBox;
+                Control ctrlBirthday = gvKids.Rows[e.RowIndex].FindControl("txtBirthday");
+                TextBox txtBirthday = ctrlBirthday as TextBox;
+                Control ctrlGender = gvKids.Rows[e.RowIndex].FindControl("ddlGender");
+                DropDownList ddl = ctrlGender as DropDownList;
+                if (ddl.SelectedItem.Text == "" || txtGivenname.Text == "" || txtSurname.Text == "" || txtBirthday.Text == "")
+                {
+                    litGenderError.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>Alle Felder müssen ausgefühlt werden!</div></div></div>";
+                }
+                else
+                {
+                    db.ExecuteNonQuery($"INSERT INTO kids (givenname, surname, gender, birthday, email) VALUES(?,?,?,?,?)", e.NewValues["givenname"], e.NewValues["surname"], ddl.SelectedIndex, date, User.Identity.Name);
+                }
             }
 
             gvKids.EditIndex = -1;
@@ -220,7 +250,6 @@ namespace Ferienspass
         {
             if(e.Row.RowType == DataControlRowType.DataRow && gvKids.EditIndex == e.Row.RowIndex)
             {
-                //GridViewRow gvr = gvKids.Rows[e.Row.RowIndex];
                 Control ctrl = e.Row.FindControl("ddlGender");
                 DropDownList ddl = ctrl as DropDownList;
                 DataTable dt = GetGender();
@@ -241,26 +270,5 @@ namespace Ferienspass
             DataTable dt = db.Query("SELECT * FROM gender");
             return dt;
         }
-
-        //protected void gvKids_RowDataBound(object sender, GridViewRowEventArgs e)
-        //{
-        //    if(e.Row.RowType == DataControlRowType.DataRow)
-        //    {
-        //        if(e.Row.RowState == DataControlRowState.Edit)
-        //        {
-        //            DB db = new DB();
-        //            DataTable dt = db.Query("SELECT * FROM kids WHERE kidId=?", gvKids.DataKeys[e.Row.RowIndex].Value);
-        //            DataRow dr = dt.Rows[0];
-        //            DataTable dtGender = db.Query("SELECT * FROM gender");
-
-        //            GridViewRow gvr = gvKids.Rows[gvKids.EditIndex];
-        //            DropDownList ddlGender = (DropDownList)gvr.FindControl("ddlGender");
-        //            ddlGender.DataSource = dt;
-        //            ddlGender.DataTextField = "name";
-        //            ddlGender.DataBind();
-        //            ddlGender.SelectedIndex = (int)dr["gender"];
-        //        }
-        //    }
-        //}
     }
 }
