@@ -8,7 +8,7 @@ namespace Ferienspass
 {
     public partial class admin_courses : System.Web.UI.Page
     {
-        public int EditingCustomerID
+        public int CustomerID
         {
             set
             {
@@ -99,7 +99,7 @@ namespace Ferienspass
 
         protected void gvCourses_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            EditingCustomerID = Convert.ToInt32(gvCourses.DataKeys[e.NewEditIndex].Value);
+            CustomerID = Convert.ToInt32(gvCourses.DataKeys[e.NewEditIndex].Value);
             DB db = new DB();
             DataTable dt = db.Query("SELECT * FROM courses WHERE courseId=?", gvCourses.DataKeys[e.NewEditIndex].Value);
             DataRow dr = dt.Rows[0];
@@ -217,7 +217,7 @@ namespace Ferienspass
                             "timeto=?, managername=?, organisationId=?, contactemail=?, minparticipants=?, maxparticipants=? WHERE courseId=?", 
                             txtCourseName.Text, txtDesciption.InnerText, txtZIP.Text, txtCity.Text, txtStreet.Text,
                             txtNr.Text, calendar.SelectedDate, txtFrom.Text, txtTo.Text, txtManagerName.Text, ddlOrganisation.SelectedIndex, txtContactMail.Text,
-                            Convert.ToInt32(txtMinParticipants.Text), Convert.ToInt32(txtMaxParticipants.Text), EditingCustomerID);
+                            Convert.ToInt32(txtMinParticipants.Text), Convert.ToInt32(txtMaxParticipants.Text), CustomerID);
 
                         ClosePanel();
                     }
@@ -229,13 +229,6 @@ namespace Ferienspass
             {
                 litAlert.Text = "<div class='alert alert-danger'><strong>Fehler!</strong> Alle Felder müssen mit zulässigen Werten ausgefüllt werden.</div>";
             }
-        }
-
-        protected void btnMail_Click(object sender, EventArgs e)
-        {
-           
-              
-            
         }
 
         protected void gvCourses_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -267,6 +260,40 @@ namespace Ferienspass
             foreach (DataRow dr in dtEmails.Rows)
             {
                 EmailMaker.Send((string)dr["email"], "Kursabsage", MailText);
+            }
+        }
+
+        protected void btnSend_Click(object sender, EventArgs e)
+        {
+            DB db = new DB();
+            string MailText = txtContent.Value;
+
+            DataTable dtEmails = db.Query("SELECT DISTINCT email FROM kidparticipates LEFT JOIN kids ON kidparticipates.kidId = kids.kidId WHERE courseId=?", CustomerID);
+
+            foreach (DataRow dr in dtEmails.Rows)
+            {
+                EmailMaker.Send((string)dr["email"], txtSubject.Text, MailText);
+            }
+        }
+
+        protected void btnCancelSendMail_Click(object sender, EventArgs e)
+        {
+            panSendMail.Visible = false;
+            panBlockBackground.Visible = false;
+            txtSubject.Text = string.Empty;
+            txtContent.Value = string.Empty;
+        }
+
+        protected void gvCourses_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            string command = e.CommandName;
+
+            switch (command) {
+                case "Mail":
+                    panBlockBackground.Visible = true;
+                    panSendMail.Visible = true;
+                    CustomerID = Convert.ToInt32(e.CommandArgument.ToString());
+                    break;
             }
         }
     }

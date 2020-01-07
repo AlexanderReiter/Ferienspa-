@@ -22,7 +22,8 @@
         </div>
         <div class="gvcourses">
             <asp:GridView ID="gvCourses" runat="server" CssClass="table" AutoGenerateColumns="False" AllowPaging="True" PageSize="20" DataKeyNames="courseID"
-                ShowHeaderWhenEmpty="true" OnRowEditing="gvCourses_RowEditing" OnPageIndexChanging="gvCourses_PageIndexChanging" OnSorting="gvCourses_Sorting" OnRowDeleting="gvCourses_RowDeleting">
+                ShowHeaderWhenEmpty="true" OnRowEditing="gvCourses_RowEditing" OnPageIndexChanging="gvCourses_PageIndexChanging" OnSorting="gvCourses_Sorting" 
+                OnRowCommand="gvCourses_RowCommand" OnRowDeleting="gvCourses_RowDeleting">
                 <Columns>
                     <asp:TemplateField HeaderText="Kursname">
                         <ItemTemplate>
@@ -50,7 +51,7 @@
                         </HeaderTemplate>
                         <ItemTemplate>
                             <asp:LinkButton ID="btnUpdate" runat="server" CommandName="Edit" ForeColor="Black"><i class='fas fa-pen' style='font-size:24px;'></i></asp:LinkButton>
-                            <asp:LinkButton ID="btnMail" runat="server" OnClick="btnMail_Click" ForeColor="Black"><i class="fas fa-envelope" style='font-size:24px;'></i></asp:LinkButton>
+                            <asp:LinkButton ID="btnMail" runat="server" CommandName="Mail" CommandArgument='<%# Eval("courseID") %>' ForeColor="Black"><i class="fas fa-envelope" style='font-size:24px;'></i></asp:LinkButton>
                             <asp:LinkButton ID="btnDelete" runat="server" CommandName="Delete" OnClientClick="return Delete()" ForeColor="Black"><i class='fa fa-pen' style='font-size:24px'></i></asp:LinkButton>
                         </ItemTemplate>
                     </asp:TemplateField>
@@ -173,6 +174,41 @@
                     <div class="col-6">
                         <asp:Button ID="btnAdd" runat="server" Text="Hinzufügen" CssClass="btn btn-secondary btn-lg float-right" Visible="true" OnClick="btnAdd_Click" />
                         <asp:Button ID="btnSave" runat="server" Text="Speichern" CssClass="btn btn-secondary btn-lg float-right" Visible="false" OnClick="btnSave_Click" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </asp:Panel>
+    <asp:Panel ID="panSendMail" runat="server" Visible="false">
+        <div class="container">
+            <div class="addCourseForm shadow p-4 mb-4 bg-white">
+                <div class="row">
+                    <div class="col">
+                        <h1>E-Mail</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="txtSubject">Betreff:</label>
+                            <asp:TextBox ID="txtSubject" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="txtSubject">Betreff:</label>
+                            <textarea class="form-control" rows="20" id="txtContent" runat="server" name="text"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <asp:Button ID="btnCancelSendMail" runat="server" Text="Abbrechen" CssClass="btn btn-outline-secondary btn-lg" OnClick="btnCancelSendMail_Click" />
+                    </div>
+                    <div class="col-6">
+                        <asp:Button ID="btnSend" runat="server" Text="Senden" CssClass="btn btn-secondary btn-lg float-right" OnClick="btnSend_Click" />
                     </div>
                 </div>
             </div>
