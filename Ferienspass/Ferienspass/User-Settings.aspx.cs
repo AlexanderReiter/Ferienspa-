@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -42,7 +43,7 @@ namespace Ferienspass
         public void Fill_gvKids()
         {
             DB db = new DB();
-            gvKids.DataSource = db.Query("SELECT * FROM kids WHERE email=?", User.Identity.Name);
+            gvKids.DataSource = db.Query("SELECT *, gender.name AS gendername FROM kids LEFT JOIN gender ON gender.id=kids.gender WHERE email=?", User.Identity.Name);
             gvKids.DataBind();
         }
 
@@ -158,7 +159,7 @@ namespace Ferienspass
                     DataTable dt = db.Query("SELECT * FROM kids");
                     DataRow newRow = dt.NewRow();
                     dt.Rows.Add(newRow);
-                    gvKids.EditIndex = dt.Rows.Count;
+                    gvKids.EditIndex = dt.Rows.Count - 1;
                     gvKids.DataSource = dt;
                     gvKids.DataBind();
                     break;
@@ -169,15 +170,24 @@ namespace Ferienspass
         {
             GridViewRow gvr = gvKids.Rows[e.RowIndex];
             DB db = new DB();
-            int kidID = Convert.ToInt32(e.Keys[0]);
-
-            if(kidID != -1)
+            int kidID;
+            if(Convert.ToString(e.Keys[0]) == "")
             {
-                db.Query("UPDATE kids SET givenname=?, surname=?, gender=?, birthday=? WHERE kidId=?", e.NewValues["givenname"], e.NewValues["surname"], e.NewValues["gender"], e.NewValues["birthday"], e.Keys[0]);
+                kidID = -1;
             }
             else
             {
-                db.Query("INSERT INTO kids (givenname, surname, gender, birthday, email) VALUES(?,?,?,?,?)", e.NewValues["givenname"], e.NewValues["surname"], e.NewValues["gender"], e.NewValues["birthday"], User.Identity.Name);
+                kidID = Convert.ToInt32(e.Keys[0]);
+            }
+            DateTime date = Convert.ToDateTime(e.NewValues["birthday"]);
+
+            if (kidID != -1)
+            {
+                db.Query("UPDATE kids SET givenname=?, surname=?, gender=?, birthday=? WHERE kidId=?", e.NewValues["givenname"], e.NewValues["surname"], e.NewValues["gender"], date, e.Keys[0]);
+            }
+            else
+            {
+                db.ExecuteNonQuery($"INSERT INTO kids (givenname, surname, gender, birthday, email) VALUES(?,?,?,?,?)", e.NewValues["givenname"], e.NewValues["surname"], e.NewValues["gender"],date, User.Identity.Name);
             }
 
             gvKids.EditIndex = -1;
@@ -205,5 +215,52 @@ namespace Ferienspass
 
             Fill_gvKids();
         }
+
+        protected void gvKids_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if(e.Row.RowType == DataControlRowType.DataRow && gvKids.EditIndex == e.Row.RowIndex)
+            {
+                //GridViewRow gvr = gvKids.Rows[e.Row.RowIndex];
+                Control ctrl = e.Row.FindControl("ddlGender");
+                DropDownList ddl = ctrl as DropDownList;
+                DataTable dt = GetGender();
+
+                for(int i = 0;i<dt.Rows.Count;i++)
+                {
+                    ddl.Items.Add(new ListItem(dt.Rows[i]["name"].ToString(), dt.Rows[i]["id"].ToString()));
+                }
+                DataRowView drv = e.Row.DataItem as DataRowView;
+                ddl.SelectedValue = drv["id"].ToString();
+                ddl.SelectedItem.Text = drv["name"].ToString();
+            }           
+        }
+
+        public DataTable GetGender()
+        {
+            DB db = new DB();
+            DataTable dt = db.Query("SELECT * FROM gender");
+            return dt;
+        }
+
+        //protected void gvKids_RowDataBound(object sender, GridViewRowEventArgs e)
+        //{
+        //    if(e.Row.RowType == DataControlRowType.DataRow)
+        //    {
+        //        if(e.Row.RowState == DataControlRowState.Edit)
+        //        {
+        //            DB db = new DB();
+        //            DataTable dt = db.Query("SELECT * FROM kids WHERE kidId=?", gvKids.DataKeys[e.Row.RowIndex].Value);
+        //            DataRow dr = dt.Rows[0];
+        //            DataTable dtGender = db.Query("SELECT * FROM gender");
+
+        //            GridViewRow gvr = gvKids.Rows[gvKids.EditIndex];
+        //            DropDownList ddlGender = (DropDownList)gvr.FindControl("ddlGender");
+        //            ddlGender.DataSource = dt;
+        //            ddlGender.DataTextField = "name";
+        //            ddlGender.DataBind();
+        //            ddlGender.SelectedIndex = (int)dr["gender"];
+        //        }
+        //    }
+        //}
     }
 }
