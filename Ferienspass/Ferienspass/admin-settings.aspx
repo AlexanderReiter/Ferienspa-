@@ -4,8 +4,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <script type="text/javascript">
-        function Delete() {
-            if (confirm("Sind Sie sicher, dass der Datensatz gelöscht werden soll?\n")) {
+        function DeleteCity() {
+            if (confirm("Es könnten bereits Personen unter dieser Gemeinde registriert sein! Soll die Gemeinde trotzdem entfernt werden?")) {
                 return true;
             }
             return false;
@@ -111,6 +111,7 @@
         </div>
 
         <h3>Sonstige Einstellungen</h3>
+        <asp:Literal ID="litAlertOtherSettings" runat="server"></asp:Literal>
         Anmeldezeitraum:
         <div class="row">
             <div class="col-4">
