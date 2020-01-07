@@ -35,12 +35,18 @@ namespace Ferienspass
                 }
                 else
                 {
+                    //delete old reset link
+                    string sqlDeleteCode = "DELETE FROM resetpwcodes WHERE email=?";
+                    try { db.ExecuteNonQuery(sqlDeleteCode, user); } catch { }
 
-                    litEmailFailed.Text = "<div class='row'><div class='col'><div class='alert alert-success'>Erfolgreich! Überprüfen Sie Ihr Postfach!</div></div></div>";
+                    //create reset link
+                    DateTime rightnow = DateTime.Now;
                     string VerificationCode = Password.GenerateSalt();
-                    string sqlVerificationCode = "INSERT INTO resetpwcodes (email, code) VALUES (?,?)";
-                    db.ExecuteNonQuery(sqlVerificationCode, user, VerificationCode);
-                    EmailMaker.Send(user, "Reset Passwort für Ferienspass", string.Format("Resetlink: https://localhost:44383/resetpassword.aspx?email=andi@gmx.at&code="+VerificationCode));
+                    string sqlVerificationCode = "INSERT INTO resetpwcodes (email, code, date, time) VALUES (?,?,?,?)";
+                    db.ExecuteNonQuery(sqlVerificationCode, user, VerificationCode, rightnow.Date, rightnow.TimeOfDay);
+                    string link = string.Format("https:" + "//localhost:44383/resetpassword.aspx?email={0}&code={1}&date={2}&time={3}", user, VerificationCode, rightnow.Date.ToString("dd-MM-yyyy"), rightnow.Ticks.ToString());
+                    EmailMaker.Send(user, "Reset Passwort für Ferienspass", string.Format("Resetlink: "+link));
+                    litEmailFailed.Text = "<div class='row'><div class='col'><div class='alert alert-success'>Erfolgreich! Überprüfen Sie Ihr Postfach!</div></div></div>";
                 }
             }
             else

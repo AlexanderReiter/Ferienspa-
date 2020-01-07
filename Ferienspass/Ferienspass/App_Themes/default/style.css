@@ -2,8 +2,8 @@
 }
 
 .napeopleform {
-    margin-left: 25%;
-    margin-right: 25%;
+    margin-left: 20%;
+    margin-right: 20%;
     margin-top: 10%;
 }
 
@@ -16,9 +16,9 @@
 }
 
 .loginform {
-    margin-left: 35%;
-    margin-right: 35%;
-    margin-top: 10%;
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 8%;
 }
 
 .pwforgotform {
@@ -41,7 +41,7 @@
     opacity: 0.4;
 }
 
-.addCoursForm {
+.addCourseForm {
     position: absolute;
     z-index: 10;
     left: 0;

@@ -24,42 +24,50 @@ namespace Ferienspass
             {
                 string mail = Convert.ToString(Request.QueryString["email"]);
                 string code = Convert.ToString(Request.QueryString["code"]);
+                DateTime date = Convert.ToDateTime(Request.QueryString["date"]);
+                DateTime time = new DateTime(Convert.ToInt64(Request.QueryString["time"])); // zeit ist im link als ticks
                 DB db = new DB();
-                string sqlCheckCode = "SELECT * FROM resetpwcodes WHERE email=? AND code=?";
-                DataTable dt = db.Query(sqlCheckCode, mail, code);
+                string sqlCheckCode = "SELECT * FROM resetpwcodes WHERE email=? AND code=? AND date=? AND time=?";
+                DataTable dt = db.Query(sqlCheckCode, mail, code, date, time);
                 if (dt.Rows.Count == 0)
                 {
-                    Response.Redirect("logout.aspx");
+                    Response.Redirect("login.aspx");
                 }
             }
         }
 
         protected void btnResetPw_Click(object sender, EventArgs e)
         {
-            if (AllTxtsFilled())
+            DateTime rightnow = DateTime.Now;
+            DateTime genesisDate = Convert.ToDateTime(Request.QueryString["date"]);
+            if (genesisDate.AddDays(3) > rightnow)
             {
-                if (PwsMatch())
+                if (AllTxtsFilled())
                 {
-                    string mail = Convert.ToString(Request.QueryString["email"]);
+                    if (PwsMatch())
+                    {
+                        string mail = Convert.ToString(Request.QueryString["email"]);
 
 
-                    string sql = "Update user SET password=?, passwordsalt=? WHERE email=?";
-                    string salt = Password.GenerateSalt();
-                    string pwHash = Password.EncryptPassword(txtNewPw1.Text, salt);
+                        string sql = "Update user SET password=?, passwordsalt=? WHERE email=?";
+                        string salt = Password.GenerateSalt();
+                        string pwHash = Password.EncryptPassword(txtNewPw1.Text, salt);
 
-                    DB db = new DB();
-                    if (db.ExecuteNonQuery(sql, pwHash, salt, mail) > 0) litResetFailed.Text = "<div class='row'><div class='col'><div class='alert alert-success'>Passworter erfolgreich zurückgesetzt!</div></div></div>";
-                    else litResetFailed.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>Passwort ändern fehlgeschlagen!</div></div></div>";
+                        DB db = new DB();
+                        if (db.ExecuteNonQuery(sql, pwHash, salt, mail) > 0) litResetFailed.Text = "<div class='row'><div class='col'><div class='alert alert-success'>Passworter erfolgreich zurückgesetzt!</div></div></div>";
+                        else litResetFailed.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>Passwort ändern fehlgeschlagen!</div></div></div>";
+                    }
+                    else
+                    {
+                        litResetFailed.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>Passworter stimmen nicht überein!</div></div></div>";
+                    }
+
                 }
-                else
-                {
-                    litResetFailed.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>Passworter stimmen nicht überein!</div></div></div>";
-                }
+                else litResetFailed.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>Bitte geben Sie ein Passwort ein!</div></div></div>";
 
             }
-            else litResetFailed.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>Bitte geben Sie ein Passwort ein!</div></div></div>";
+            else litResetFailed.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>Der Link ist abgelaufen!</div></div></div>";
         }
-
         private bool PwsMatch()
         {
             if (string.Compare(txtNewPw1.Text, txtNewPw2.Text) == 0) return true;
@@ -71,6 +79,11 @@ namespace Ferienspass
             if (string.IsNullOrEmpty(txtNewPw1.Text)) return false;
             if (string.IsNullOrEmpty(txtNewPw2.Text)) return false;
             return true;
+        }
+
+        protected void btnBackToLogin_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("login.aspx", false);
         }
     }
 }

@@ -3,19 +3,30 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
-        <div class="shadow p-4 mb-4 bg-white">       
-            <h3>Not allowed People:</h3>
-            <asp:GridView CssClass="table-striped table-dark" ID="gvNAPeople" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="email" PageSize="20">
-                <Columns>
-                    <asp:BoundField DataField="surname" HeaderText="Nachname" />
-                    <asp:BoundField DataField="givenname" HeaderText="Vorname" />
-                    <asp:BoundField DataField="email" HeaderText="E-Mail" SortExpression="email" />
-                    <asp:BoundField DataField="zipcode" HeaderText="PLZ" />
-                    <asp:BoundField DataField="city" HeaderText="Ort" />
-                    <asp:BoundField DataField="streetname" HeaderText="Straße" />
-                    <asp:BoundField DataField="housenumber" HeaderText="Nr." />
-                </Columns>
-            </asp:GridView>
+        <div class="row">
+            <h1>Not allowed People:</h1>
+        </div>
+            <br />
+        <asp:Literal ID="litEmailStatus" runat="server"></asp:Literal>
+        <div class="row">
+            <div class="col-12">
+                <asp:GridView CssClass="table" ID="gvNAPeople" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="email" PageSize="20">
+                    <Columns>
+                        <asp:BoundField DataField="surname" HeaderText="Nachname" />
+                        <asp:BoundField DataField="givenname" HeaderText="Vorname" />
+                        <asp:BoundField DataField="email" HeaderText="E-Mail" SortExpression="email" />
+                        <asp:BoundField DataField="zipcode" HeaderText="PLZ" />
+                        <asp:BoundField DataField="city" HeaderText="Ort" />
+                        <asp:BoundField DataField="streetname" HeaderText="Straße" />
+                        <asp:BoundField DataField="housenumber" HeaderText="Nr." />
+                        <asp:TemplateField HeaderText="">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="btnSendMail" runat="server" OnClick="btnSendMail_Click" ForeColor="Black"><i class="fas fa-envelope" style='font-size:24px;'></i></asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
+            </div>
         </div>
     </div>
 </asp:Content>
