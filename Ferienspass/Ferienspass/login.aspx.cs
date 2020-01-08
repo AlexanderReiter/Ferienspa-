@@ -72,6 +72,8 @@ namespace Ferienspass
                         {
                             //Login erfolgreich
                             FormsAuthentication.RedirectFromLoginPage(user, false);
+                            string sqlResetFailedLogins = "UPDATE user SET failedlogins = 0 WHERE email=?";
+                            try { db.ExecuteNonQuery(sqlResetFailedLogins, user); } catch { }
                         }
                         else
                         {
