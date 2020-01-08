@@ -277,6 +277,9 @@ namespace Ferienspass
             {
                 EmailMaker.Send((string)dr["email"], txtSubject.Text, MailText);
             }
+
+            panSendMail.Visible = false;
+            panBlockBackground.Visible = false;
         }
 
         protected void btnCancelSendMail_Click(object sender, EventArgs e)
