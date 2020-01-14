@@ -1,6 +1,8 @@
 ﻿using Ferienspass.Classes;
 using System;
 using System.Data;
+using System.Globalization;
+using System.Text.RegularExpressions;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -89,6 +91,7 @@ namespace Ferienspass
             ddlOrganisation.SelectedIndex = 0;
             litPanHeadline.Text = "Neuer Kurs";
             calendar.SelectedDate = DateTime.Now;
+            txtPrice.Text = "0.00€";
 
             btnAdd.Visible = true;
             btnSave.Visible = false;
@@ -120,6 +123,7 @@ namespace Ferienspass
             calendar.SelectedDate = date;
             txtManagerName.Text = (string)dr["managername"];
             txtContactMail.Text = (string)dr["contactemail"];
+            txtPrice.Text = "€ " + Convert.ToString((decimal)dr["price"]);
 
             Fill_ddlOrganisation();
             ddlOrganisation.SelectedIndex = (int)dr["organisationId"];
@@ -216,11 +220,12 @@ namespace Ferienspass
                     if (calendar.SelectedDate > DateTime.Now)
                     {
                         DB db = new DB();
+                        double price = 
                         db.ExecuteNonQuery("UPDATE courses SET coursename=?, description=?, zipcode=?, city=?, streetname=?, housenumber=?, date=?, timefrom=?, " +
-                            "timeto=?, managername=?, organisationId=?, contactemail=?, minparticipants=?, maxparticipants=? WHERE courseId=?", 
+                            "timeto=?, managername=?, organisationId=?, contactemail=?, minparticipants=?, maxparticipants=?, price=? WHERE courseId=?", 
                             txtCourseName.Text, txtDesciption.InnerText, txtZIP.Text, txtCity.Text, txtStreet.Text,
                             txtNr.Text, calendar.SelectedDate, txtFrom.Text, txtTo.Text, txtManagerName.Text, ddlOrganisation.SelectedIndex, txtContactMail.Text,
-                            Convert.ToInt32(txtMinParticipants.Text), Convert.ToInt32(txtMaxParticipants.Text), CustomerID);
+                            Convert.ToInt32(txtMinParticipants.Text), Convert.ToInt32(txtMaxParticipants.Text), Convert.ToDecimal(txtPrice.Text.Replace("€", "").Trim(' ')), CustomerID);
 
                         ClosePanel();
                     }
@@ -243,10 +248,7 @@ namespace Ferienspass
             db.Query("DELETE FROM courses WHERE courseId=?", e.Keys[0]);
             gvCourses.EditIndex = -1;
 
-            Fill_gvcourses();     
-
-            //Panel für die Bestätigung bzw. Abbruch erstellen
-            
+            Fill_gvcourses();             
 
 
             //Falls bestätigt, dann E-Mail versenden
@@ -301,6 +303,35 @@ namespace Ferienspass
                     CustomerID = Convert.ToInt32(e.CommandArgument.ToString());
                     break;
             }
+        }
+
+        protected void txtPrice_TextChanged(object sender, EventArgs e)
+        {
+            //Remove previous formatting, or the decimal check will fail including leading zeros
+            string value = txtPrice.Text.Replace(",", "")
+                .Replace("€", "").Replace(".", "").TrimStart('0');
+            decimal ul;
+            //Check we are indeed handling a number
+            if (decimal.TryParse(value, out ul))
+            {
+                ul /= 100;
+                //Unsub the event so we don't enter a loop
+                txtPrice.TextChanged -= txtPrice_TextChanged;
+                //Format the text as currency
+                txtPrice.Text = string.Format(CultureInfo.CreateSpecificCulture("de-AT"), "{0:C2}", ul);
+                txtPrice.TextChanged += txtPrice_TextChanged;
+            }
+            bool goodToGo = TextisValid(txtPrice.Text);
+            if (!goodToGo)
+            {
+                txtPrice.Text = "0.00€";
+            }
+        }
+
+        private bool TextisValid(string text)
+        {
+            Regex money = new Regex(@"\€\ ([0-9]+[\,]*[0-9]*)");
+            return money.IsMatch(text);
         }
     }
 }
