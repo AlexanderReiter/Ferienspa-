@@ -16,9 +16,12 @@
         <br />
         <div class="row">
             <h1>Kurse</h1>
-            <p>
-                 
-            </p>
+            <br />
+            <div class="search-container">
+                <asp:Literal ID="litSearchAlert" runat="server"></asp:Literal>
+                <asp:TextBox ID="txtSearchbar" runat="server" placeholder="Suchen nach Kursname, Organisation, ..."></asp:TextBox>
+                <asp:Button ID="btnSearchCourse" runat="server" Text="Suche" OnClick="btnSearchCourse_Click" />
+            </div>          
         </div>
         <div class="gvcourses">
             <asp:GridView ID="gvCourses" runat="server" CssClass="table" AutoGenerateColumns="False" AllowPaging="True" PageSize="20" DataKeyNames="courseID"
