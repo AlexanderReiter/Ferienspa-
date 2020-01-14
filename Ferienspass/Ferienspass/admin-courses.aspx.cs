@@ -243,10 +243,7 @@ namespace Ferienspass
             db.Query("DELETE FROM courses WHERE courseId=?", e.Keys[0]);
             gvCourses.EditIndex = -1;
 
-            Fill_gvcourses();     
-
-            //Panel für die Bestätigung bzw. Abbruch erstellen
-            
+            Fill_gvcourses();             
 
 
             //Falls bestätigt, dann E-Mail versenden
