@@ -32,7 +32,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Preis">
                         <ItemTemplate>
-                            <asp:Label ID="lblPrice" runat="server" Text='<%# Eval("price") + "€" %>'></asp:Label>
+                            <asp:Label ID="lblPrice" runat="server" Text='<%# "€ " + Eval("price") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField>
@@ -73,13 +73,13 @@
                             <div class="col-3">
                                 <div class="form-group">
                                     <label for="txtFrom">Von:</label>
-                                    <asp:TextBox ID="txtFrom" runat="server" CssClass="form-control" Enabled="false" ></asp:TextBox>
+                                    <asp:TextBox ID="txtFrom" runat="server" CssClass="form-control" Enabled="false" TextMode="Time" format="HH:mm" ></asp:TextBox>
                                 </div>
                             </div>
                             <div class="col-3">
                                 <div class="form-group">
                                     <label for="txtTo">Bis:</label>
-                                    <asp:TextBox ID="txtTo" runat="server" CssClass="form-control" Enabled="false" ></asp:TextBox>
+                                    <asp:TextBox ID="txtTo" runat="server" CssClass="form-control" Enabled="false" TextMode="Time" format="HH:mm" ></asp:TextBox>
                                 </div>
                             </div>
                             <div class="col-3">

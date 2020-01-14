@@ -96,7 +96,8 @@ namespace Ferienspass
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-
+            panCourse.Visible = false;
+            panBlockBackground.Visible = false;
         }
     }
 }
