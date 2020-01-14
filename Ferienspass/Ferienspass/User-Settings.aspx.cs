@@ -11,7 +11,7 @@ using Ferienspass;
 /// <summary>
 /// Programmer: Kollross Marcel
 /// Date: 23.11.2019
-/// Verified by: N/A
+/// Verified by: Reiter Alexander
 /// </summary>
 namespace Ferienspass
 {

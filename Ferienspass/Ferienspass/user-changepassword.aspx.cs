@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 /// <summary>
 /// Programmer: Kollross Marcel
 /// Date: 03.12.2019
-/// Verififed by: N/A
+/// Verififed by: Reiter Alexander
 /// </summary>
 namespace Ferienspass
 {

@@ -2,7 +2,7 @@
 
 <%-- Programmer: Kollross Marcel
     Date: 26.11.2019
-    Verified by: N/A--%>
+    Verified by: Reiter Alexander--%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>

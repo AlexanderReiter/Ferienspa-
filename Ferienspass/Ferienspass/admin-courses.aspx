@@ -52,7 +52,8 @@
                         <ItemTemplate>
                             <asp:LinkButton ID="btnUpdate" runat="server" CommandName="Edit" ForeColor="Black"><i class='fas fa-pen' style='font-size:24px;'></i></asp:LinkButton>
                             <asp:LinkButton ID="btnMail" runat="server" CommandName="Mail" CommandArgument='<%# Eval("courseID") %>' ForeColor="Black"><i class="fas fa-envelope" style='font-size:24px;'></i></asp:LinkButton>
-                            <asp:LinkButton ID="btnDelete" runat="server" CommandName="Delete" OnClientClick="return Delete()" ForeColor="Black"><i class='fa fa-pen' style='font-size:24px'></i></asp:LinkButton>
+                            <asp:LinkButton ID="btnDelete" runat="server" CommandName="Delete" OnClientClick="return Delete()" ForeColor="Black"><i class='fas fa-trash' style='font-size:24px'></i></asp:LinkButton>
+                            <asp:LinkButton ID="btnShowParticipants" runat="server" ForeColor="Black"><i class="fas fa-"</asp:LinkButton>
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
