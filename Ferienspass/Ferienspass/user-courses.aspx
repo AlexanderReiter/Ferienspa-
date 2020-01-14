@@ -7,7 +7,7 @@
         <h1>Kurse</h1>
         <br />
         <div class="gvCourses">
-            <asp:GridView ID="gvUserCourses" runat="server"  CssClass="table" AutoGenerateColumns="False" AllowPaging="True" PageSize="20" DataKeyNames="courseID"
+            <asp:GridView ID="gvUserCourses" runat="server" CssClass="table" AutoGenerateColumns="False" AllowPaging="True" PageSize="20" DataKeyNames="courseID"
                 ShowHeaderWhenEmpty="true" OnRowCommand="gvUserCourses_RowCommand">
                 <Columns>
                     <asp:TemplateField HeaderText="Kursname">
@@ -167,6 +167,22 @@
                         <asp:Button ID="btnRegister" runat="server" Text="Anmelden" CssClass="btn btn-secondary btn-lg float-right" Visible="true" OnClick="btnRegister_Click" />
                     </div>
                 </div>
+            </div>
+        </div>
+    </asp:Panel>
+
+    <asp:Panel ID="panSelectKids" runat="server" Visible="false">
+        <div class="container">
+            <div class="addCourseForm shadow p-4 mb-4 bg-white">
+                <asp:GridView ID="gvKids" runat="server" CssClass="table" AutoGenerateColumns="False" DataKeyNames="kidId">
+                    <Columns>
+                        <asp:TemplateField>
+                            <ItemTemplate>
+                                <asp:Label ID="lblKid" runat="server" Text='<%# Eval("givenname") + " " + Eval("surname") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
             </div>
         </div>
     </asp:Panel>

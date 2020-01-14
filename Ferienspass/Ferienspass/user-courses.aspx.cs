@@ -91,7 +91,8 @@ namespace Ferienspass
 
         protected void btnRegister_Click(object sender, EventArgs e)
         {
-
+            panCourse.Visible = false;
+            panSelectKids.Visible = true;
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
