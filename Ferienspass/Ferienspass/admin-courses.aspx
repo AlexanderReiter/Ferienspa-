@@ -45,6 +45,11 @@
                             <asp:Label ID="lblTeilnehmer" runat="server" Text='<%# Eval("cntparticipants") + "/" + Eval("maxparticipants") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Preis">
+                        <ItemTemplate>
+                            <asp:Label ID="lblPrice" runat="server" Text='<%# Eval("price") + "€" %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
                     <asp:TemplateField>
                         <HeaderTemplate>
                             <asp:LinkButton ID="btnNewCourse" runat="server" OnClick="btnNewCourse_Click" ForeColor="Black"><i class='fas fa-plus-square' style='font-size:24px;'></i></asp:LinkButton>
@@ -146,16 +151,22 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-4">
                         <div class="form-group">
                             <label for="txtManagerName">Ansprechperson:</label>
                             <asp:TextBox ID="txtManagerName" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-4">
                         <div class="form-group">
                             <label for="txtContactMail">E-Mail:</label>
                             <asp:TextBox ID="txtContactMail" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="txtPrice">Ansprechperson:</label>
+                            <asp:TextBox ID="txtPrice" runat="server" CssClass="form-control" OnTextChanged="txtPrice_TextChanged" AutoPostBack="true"></asp:TextBox>
                         </div>
                     </div>
                 </div>

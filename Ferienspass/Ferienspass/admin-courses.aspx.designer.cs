@@ -177,6 +177,15 @@ namespace Ferienspass
         protected global::System.Web.UI.WebControls.TextBox txtContactMail;
 
         /// <summary>
+        /// txtPrice-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPrice;
+
+        /// <summary>
         /// ddlOrganisation-Steuerelement
         /// </summary>
         /// <remarks>
