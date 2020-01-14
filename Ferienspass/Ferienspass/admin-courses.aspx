@@ -16,9 +16,12 @@
         <br />
         <div class="row">
             <h1>Kurse</h1>
-            <p>
-                 
-            </p>
+            <br />
+            <div class="search-container">
+                <asp:Literal ID="litSearchAlert" runat="server"></asp:Literal>
+                <asp:TextBox ID="txtSearchbar" runat="server" placeholder="Suchen nach Kursname, Organisation, ..."></asp:TextBox>
+                <asp:Button ID="btnSearchCourse" runat="server" Text="Suche" OnClick="btnSearchCourse_Click" />
+            </div>          
         </div>
         <div class="gvcourses">
             <asp:GridView ID="gvCourses" runat="server" CssClass="table" AutoGenerateColumns="False" AllowPaging="True" PageSize="20" DataKeyNames="courseID"
@@ -47,7 +50,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Preis">
                         <ItemTemplate>
-                            <asp:Label ID="lblPrice" runat="server" Text='<%# Eval("price") + "€" %>'></asp:Label>
+                            <asp:Label ID="lblPrice" runat="server" Text='<%# "€ " + Eval("price") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField>
@@ -118,7 +121,7 @@
                         <div class="row">
                             <div class="col-4">
                                 <div class="form-group">
-                                    <label for="txtZIP">Zip:</label>
+                                    <label for="txtZIP">PLZ:</label>
                                     <asp:TextBox ID="txtZIP" runat="server" CssClass="form-control"  ></asp:TextBox>
                                 </div>
                             </div>
@@ -166,7 +169,7 @@
                     </div>
                     <div class="col-4">
                         <div class="form-group">
-                            <label for="txtPrice">Ansprechperson:</label>
+                            <label for="txtPrice">Preis:</label>
                             <asp:TextBox ID="txtPrice" runat="server" CssClass="form-control" OnTextChanged="txtPrice_TextChanged" AutoPostBack="true"></asp:TextBox>
                         </div>
                     </div>

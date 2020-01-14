@@ -13,6 +13,33 @@ namespace Ferienspass {
     public partial class admin_courses {
         
         /// <summary>
+        /// litSearchAlert control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litSearchAlert;
+        
+        /// <summary>
+        /// txtSearchbar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSearchbar;
+        
+        /// <summary>
+        /// btnSearchCourse control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSearchCourse;
+        
+        /// <summary>
         /// gvCourses control.
         /// </summary>
         /// <remarks>

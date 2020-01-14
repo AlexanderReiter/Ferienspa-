@@ -16,9 +16,9 @@ namespace Ferienspass
             {
                 ViewState["editingcustomerid"] = value;
             }
-            get 
-            { 
-                return Convert.ToInt32(ViewState["editingcustomerid"]); 
+            get
+            {
+                return Convert.ToInt32(ViewState["editingcustomerid"]);
             }
         }
 
@@ -137,7 +137,7 @@ namespace Ferienspass
             panCourse.Visible = true;
         }
 
-       
+
 
         private void Fill_ddlOrganisation()
         {
@@ -176,8 +176,8 @@ namespace Ferienspass
                         DB db = new DB();
                         db.ExecuteNonQuery("INSERT INTO courses (coursename, description, zipcode, city, streetname, housenumber, date, timefrom, timeto, " +
                             "managername, organisationId, contactemail, minparticipants, maxparticipants) " +
-                            "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)", txtCourseName.Text, txtDesciption.InnerText, txtZIP.Text, txtCity.Text, txtStreet.Text, 
-                            txtNr.Text, calendar.SelectedDate, txtFrom.Text, txtTo.Text, txtManagerName.Text, ddlOrganisation.SelectedIndex, txtContactMail.Text, 
+                            "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)", txtCourseName.Text, txtDesciption.InnerText, txtZIP.Text, txtCity.Text, txtStreet.Text,
+                            txtNr.Text, calendar.SelectedDate, txtFrom.Text, txtTo.Text, txtManagerName.Text, ddlOrganisation.SelectedIndex, txtContactMail.Text,
                             Convert.ToInt32(txtMinParticipants.Text), Convert.ToInt32(txtMaxParticipants.Text));
 
                         ClosePanel();
@@ -220,9 +220,9 @@ namespace Ferienspass
                     if (calendar.SelectedDate > DateTime.Now)
                     {
                         DB db = new DB();
-                        double price = 
+                        double price =
                         db.ExecuteNonQuery("UPDATE courses SET coursename=?, description=?, zipcode=?, city=?, streetname=?, housenumber=?, date=?, timefrom=?, " +
-                            "timeto=?, managername=?, organisationId=?, contactemail=?, minparticipants=?, maxparticipants=?, price=? WHERE courseId=?", 
+                            "timeto=?, managername=?, organisationId=?, contactemail=?, minparticipants=?, maxparticipants=?, price=? WHERE courseId=?",
                             txtCourseName.Text, txtDesciption.InnerText, txtZIP.Text, txtCity.Text, txtStreet.Text,
                             txtNr.Text, calendar.SelectedDate, txtFrom.Text, txtTo.Text, txtManagerName.Text, ddlOrganisation.SelectedIndex, txtContactMail.Text,
                             Convert.ToInt32(txtMinParticipants.Text), Convert.ToInt32(txtMaxParticipants.Text), Convert.ToDecimal(txtPrice.Text.Replace("€", "").Trim(' ')), CustomerID);
@@ -243,17 +243,17 @@ namespace Ferienspass
         {
             //Kurs löschen
 
-            DB db = new DB();          
+            DB db = new DB();
 
             db.Query("DELETE FROM courses WHERE courseId=?", e.Keys[0]);
             gvCourses.EditIndex = -1;
 
-            Fill_gvcourses();             
+            Fill_gvcourses();
 
 
             //Falls bestätigt, dann E-Mail versenden
 
-            
+
             string MailText =
               $"Sehr geehrte Damen und Herren, <br><br>der Kurs wurde leider abgesagt. Um den Grund der Absage zu erfahren, " +
               $"melden Sie sich bitte bei dem Kursmanager. Die Nummer bzw. Email-Adresse können Sie auf unserer Webseite finden." +
@@ -296,7 +296,8 @@ namespace Ferienspass
         {
             string command = e.CommandName;
 
-            switch (command) {
+            switch (command)
+            {
                 case "Mail":
                     panBlockBackground.Visible = true;
                     panSendMail.Visible = true;
@@ -347,6 +348,7 @@ namespace Ferienspass
             return money.IsMatch(text);
         }
 
+
         private void Fill_gvParticipants()
         {
             DB db = new DB();
@@ -357,7 +359,7 @@ namespace Ferienspass
         private void Fill_gvUsers()
         {
             DB db = new DB();
-            gvUsers.DataSource = db.Query("SELECT * FROM user WHERE email=?",);
+            gvUsers.DataSource = db.Query("SELECT * FROM user WHERE email=?");
             gvUsers.DataBind();
         }
 
@@ -378,6 +380,20 @@ namespace Ferienspass
             DB db = new DB();
             int cntParticipants = Convert.ToInt32(db.ExecuteScalar("SELECT COUNT(*) FROM kids LEFT JOIN kidparticipates ON kids.kidId = kidparticipates.kidId WHERE courseId=?", CustomerID));
             return cntParticipants;
+        }
+
+        protected void btnSearchCourse_Click(object sender, EventArgs e)
+        {
+            if (txtSearchbar.Text != "")
+            {
+                litSearchAlert.Text = "";
+
+
+            }
+            else
+            {
+                litSearchAlert.Text = "<div class='alert alert-danger'><strong>Fehler!</strong> Geben Sie zuerst einen Text ein, bevor Sie suchen!</div>";
+            }
         }
     }
 }

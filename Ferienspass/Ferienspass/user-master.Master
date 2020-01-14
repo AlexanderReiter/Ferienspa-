@@ -25,10 +25,13 @@
                             <a class="nav-link" href="user-home.aspx">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
+                            <a class="nav-link" href="user-courses.aspx">Kurse</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="user-basket.aspx"><i style="font-size: 24px" class="fas fa-shopping-basket"></i></a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="user-settings.aspx"><i style="font-size: 24px" class="fas fa-user"></i></a>
                         </li>
