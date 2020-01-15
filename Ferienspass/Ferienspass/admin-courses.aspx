@@ -14,15 +14,13 @@
 
     <div class="container">
         <br />
-        <div class="row">
-            <h1>Kurse</h1>
-            <br />
-            <div class="search-container">
-                <asp:Literal ID="litSearchAlert" runat="server"></asp:Literal>
-                <asp:TextBox ID="txtSearchbar" runat="server" placeholder="Suchen nach Kursname, Organisation, ..."></asp:TextBox>
-                <asp:Button ID="btnSearchCourse" runat="server" Text="Suche" OnClick="btnSearchCourse_Click" />
-            </div>          
-        </div>
+        <h1>Kurse</h1>
+        <div class="input-group mb-3">
+            <asp:TextBox ID="txtSearchbar" runat="server" placeholder="Suchen nach Kursname, Organisation, ..." class="form-control"></asp:TextBox>
+            <div class="input-group-append">
+                <asp:Button ID="btnSearchCourse" runat="server" Text="Suche" OnClick="btnSearchCourse_Click" class="btn btn-secondary"/>
+            </div>
+        </div>          
         <div class="gvcourses">
             <asp:GridView ID="gvCourses" runat="server" CssClass="table" AutoGenerateColumns="False" AllowPaging="True" PageSize="20" DataKeyNames="courseID"
                 ShowHeaderWhenEmpty="true" OnRowEditing="gvCourses_RowEditing" OnPageIndexChanging="gvCourses_PageIndexChanging" OnSorting="gvCourses_Sorting" 
