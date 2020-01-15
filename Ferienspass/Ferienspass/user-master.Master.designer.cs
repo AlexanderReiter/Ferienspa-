@@ -11,7 +11,7 @@ namespace Ferienspass
 {
 
 
-    public partial class Site1
+    public partial class user_master
     {
 
         /// <summary>
@@ -31,6 +31,15 @@ namespace Ferienspass
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+
+        /// <summary>
+        /// litBasketNumber-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litBasketNumber;
 
         /// <summary>
         /// ContentPlaceHolder1-Steuerelement
