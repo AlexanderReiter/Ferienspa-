@@ -30,9 +30,15 @@
                         <li class="nav-item">
                             <a class="nav-link" href="admin-napeople.aspx">Not Allowed People</a>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="admin-settings.aspx">Settings</a>
                         </li>
+
+                         <li class="nav-item">
+                            <a class="nav-link" href="edit-users.aspx">Edit-Users</a>
+                        </li>
+                        
                     </ul>
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">

@@ -6,6 +6,7 @@
         <br />
         <h1>Kurse</h1>
         <br />
+        <asp:Literal ID="litAlert" runat="server"></asp:Literal>
         <div class="gvCourses">
             <asp:GridView ID="gvUserCourses" runat="server" CssClass="table" AutoGenerateColumns="False" AllowPaging="True" PageSize="20" DataKeyNames="courseID"
                 ShowHeaderWhenEmpty="true" OnRowCommand="gvUserCourses_RowCommand">
@@ -174,15 +175,29 @@
     <asp:Panel ID="panSelectKids" runat="server" Visible="false">
         <div class="container">
             <div class="addCourseForm shadow p-4 mb-4 bg-white">
-                <asp:GridView ID="gvKids" runat="server" CssClass="table" AutoGenerateColumns="False" DataKeyNames="kidId">
+                <asp:GridView ID="gvKids" runat="server" CssClass="table" AutoGenerateColumns="False" DataKeyNames="kidId" ShowHeader="false">
                     <Columns>
+                        <asp:TemplateField ItemStyle-Width="20px">
+                            <ItemTemplate>
+                                <asp:CheckBox ID="cbxKid" runat="server" Text="" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
                         <asp:TemplateField>
                             <ItemTemplate>
-                                <asp:Label ID="lblKid" runat="server" Text='<%# Eval("givenname") + " " + Eval("surname") %>'></asp:Label>
+                                <asp:Label ID="lblKid" runat="server" Text='<%# " " + Eval("givenname") + " " + Eval("surname") %>' />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
+
+                <div class="row">
+                    <div class="col-6">
+                        <asp:Button ID="btnKidsCancel" runat="server" Text="Abbrechen" CssClass="btn btn-outline-secondary btn-lg" OnClick="btnKidsCancel_Click" />
+                    </div>
+                    <div class="col-6">
+                        <asp:Button ID="btnKidsAddToBasket" runat="server" Text="Anmelden" CssClass="btn btn-secondary btn-lg float-right" Visible="true" OnClick="btnKidsAddToBasket_Click" />
+                    </div>
+                </div>
             </div>
         </div>
     </asp:Panel>

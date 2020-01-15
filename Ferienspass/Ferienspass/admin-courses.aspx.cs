@@ -303,6 +303,19 @@ namespace Ferienspass
                     panSendMail.Visible = true;
                     CustomerID = Convert.ToInt32(e.CommandArgument.ToString());
                     break;
+                case "Participants":
+                    CustomerID = Convert.ToInt32(e.CommandArgument.ToString());
+                    panBlockBackground.Visible = true;
+                    if(GetParticipantsNumber() == 0)
+                    {
+                        panNoParticipants.Visible = true;
+                    }
+                    else
+                    {
+                        panParticipants.Visible = true;
+                    }
+                    Fill_gvParticipants();
+                    break;
             }
         }
 
@@ -333,6 +346,40 @@ namespace Ferienspass
         {
             Regex money = new Regex(@"\€\ ([0-9]+[\,]*[0-9]*)");
             return money.IsMatch(text);
+        }
+
+
+        private void Fill_gvParticipants()
+        {
+            DB db = new DB();
+            gvParticipants.DataSource = db.Query("SELECT *, gender.name AS gendername FROM kids LEFT JOIN kidparticipates ON kids.kidId = kidparticipates.kidId LEFT JOIN gender ON gender.id = kids.gender WHERE courseId=?", CustomerID);
+            gvParticipants.DataBind();
+        }
+
+        private void Fill_gvUsers()
+        {
+            DB db = new DB();
+            gvUsers.DataSource = db.Query("SELECT * FROM user WHERE email=?");
+            gvUsers.DataBind();
+        }
+
+        protected void btnClose_Click(object sender, EventArgs e)
+        {
+            panParticipants.Visible = false;
+            panBlockBackground.Visible = false;
+        }
+
+        protected void btnNoParticipantsClose_Click(object sender, EventArgs e)
+        {
+            panNoParticipants.Visible = false;
+            panBlockBackground.Visible = false;
+        }
+
+        private int GetParticipantsNumber()
+        {
+            DB db = new DB();
+            int cntParticipants = Convert.ToInt32(db.ExecuteScalar("SELECT COUNT(*) FROM kids LEFT JOIN kidparticipates ON kids.kidId = kidparticipates.kidId WHERE courseId=?", CustomerID));
+            return cntParticipants;
         }
 
         protected void btnSearchCourse_Click(object sender, EventArgs e)

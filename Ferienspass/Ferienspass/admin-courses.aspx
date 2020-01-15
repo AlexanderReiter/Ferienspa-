@@ -45,7 +45,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Teilnehmer">
                         <ItemTemplate>
-                            <asp:Label ID="lblTeilnehmer" runat="server" Text='<%# Eval("cntparticipants") + "/" + Eval("maxparticipants") %>'></asp:Label>
+                            <asp:Label ID="lblParticipants" runat="server" Text='<%# Eval("cntparticipants") + "/" + Eval("maxparticipants") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Preis">
@@ -61,7 +61,7 @@
                             <asp:LinkButton ID="btnUpdate" runat="server" CommandName="Edit" ForeColor="Black"><i class='fas fa-pen' style='font-size:24px;'></i></asp:LinkButton>
                             <asp:LinkButton ID="btnMail" runat="server" CommandName="Mail" CommandArgument='<%# Eval("courseID") %>' ForeColor="Black"><i class="fas fa-envelope" style='font-size:24px;'></i></asp:LinkButton>
                             <asp:LinkButton ID="btnDelete" runat="server" CommandName="Delete" OnClientClick="return Delete()" ForeColor="Black"><i class='fas fa-trash' style='font-size:24px'></i></asp:LinkButton>
-                            <asp:LinkButton ID="btnShowParticipants" runat="server" ForeColor="Black"><i class="fas fa-"></i></asp:LinkButton>
+                            <asp:LinkButton ID="btnShowParticipants" runat="server" ForeColor="Black" CommandName="Participants" CommandArgument='<%# Eval("courseID") %>'><i class="fas fa-search" style='font-size:24px;'></i></asp:LinkButton>
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
@@ -226,6 +226,96 @@
                         <asp:Button ID="btnSend" runat="server" Text="Senden" CssClass="btn btn-secondary btn-lg float-right" OnClick="btnSend_Click" />
                     </div>
                 </div>
+            </div>
+        </div>
+    </asp:Panel>
+    <asp:Panel ID="panParticipants" runat="server" Visible="false">
+        <div class="container">
+            <div class="addCourseForm shadow p-4 mb-4 bg-white">
+                <asp:GridView ID="gvParticipants" runat="server" AutoGenerateColumns="false" ShowHeaderWhenEmpty="true" CssClass="table table-striped">
+                    <Columns>
+                        <asp:TemplateField HeaderText="Vorname">
+                            <ItemTemplate>
+                                <asp:Label ID="lblGivenname" runat="server" Text='<%# Eval("givenname") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Nachname">
+                            <ItemTemplate>
+                                <asp:Label ID="lblSurname" runat="server" Text='<%# Eval("surname") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Geschlecht">
+                            <ItemTemplate>
+                                <asp:Label ID="lblGender" runat="server" Text='<%# Eval("gendername") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Geburtstag">
+                            <ItemTemplate>
+                                <asp:Label ID="lblBirthday" runat="server" Text='<%# Eval("birthday", "{0:dd/MM/yyyy}") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField>
+                            <ItemTemplate>
+                                <asp:LinkButton ID="btnShowUser" runat="server" ForeColor="Black"><i class="fas fa-user" style="font-size: 24px"></i></asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
+                <asp:Button ID="btnClose" runat="server" Text="Schließen" CssClass="btn btn-secondary btn-lg" OnClick="btnClose_Click" />
+            </div>
+        </div>
+    </asp:Panel>
+    <asp:Panel ID="panNoParticipants" runat="server" Visible="false">
+        <div class="container">
+            <div class="addCourseForm shadow p-4 mb-4 bg-white">
+                <asp:Label ID="lblNoParticipants" runat="server" Text="Keine Teilnehmer in diesem Kurs."></asp:Label>
+                <br />
+                <asp:Button ID="btnNoParticipantsClose" runat="server" Text="Schließen" CssClass="btn btn-secondary btn-lg" OnClick="btnNoParticipantsClose_Click" />
+            </div>
+        </div>
+    </asp:Panel>
+    <asp:Panel ID="panUser" runat="server" Visible="false">
+        <div class="container">
+            <div class="addCourseForm shadow p-4 mb-4 bg-white">
+                <asp:GridView ID="gvUsers" runat="server" AutoGenerateColumns="false" CssClass="table table-striped">
+                    <Columns>
+                        <asp:TemplateField HeaderText="Vorname">
+                            <ItemTemplate>
+                                <asp:Label ID="lblGivennameUser" runat="server" Text='<%# Eval("givenname") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Nachname">
+                            <ItemTemplate>
+                                <asp:Label ID="lblSurnameUser" runat="server" Text='<%# Eval("surname") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="PLZ">
+                            <ItemTemplate>
+                                <asp:Label ID="lblZipcode" runat="server" Text='<%# Eval("zipcode") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Stadt">
+                            <ItemTemplate>
+                                <asp:Label ID="lblCity" runat="server" Text='<%# Eval("city") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Straße">
+                            <ItemTemplate>
+                                <asp:Label ID="lblStreetname" runat="server" Text='<%# Eval("streetname") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Hausnr.">
+                            <ItemTemplate>
+                                <asp:Label ID="lblHouseNr" runat="server" Text='<%# Eval("housenumber") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Email">
+                            <ItemTemplate>
+                                <asp:Label ID="lblEmail" runat="server" Text='<%# Eval("email") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
             </div>
         </div>
     </asp:Panel>
