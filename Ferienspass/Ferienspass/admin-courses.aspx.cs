@@ -63,11 +63,6 @@ namespace Ferienspass
             gvCourses.DataBind();
         }
 
-        protected void gvCourses_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-
-        }
-
         protected void gvCourses_Sorting(object sender, GridViewSortEventArgs e)
         {
 
@@ -394,6 +389,11 @@ namespace Ferienspass
             {
                 litSearchAlert.Text = "<div class='alert alert-danger'><strong>Fehler!</strong> Geben Sie zuerst einen Text ein, bevor Sie suchen!</div>";
             }
+        }
+
+        protected void gvCourses_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+
         }
     }
 }
