@@ -68,11 +68,6 @@ namespace Ferienspass
             gvCourses.DataBind();
         }
 
-        protected void gvCourses_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-
-        }
-
         protected void gvCourses_Sorting(object sender, GridViewSortEventArgs e)
         {
 
@@ -390,6 +385,11 @@ namespace Ferienspass
         protected void btnSearchCourse_Click(object sender, EventArgs e)
         {
             Fill_gvcourses();
+        }
+
+        protected void gvCourses_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+
         }
     }
 }

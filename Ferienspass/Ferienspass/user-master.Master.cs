@@ -7,16 +7,20 @@ using System.Web.UI.WebControls;
 
 namespace Ferienspass
 {
-    public partial class Site1 : System.Web.UI.MasterPage
+    public partial class user_master : System.Web.UI.MasterPage
     {
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
 
-        protected void btnLogout_Click(object sender, EventArgs e)
+        public void SetBasketNumber(int number)
         {
-            Response.Redirect("~/logout.aspx");
+            if (number != 0)
+            {
+                litBasketNumber.Text = number.ToString();
+            }
         }
     }
 }

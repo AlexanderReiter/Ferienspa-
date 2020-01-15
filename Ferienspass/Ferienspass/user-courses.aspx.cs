@@ -44,6 +44,7 @@ namespace Ferienspass
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            ((user_master)this.Master).SetBasketNumber(GlobalMethods.BasketCount(User.Identity.Name));
             if (!Page.IsPostBack)
             {
                 Fill_gvUserCourses();
@@ -143,6 +144,7 @@ namespace Ferienspass
                     if (cnt == 0)
                     {
                         db.ExecuteNonQuery("INSERT INTO basket (userId, kidId, courseId, date) VALUES (?, ?, ?, ?)", User.Identity.Name, gvKids.DataKeys[row.RowIndex].Value, CourseId, DateTime.Now);
+                        ((user_master)this.Master).SetBasketNumber(GlobalMethods.BasketCount(User.Identity.Name));
                     }
                     else kidsAllreadyRegistered.Add(Convert.ToInt32(gvKids.DataKeys[row.RowIndex].Value));
                 }
