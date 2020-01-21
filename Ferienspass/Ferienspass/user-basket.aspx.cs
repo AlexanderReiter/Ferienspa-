@@ -44,6 +44,35 @@ namespace Ferienspass
             gvBasket.DataSource = dt;
             gvBasket.DataBind();
             gvBasket.HeaderRow.TableSection = TableRowSection.TableHeader;
+
+            CalculatePrice(dt);
+        }
+
+        private void CalculatePrice(DataTable dt)
+        {
+            DB db = new DB();
+
+            float subtotal = 0;
+            foreach(DataRow r in dt.Rows)
+            {
+                subtotal += Convert.ToSingle((decimal)r["price"]);
+            }
+            lblSubtotal.Text = subtotal.ToString("F2");
+
+            float discount = 0;
+            DataTable distinctCourses = db.Query("SELECT DISTINCT basket.courseId, price FROM basket LEFT JOIN courses ON basket.courseId=courses.courseId WHERE userId=?", User.Identity.Name);
+
+            foreach(DataRow r in distinctCourses.Rows)
+            {
+                int cntCouses = db.ExecuteNonQuery("SELECT COUNT(*) FROM basket WHERE userId=? AND courseId=?", User.Identity.Name, r["CourseId"]);
+
+                float percentage;
+                if (cntCouses >= 2)
+                {
+                    discount += Convert.ToSingle((decimal)r["price"]) * (cntCouses - 1) * percentage;
+                }
+            }
+            lblDiscount.Text = discount.ToString("F2");
         }
 
         protected void gvBasket_RowCommand(object sender, GridViewCommandEventArgs e)

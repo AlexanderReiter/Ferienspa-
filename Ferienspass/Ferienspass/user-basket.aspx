@@ -7,7 +7,7 @@
         <br />
         <h1>Warenkorb</h1>
         <br />
-        <asp:GridView ID="gvBasket" runat="server" AutoGenerateColumns="false" CssClass="table table-hover" GridLines="None" ShowHeaderWhenEmpty="true" OnRowCommand="gvBasket_RowCommand">
+        <asp:GridView ID="gvBasket" runat="server" DataKeyNames="id" AutoGenerateColumns="false" CssClass="table table-hover" GridLines="None" ShowHeaderWhenEmpty="true" OnRowCommand="gvBasket_RowCommand">
             <Columns>
                 <asp:TemplateField HeaderText="Teilnehmer">
                     <ItemTemplate>
