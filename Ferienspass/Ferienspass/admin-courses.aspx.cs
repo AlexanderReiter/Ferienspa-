@@ -401,6 +401,7 @@ namespace Ferienspass
             DB db = new DB();
             gvParticipants.DataSource = db.Query("SELECT *, gender.name AS gendername FROM kids LEFT JOIN kidparticipates ON kids.kidId = kidparticipates.kidId LEFT JOIN gender ON gender.id = kids.gender WHERE courseId=?", CourseID);
             gvParticipants.DataBind();
+            gvParticipants.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
         private void GetUserOfParticipant()
@@ -493,6 +494,7 @@ namespace Ferienspass
             DB db = new DB();
             gvUserWhoGotMail.DataSource = db.Query("SELECT * FROM user LEFT JOIN kids ON kids.email = user.email LEFT JOIN kidparticipates ON kidparticipates.kidId = kids.kidId WHERE courseId=?", CourseID);
             gvUserWhoGotMail.DataBind();
+            gvUserWhoGotMail.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
     }
 }

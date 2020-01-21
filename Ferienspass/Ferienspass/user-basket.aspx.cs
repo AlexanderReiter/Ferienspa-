@@ -47,6 +47,7 @@ namespace Ferienspass
 
             CalculatePrice(dt);
             CheckSomethingInBasket();
+            ((user_master)this.Master).SetBasketNumber(GlobalMethods.BasketCount(User.Identity.Name));
         }
 
         private void CheckSomethingInBasket()

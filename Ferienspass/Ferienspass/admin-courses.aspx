@@ -240,7 +240,7 @@
     <asp:Panel ID="panParticipants" runat="server" Visible="false">
         <div class="container">
             <div class="addCourseForm shadow p-4 mb-4 bg-white">
-                <asp:GridView ID="gvParticipants" runat="server" AutoGenerateColumns="false" ShowHeaderWhenEmpty="true" DataKeyNames="kidID" CssClass="table table-striped" OnRowCommand="gvParticipants_RowCommand" OnRowDeleting="gvParticipants_RowDeleting">
+                <asp:GridView ID="gvParticipants" runat="server" AutoGenerateColumns="false" ShowHeaderWhenEmpty="true" DataKeyNames="kidID" CssClass="table table-hover" GridLines="None" OnRowCommand="gvParticipants_RowCommand" OnRowDeleting="gvParticipants_RowDeleting">
                     <Columns>
                         <asp:TemplateField HeaderText="Vorname">
                             <ItemTemplate>
@@ -339,7 +339,7 @@
     <asp:Panel ID="panUserWhoGotMail" runat="server" style="visibility:hidden">
         <div class="container">
             <div class="addCourseForm shadow p-4 mb-4 bg-white">
-                <asp:GridView ID="gvUserWhoGotMail" runat="server" AutoGenerateColumns="false" ShowHeaderWhenEmpty="true" CssClass="table table-striped">
+                <asp:GridView ID="gvUserWhoGotMail" runat="server" AutoGenerateColumns="false" ShowHeaderWhenEmpty="true" CssClass="table table-hover" GridLines="None">
                     <Columns>
                         <asp:TemplateField HeaderText="Email">
                             <ItemTemplate>
