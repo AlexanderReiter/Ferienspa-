@@ -51,6 +51,7 @@ namespace Ferienspass
 
             gvCourses.DataSource = dvCompany;
             gvCourses.DataBind();
+            gvCourses.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
         protected void gvCourses_Sorting(object sender, GridViewSortEventArgs e)
