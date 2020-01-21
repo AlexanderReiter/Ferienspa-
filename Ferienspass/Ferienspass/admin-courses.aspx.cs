@@ -482,11 +482,26 @@ namespace Ferienspass
         {
             DB db = new DB();
             KidID = Convert.ToInt32(e.Keys[0]);
+            DataTable dtParticipate = db.Query("SELECT surname, givenname FROM kids WHERE kidId=?", KidID);
+            DataRow drParticipate = dtParticipate.Rows[0];
 
             db.Query("DELETE FROM kidparticipates WHERE kidId=? AND courseID=?", KidID, CourseID);
 
             Fill_gvParticipants();
             Fill_gvcourses();
+
+            string ParticipateDeleteMailText =
+              $"Sehr geehrte Damen und Herren, <br><br>ihr Kind {drParticipate["givenname"]} {drParticipate["surname"]} wurde leider aus dem Kurs entfernt. Um den Grund des Ausschlusses zu erfahren, " +
+              $"melden Sie sich bitte bei dem Kursmanager. Die Nummer bzw. Email-Adresse können Sie auf unserer Webseite finden." +
+              $"Bitte entschuldigen Sie die Unnanehmlichkeiten." + $"" +
+              $"<br><br> Mit freundlichen Grüßen,<br>Gemeinde Mondpichl";
+
+            DataTable dtEmails = db.Query("SELECT user.email FROM user LEFT JOIN kids ON kids.email = user.email WHERE kids.kidId=?", KidID);
+
+            foreach (DataRow dr in dtEmails.Rows)
+            {
+                EmailMaker.Send((string)dr["email"], "Ausschluss Kind", ParticipateDeleteMailText);
+            }
         }
 
         private void Fill_gvUserWhoGotMail()
