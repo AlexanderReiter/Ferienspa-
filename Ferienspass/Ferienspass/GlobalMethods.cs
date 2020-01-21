@@ -27,5 +27,22 @@ namespace Ferienspass
 
             db.ExecuteNonQuery("DELETE FROM basket WHERE date < ?", maxTime);
         }
+
+        //admin-setting
+        public string GetValueFromDataTable(DataTable dt, string v)
+        {
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (dt.Rows[i][0].ToString() == v) return dt.Rows[i]["value"].ToString();
+            }
+            return "";
+        }
+        //admin-setting
+        public DataTable GetDataTableFromSettings()
+        {
+            DB db = new DB();
+            DataTable dt = db.Query("SELECT * FROM settings");
+            return dt;
+        }
     }
 }
