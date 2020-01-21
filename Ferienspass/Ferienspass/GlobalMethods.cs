@@ -29,7 +29,7 @@ namespace Ferienspass
         }
 
         //admin-setting
-        public string GetValueFromDataTable(DataTable dt, string v)
+        public static string GetValueFromDataTable(DataTable dt, string v)
         {
             for (int i = 0; i < dt.Rows.Count; i++)
             {
@@ -38,7 +38,7 @@ namespace Ferienspass
             return "";
         }
         //admin-setting
-        public DataTable GetDataTableFromSettings()
+        public static DataTable GetDataTableFromSettings()
         {
             DB db = new DB();
             DataTable dt = db.Query("SELECT * FROM settings");

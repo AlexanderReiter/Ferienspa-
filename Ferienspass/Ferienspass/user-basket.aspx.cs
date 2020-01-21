@@ -65,8 +65,8 @@ namespace Ferienspass
             foreach(DataRow r in distinctCourses.Rows)
             {
                 int cntCouses = db.ExecuteNonQuery("SELECT COUNT(*) FROM basket WHERE userId=? AND courseId=?", User.Identity.Name, r["CourseId"]);
-
-                float percentage;
+                DataTable settings = GlobalMethods.GetDataTableFromSettings();
+                float percentage = Convert.ToSingle(GlobalMethods.GetValueFromDataTable(settings, "discount").Trim('%'));
                 if (cntCouses >= 2)
                 {
                     discount += Convert.ToSingle((decimal)r["price"]) * (cntCouses - 1) * percentage;
