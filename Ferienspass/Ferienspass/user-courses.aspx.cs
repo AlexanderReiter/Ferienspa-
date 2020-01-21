@@ -62,6 +62,7 @@ namespace Ferienspass
 
             gvUserCourses.DataSource = dvCompany;
             gvUserCourses.DataBind();
+            gvUserCourses.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
         protected void gvUserCourses_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -112,6 +113,7 @@ namespace Ferienspass
 
             gvKids.DataSource = dvKids;
             gvKids.DataBind();
+            gvKids.HeaderRow.TableSection = TableRowSection.TableHeader;
 
             panCourse.Visible = false;
             panSelectKids.Visible = true;
