@@ -16,7 +16,7 @@
     <div class="container">
         <h3>Unsere Nachbargemeinden</h3> <br />
         <asp:Literal ID="litAlertNeighbourcities" runat="server"></asp:Literal>
-        <asp:GridView ID="gvNeighbourcities" runat="server" AutoGenerateColumns="false" ShowHeaderWhenEmpty="true" CssClass="table table-striped" 
+        <asp:GridView ID="gvNeighbourcities" runat="server" AutoGenerateColumns="false" ShowHeaderWhenEmpty="true" CssClass="table table-hover" GridLines="None" Width="50%"
             OnRowEditing="gvNeighbourcities_RowEditing" OnRowCancelingEdit="gvNeighbourcities_RowCancelingEdit" OnRowDeleting="gvNeighbourcities_RowDeleting"
             OnRowCommand="gvNeighbourcities_RowCommand" OnRowUpdating="gvNeighbourcities_RowUpdating">
             <Columns>
@@ -127,9 +127,17 @@
         </div>
         Rabatt (bei Anmeldung von mind. 2 Kindern):
         <div class="row">
-            <div class="col-4">
+            <div class="col-2">
                 <div class="form-group">
                     <asp:TextBox ID="txtDiscount" placeholder="Rabatt" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+            </div>
+        </div>
+        Gültigkeitsdauer des Warenkorbes in Stunden:
+        <div class="row">
+            <div class="col-2">
+                <div class="form-group">
+                    <asp:TextBox ID="txtBasketExpiryTime" placeholder="Warenkorbdauer" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                 </div>
             </div>
             <div class="col-10">

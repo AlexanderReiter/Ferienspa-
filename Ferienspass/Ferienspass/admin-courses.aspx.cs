@@ -62,27 +62,59 @@ namespace Ferienspass
             }
         }
 
+        protected void txtSearchbar_TextChanged(object sender, EventArgs e)
+        {
+            Fill_gvcourses();
+        }
+
         private void Fill_gvcourses()
         {
             DB db = new DB();
-            DataTable dtCompany = db.Query("SELECT *,courseID as current_id, " +
+            string queryString = "SELECT *,courseID as current_id, " +
                 "(SELECT COUNT(*) FROM kidparticipates WHERE kidparticipates.courseId=current_id) as cntparticipants FROM courses " +
-                "LEFT JOIN organisation ON courses.organisationID = organisation.organisationID");
+                "LEFT JOIN organisation ON courses.organisationID = organisation.organisationID";
+            if (!string.IsNullOrEmpty(txtSearchbar.Text))
+            {
+                queryString += $" WHERE courses.coursename LIKE '%{txtSearchbar.Text}%' OR organisation.organisationname LIKE '%{txtSearchbar.Text}%'";
+            }
+            DataTable dtCompany = db.Query(queryString);
             DataView dvCompany = new DataView(dtCompany);
-            dvCompany.Sort = SortExpresssion;
+            dvCompany.Sort = SortExpression;
 
             gvCourses.DataSource = dvCompany;
             gvCourses.DataBind();
-        }
-
-        protected void gvCourses_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-
+            gvCourses.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
         protected void gvCourses_Sorting(object sender, GridViewSortEventArgs e)
         {
+            SortExpression = e.SortExpression;
+            Fill_gvcourses();
+        }
 
+        private string SortExpression
+        {
+            get 
+            {
+                return (ViewState["SortExpression"] ?? string.Empty).ToString();
+            }
+            set
+            {
+                if (SortExpression.StartsWith(value) && (!SortExpression.EndsWith("DESC")))
+                {
+                    ViewState["SortExpression"] = value + " DESC";
+                }
+                else
+                {
+                    ViewState["SortExpression"] = value;
+                }
+            }
+        }
+
+        protected void gvCourses_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvCourses.PageIndex = e.NewPageIndex;
+            Fill_gvcourses();
         }
 
         protected void btnNewCourse_Click(object sender, EventArgs e)
@@ -266,7 +298,7 @@ namespace Ferienspass
             //Falls bestätigt, dann E-Mail versenden
 
 
-            string MailText =
+            string CourseDeleteMailTExt =
               $"Sehr geehrte Damen und Herren, <br><br>der Kurs wurde leider abgesagt. Um den Grund der Absage zu erfahren, " +
               $"melden Sie sich bitte bei dem Kursmanager. Die Nummer bzw. Email-Adresse können Sie auf unserer Webseite finden." +
               $"Bitte entschuldigen Sie die Unnanehmlichkeiten." + $"" +
@@ -276,7 +308,7 @@ namespace Ferienspass
 
             foreach (DataRow dr in dtEmails.Rows)
             {
-                EmailMaker.Send((string)dr["email"], "Kursabsage", MailText);
+                EmailMaker.Send((string)dr["email"], "Kursabsage", CourseDeleteMailTExt);
             }
         }
 
@@ -403,7 +435,7 @@ namespace Ferienspass
             int cntParticipants = Convert.ToInt32(db.ExecuteScalar("SELECT COUNT(*) FROM kids LEFT JOIN kidparticipates ON kids.kidId = kidparticipates.kidId WHERE courseId=?", CourseID));
             return cntParticipants;
         }
-
+        
         protected void btnSearchCourse_Click(object sender, EventArgs e)
         {
             if (txtSearchbar.Text != "")

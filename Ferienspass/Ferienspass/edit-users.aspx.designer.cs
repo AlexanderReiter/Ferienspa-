@@ -11,25 +11,16 @@ namespace Ferienspass
 {
 
 
-    public partial class WebForm2
+    public partial class edit_users
     {
 
         /// <summary>
-        /// litEmailStatus-Steuerelement
+        /// gvUser-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litEmailStatus;
-
-        /// <summary>
-        /// gvNAPeople-Steuerelement
-        /// </summary>
-        /// <remarks>
-        /// Automatisch generiertes Feld
-        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvNAPeople;
+        protected global::System.Web.UI.WebControls.GridView gvUser;
     }
 }

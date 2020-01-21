@@ -11,223 +11,214 @@ namespace Ferienspass
 {
 
 
-    public partial class admin_settings
+    public partial class user_basket
     {
 
         /// <summary>
-        /// litAlertNeighbourcities-Steuerelement
+        /// gvBasket-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litAlertNeighbourcities;
+        protected global::System.Web.UI.WebControls.GridView gvBasket;
 
         /// <summary>
-        /// gvNeighbourcities-Steuerelement
+        /// lblSubtotal-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvNeighbourcities;
+        protected global::System.Web.UI.WebControls.Label lblSubtotal;
 
         /// <summary>
-        /// txtHost-Steuerelement
+        /// lblDiscount-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtHost;
+        protected global::System.Web.UI.WebControls.Label lblDiscount;
 
         /// <summary>
-        /// txtPort-Steuerelement
+        /// lblTotal-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPort;
+        protected global::System.Web.UI.WebControls.Label lblTotal;
 
         /// <summary>
-        /// txtEmail-Steuerelement
+        /// btnCheckout-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEmail;
+        protected global::System.Web.UI.WebControls.Button btnCheckout;
 
         /// <summary>
-        /// txtPassword-Steuerelement
+        /// panBlockBackground-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPassword;
+        protected global::System.Web.UI.WebControls.Panel panBlockBackground;
 
         /// <summary>
-        /// txtResetDauer-Steuerelement
+        /// panCourse-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtResetDauer;
+        protected global::System.Web.UI.WebControls.Panel panCourse;
 
         /// <summary>
-        /// pnlChangeSettings-Steuerelement
+        /// txtCourseName-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlChangeSettings;
+        protected global::System.Web.UI.WebControls.TextBox txtCourseName;
 
         /// <summary>
-        /// btnChangeSettings-Steuerelement
+        /// txtDesciption-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnChangeSettings;
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea txtDesciption;
 
         /// <summary>
-        /// pnlCancelSettings-Steuerelement
+        /// txtFrom-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlCancelSettings;
+        protected global::System.Web.UI.WebControls.TextBox txtFrom;
 
         /// <summary>
-        /// btnCancelAdress-Steuerelement
+        /// txtTo-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelAdress;
+        protected global::System.Web.UI.WebControls.TextBox txtTo;
 
         /// <summary>
-        /// pnlSaveSettings-Steuerelement
+        /// txtMinParticipants-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlSaveSettings;
+        protected global::System.Web.UI.WebControls.TextBox txtMinParticipants;
 
         /// <summary>
-        /// btnSaveSettings-Steuerelement
+        /// txtMaxParticipants-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSaveSettings;
+        protected global::System.Web.UI.WebControls.TextBox txtMaxParticipants;
 
         /// <summary>
-        /// litAlertOtherSettings-Steuerelement
+        /// txtZIP-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litAlertOtherSettings;
+        protected global::System.Web.UI.WebControls.TextBox txtZIP;
 
         /// <summary>
-        /// txtStartRegistrationSpan-Steuerelement
+        /// txtCity-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtStartRegistrationSpan;
+        protected global::System.Web.UI.WebControls.TextBox txtCity;
 
         /// <summary>
-        /// txtStopRegistrationSpan-Steuerelement
+        /// txtStreet-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtStopRegistrationSpan;
+        protected global::System.Web.UI.WebControls.TextBox txtStreet;
 
         /// <summary>
-        /// txtDiscount-Steuerelement
+        /// txtNr-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDiscount;
+        protected global::System.Web.UI.WebControls.TextBox txtNr;
 
         /// <summary>
-        /// txtBasketExpiryTime-Steuerelement
+        /// calendar-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBasketExpiryTime;
+        protected global::System.Web.UI.WebControls.Calendar calendar;
 
         /// <summary>
-        /// pnlChangeOtherSettings-Steuerelement
+        /// txtManagerName-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlChangeOtherSettings;
+        protected global::System.Web.UI.WebControls.TextBox txtManagerName;
 
         /// <summary>
-        /// btnChangeOtherSettings-Steuerelement
+        /// txtContactMail-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnChangeOtherSettings;
+        protected global::System.Web.UI.WebControls.TextBox txtContactMail;
 
         /// <summary>
-        /// pnlCancelOtherSettings-Steuerelement
+        /// txtPrice-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlCancelOtherSettings;
+        protected global::System.Web.UI.WebControls.TextBox txtPrice;
 
         /// <summary>
-        /// btnCancelOtherSettings-Steuerelement
+        /// txtOrganisation-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelOtherSettings;
+        protected global::System.Web.UI.WebControls.TextBox txtOrganisation;
 
         /// <summary>
-        /// pnlSaveOtherSettings-Steuerelement
+        /// btnCancel-Steuerelement
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlSaveOtherSettings;
-
-        /// <summary>
-        /// btnSaveOtherSettings-Steuerelement
-        /// </summary>
-        /// <remarks>
-        /// Automatisch generiertes Feld
-        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSaveOtherSettings;
+        protected global::System.Web.UI.WebControls.Button btnCancel;
     }
 }

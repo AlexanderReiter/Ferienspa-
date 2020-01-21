@@ -73,8 +73,10 @@
     <Content Include="agb.aspx" />
     <Content Include="App_Themes\default\style.css" />
     <Content Include="dsgv.aspx" />
+    <Content Include="edit-users.aspx" />
     <Content Include="forgotpassword.aspx" />
     <Content Include="logout.aspx" />
+    <Content Include="user-basket.aspx" />
     <Content Include="user-changepassword.aspx" />
     <Content Include="resetpassword.aspx" />
     <Content Include="user-courses.aspx" />
@@ -130,6 +132,13 @@
     <Compile Include="dsgv.aspx.designer.cs">
       <DependentUpon>dsgv.aspx</DependentUpon>
     </Compile>
+    <Compile Include="edit-users.aspx.cs">
+      <DependentUpon>edit-users.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="edit-users.aspx.designer.cs">
+      <DependentUpon>edit-users.aspx</DependentUpon>
+    </Compile>
     <Compile Include="EmailMaker.cs" />
     <Compile Include="DB.cs" />
     <Compile Include="forgotpassword.aspx.cs">
@@ -139,6 +148,7 @@
     <Compile Include="forgotpassword.aspx.designer.cs">
       <DependentUpon>forgotpassword.aspx</DependentUpon>
     </Compile>
+    <Compile Include="GlobalMethods.cs" />
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -161,6 +171,13 @@
     </Compile>
     <Compile Include="registration.aspx.designer.cs">
       <DependentUpon>registration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="user-basket.aspx.cs">
+      <DependentUpon>user-basket.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="user-basket.aspx.designer.cs">
+      <DependentUpon>user-basket.aspx</DependentUpon>
     </Compile>
     <Compile Include="user-changepassword.aspx.cs">
       <DependentUpon>user-changepassword.aspx</DependentUpon>

@@ -15,7 +15,8 @@
         <asp:Literal ID="litEmailStatus" runat="server"></asp:Literal>
         <div class="row">
             <div class="col-12">
-                <asp:GridView CssClass="table" ID="gvNAPeople" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="email" PageSize="20">
+                <asp:GridView ID="gvNAPeople" runat="server" CssClass="table table-hover" GridLines="None" ShowHeaderWhenEmpty="true"  
+                    AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="email" PageSize="20">
                     <Columns>
                         <asp:BoundField DataField="surname" HeaderText="Nachname" />
                         <asp:BoundField DataField="givenname" HeaderText="Vorname" />

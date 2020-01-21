@@ -11,7 +11,7 @@ namespace Ferienspass
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            ((user_master)this.Master).SetBasketNumber(GlobalMethods.BasketCount(User.Identity.Name));
         }
     }
 }
