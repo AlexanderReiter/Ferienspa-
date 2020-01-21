@@ -9,7 +9,12 @@
                 return true;
             }
             return false;
-        }
+         }
+
+        function ShowUserWhoGotMail() {
+            document.getElementById('<%=panUserWhoGotMail.ClientID%>').style.visibility = "visible";
+            document.getElementById('<%=panBlockBackgroundJavascript.ClientID%>').style.visibility = "visible";
+         }
     </script>
 
     <div class="container">
@@ -23,6 +28,7 @@
                 <asp:Button ID="btnSearchCourse" runat="server" Text="Suche" OnClick="btnSearchCourse_Click" />
             </div>          
         </div>
+        <asp:Literal ID="litEmail" runat="server"></asp:Literal>
         <div class="gvcourses">
             <asp:GridView ID="gvCourses" runat="server" CssClass="table" AutoGenerateColumns="False" AllowPaging="True" PageSize="20" DataKeyNames="courseID"
                 ShowHeaderWhenEmpty="true" OnRowEditing="gvCourses_RowEditing" OnPageIndexChanging="gvCourses_PageIndexChanging" OnSorting="gvCourses_Sorting" 
@@ -69,6 +75,7 @@
         </div>
     </div>
     <asp:Panel ID="panBlockBackground" runat="server" CssClass="panBlockBackground sticky" Visible="false"></asp:Panel>
+    <asp:Panel ID="panBlockBackgroundJavascript" runat="server" CssClass="panBlockBackground sticky" style="visibility:hidden"></asp:Panel>
     <asp:Panel ID="panCourse" runat="server" Visible="false">
         <div class="container">
             <div class="addCourseForm shadow p-4 mb-4 bg-white">
@@ -232,7 +239,7 @@
     <asp:Panel ID="panParticipants" runat="server" Visible="false">
         <div class="container">
             <div class="addCourseForm shadow p-4 mb-4 bg-white">
-                <asp:GridView ID="gvParticipants" runat="server" AutoGenerateColumns="false" ShowHeaderWhenEmpty="true" CssClass="table table-striped">
+                <asp:GridView ID="gvParticipants" runat="server" AutoGenerateColumns="false" ShowHeaderWhenEmpty="true" DataKeyNames="kidID" CssClass="table table-striped" OnRowCommand="gvParticipants_RowCommand" OnRowDeleting="gvParticipants_RowDeleting">
                     <Columns>
                         <asp:TemplateField HeaderText="Vorname">
                             <ItemTemplate>
@@ -256,7 +263,8 @@
                         </asp:TemplateField>
                         <asp:TemplateField>
                             <ItemTemplate>
-                                <asp:LinkButton ID="btnShowUser" runat="server" ForeColor="Black"><i class="fas fa-user" style="font-size: 24px"></i></asp:LinkButton>
+                                <asp:LinkButton ID="btnShowUser" runat="server" ForeColor="Black" CommandName="User" CommandArgument='<%# Eval("kidID") %>'><i class="fas fa-user" style="font-size: 24px"></i></asp:LinkButton>
+                                <asp:LinkButton ID="btnDeleteParticipant" runat="server" ForeColor="Black" CommandName="Delete"><i class="fas fa-trash" style="font-size: 24px"></i></asp:LinkButton>
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
@@ -277,45 +285,79 @@
     <asp:Panel ID="panUser" runat="server" Visible="false">
         <div class="container">
             <div class="addCourseForm shadow p-4 mb-4 bg-white">
-                <asp:GridView ID="gvUsers" runat="server" AutoGenerateColumns="false" CssClass="table table-striped">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <asp:TextBox ID="txtEmail" placeholder="Email" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <asp:TextBox ID="txtGivenname" placeholder="Vorname" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <asp:TextBox ID="txtSurname" placeholder="Nachname" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-3">
+                        <div class="form-group">
+                            <asp:TextBox ID="txtUserZIP" placeholder="PLZ" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="col-9">
+                        <div class="form-group">
+                            <asp:TextBox ID="txtUserCity" placeholder="Ort" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-10">
+                        <div class="form-group">
+                            <asp:TextBox ID="txtUserStreet" placeholder="Straße" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="form-group">
+                            <asp:TextBox ID="txtUserHousenumber" placeholder="Hausnr." runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <asp:Button ID="btnBackToParticipants" runat="server" Text="Zurück" CssClass="btn btn-secondary btn-lg" OnClick="btnBackToParticipants_Click" />
+            </div>
+        </div>
+    </asp:Panel>
+    <asp:Panel ID="panUserWhoGotMail" runat="server" style="visibility:hidden">
+        <div class="container">
+            <div class="addCourseForm shadow p-4 mb-4 bg-white">
+                <asp:GridView ID="gvUserWhoGotMail" runat="server" AutoGenerateColumns="false" ShowHeaderWhenEmpty="true" CssClass="table table-striped">
                     <Columns>
-                        <asp:TemplateField HeaderText="Vorname">
-                            <ItemTemplate>
-                                <asp:Label ID="lblGivennameUser" runat="server" Text='<%# Eval("givenname") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Nachname">
-                            <ItemTemplate>
-                                <asp:Label ID="lblSurnameUser" runat="server" Text='<%# Eval("surname") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="PLZ">
-                            <ItemTemplate>
-                                <asp:Label ID="lblZipcode" runat="server" Text='<%# Eval("zipcode") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Stadt">
-                            <ItemTemplate>
-                                <asp:Label ID="lblCity" runat="server" Text='<%# Eval("city") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Straße">
-                            <ItemTemplate>
-                                <asp:Label ID="lblStreetname" runat="server" Text='<%# Eval("streetname") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Hausnr.">
-                            <ItemTemplate>
-                                <asp:Label ID="lblHouseNr" runat="server" Text='<%# Eval("housenumber") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
                         <asp:TemplateField HeaderText="Email">
                             <ItemTemplate>
                                 <asp:Label ID="lblEmail" runat="server" Text='<%# Eval("email") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Vorname">
+                            <ItemTemplate>
+                                <asp:Label ID="lblUserGivenname" runat="server" Text='<%# Eval("givenname") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Nachname">
+                            <ItemTemplate>
+                                <asp:Label ID="lblUserSurname" runat="server" Text='<%# Eval("surname") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
+                <asp:Button ID="btnCloseUser" runat="server" Text="Schließen" CssClass="btn btn-secondary btn-lg" />
             </div>
         </div>
     </asp:Panel>
