@@ -46,6 +46,19 @@ namespace Ferienspass
             gvBasket.HeaderRow.TableSection = TableRowSection.TableHeader;
 
             CalculatePrice(dt);
+            CheckSomethingInBasket();
+        }
+
+        private void CheckSomethingInBasket()
+        {
+            DB db = new DB();
+            int cntCouses = Convert.ToInt32(db.ExecuteScalar("SELECT COUNT(*) FROM basket WHERE userId=?", User.Identity.Name));
+
+            if (cntCouses > 0)
+            {
+                btnCheckout.Enabled = true;
+            }
+            else btnCheckout.Enabled = false;
         }
 
         private void CalculatePrice(DataTable dt)
@@ -62,17 +75,21 @@ namespace Ferienspass
             float discount = 0;
             DataTable distinctCourses = db.Query("SELECT DISTINCT basket.courseId, price FROM basket LEFT JOIN courses ON basket.courseId=courses.courseId WHERE userId=?", User.Identity.Name);
 
-            foreach(DataRow r in distinctCourses.Rows)
+            DataTable settings = GlobalMethods.GetDataTableFromSettings();
+            float percentage = Convert.ToSingle(GlobalMethods.GetValueFromDataTable(settings, "discount").Trim('%')) / 100;
+
+            foreach (DataRow r in distinctCourses.Rows)
             {
-                int cntCouses = db.ExecuteNonQuery("SELECT COUNT(*) FROM basket WHERE userId=? AND courseId=?", User.Identity.Name, r["CourseId"]);
-                DataTable settings = GlobalMethods.GetDataTableFromSettings();
-                float percentage = Convert.ToSingle(GlobalMethods.GetValueFromDataTable(settings, "discount").Trim('%'));
+                int cntCouses = Convert.ToInt32(db.ExecuteScalar("SELECT COUNT(*) FROM basket WHERE userId=? AND courseId=?", User.Identity.Name, r["courseId"]));
                 if (cntCouses >= 2)
                 {
-                    discount += Convert.ToSingle((decimal)r["price"]) * (cntCouses - 1) * percentage;
+                    discount += subtotal * percentage;
                 }
             }
             lblDiscount.Text = discount.ToString("F2");
+
+            float total = subtotal - discount;
+            lblTotal.Text = total.ToString("F2");
         }
 
         protected void gvBasket_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -124,6 +141,17 @@ namespace Ferienspass
         {
             panCourse.Visible = false;
             panBlockBackground.Visible = false;
+        }
+
+        protected void btnCheckout_Click(object sender, EventArgs e)
+        {
+            DB db = new DB();
+            foreach (GridViewRow r in gvBasket.Rows) 
+            {
+                db.ExecuteNonQuery("INSERT INTO kidparticipates (kidId, courseId) VALUES(?, ?)", Convert.ToInt32(gvBasket.DataKeys[r.RowIndex].Values["kidId"]), Convert.ToInt32(gvBasket.DataKeys[r.RowIndex].Values["courseId"]));
+            }
+            db.ExecuteNonQuery("DELETE FROM basket WHERE userId=?", User.Identity.Name);
+            Fill_GvBasket();
         }
     }
 }

@@ -7,7 +7,7 @@
         <br />
         <h1>Warenkorb</h1>
         <br />
-        <asp:GridView ID="gvBasket" runat="server" DataKeyNames="id" AutoGenerateColumns="false" CssClass="table table-hover" GridLines="None" ShowHeaderWhenEmpty="true" OnRowCommand="gvBasket_RowCommand">
+        <asp:GridView ID="gvBasket" runat="server" DataKeyNames="id, kidId, courseId" AutoGenerateColumns="false" CssClass="table table-hover" GridLines="None" ShowHeaderWhenEmpty="true" OnRowCommand="gvBasket_RowCommand">
             <Columns>
                 <asp:TemplateField HeaderText="Teilnehmer">
                     <ItemTemplate>
@@ -67,7 +67,7 @@
                                 <h5>Rabatt</h5>
                             </td>
                             <td class="text-right">
-                                <h5><strong><asp:Label ID="lblDiscount" runat="server" Text="0"></asp:Label>€</strong></h5>
+                                <h5><strong>- <asp:Label ID="lblDiscount" runat="server" Text="0"></asp:Label>€</strong></h5>
                             </td>
                         </tr>
                         <tr>
@@ -83,7 +83,7 @@
                             <td></td>
                             <td></td>
                             <td>
-                                <asp:Button ID="btnCheckout" runat="server" Text="Kaufen" CssClass="btn btn-success float-right" />
+                                <asp:Button ID="btnCheckout" runat="server" Text="Kaufen" CssClass="btn btn-success float-right" OnClick="btnCheckout_Click" />
                             </td>
                         </tr>
                     </tbody>
