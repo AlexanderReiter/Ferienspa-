@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using static Ferienspass.GlobalMethods;
 
 namespace Ferienspass
 {
@@ -32,6 +33,7 @@ namespace Ferienspass
             DB db = new DB();
             gvNeighbourcities.DataSource = db.Query("SELECT * FROM neighbourcities");
             gvNeighbourcities.DataBind();
+            gvNeighbourcities.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
         protected void gvNeighbourcities_RowEditing(object sender, GridViewEditEventArgs e)
@@ -44,6 +46,7 @@ namespace Ferienspass
         {
             gvNeighbourcities.EditIndex = -1;
             Fill_gvNeighbourcities();
+            litAlertNeighbourcities.Text = "";
         }
 
         protected void gvNeighbourcities_RowUpdating(object sender, GridViewUpdateEventArgs e)
@@ -128,32 +131,33 @@ namespace Ferienspass
         // 07.01.2020
         private void LoadEmailSettings()
         {
-            string[] values = GetValuesFromSettings();
+            DataTable dt = GetDataTableFromSettings();
 
-            txtEmail.Text = Convert.ToString(values[1]);
-            txtHost.Text = Convert.ToString(values[2]);
-            for (int i = 0; i < Convert.ToString(values[3]).Length; i++)    //Das Passwort wird nicht im Klartext angezeigt
+            txtEmail.Text = GetValueFromDataTable(dt, "email");
+            txtHost.Text = GetValueFromDataTable(dt, "host");
+            for (int i = 0; i < GetValueFromDataTable(dt,"password").Length; i++)    //Das Passwort wird nicht im Klartext angezeigt
             {
                 txtPassword.Text += "•";
             }
-            txtPort.Text = Convert.ToString(values[4]);
-            txtResetDauer.Text = Convert.ToString(values[5]);
+            txtPort.Text = GetValueFromDataTable(dt, "port");
+            txtResetDauer.Text = GetValueFromDataTable(dt, "resetpwdauer");
         }
 
         protected void btnChangeSettings_Click(object sender, EventArgs e)
         {
-            string[] values = GetValuesFromSettings();
+            DataTable dt = GetDataTableFromSettings();
 
             txtEmail.Enabled = true;
             txtHost.Enabled = true;
             txtPassword.Enabled = true;
-            txtPassword.Text = Convert.ToString(values[3]);
+            txtPassword.Text = GetValueFromDataTable(dt,"password");
             txtPort.Enabled = true;
             txtResetDauer.Enabled = true;
             pnlChangeSettings.Visible = false;
             pnlCancelSettings.Visible = true;
             pnlSaveSettings.Visible = true;
         }
+
 
         protected void btnSaveSettings_Click(object sender, EventArgs e)
         {
@@ -185,13 +189,13 @@ namespace Ferienspass
 
         protected void btnCancelSettings_Click(object sender, EventArgs e)
         {
-            string[] values = GetValuesFromSettings();
+            DataTable dt = GetDataTableFromSettings();
 
             txtEmail.Enabled = false;
             txtHost.Enabled = false;
             txtPassword.Enabled = false;
             txtPassword.Text = "";
-            string pw = Convert.ToString(values[2]);
+            string pw = GetValueFromDataTable(dt, "password");
             for (int i = 0; i < pw.Length; i++)
             {
                 txtPassword.Text += "•";
@@ -201,17 +205,11 @@ namespace Ferienspass
             pnlChangeSettings.Visible = true;
             pnlCancelSettings.Visible = false;
             pnlSaveSettings.Visible = false;
+            LoadEmailSettings();
         }
-
         #endregion
 
-        private string[] GetValuesFromSettings()
-        {
-            DB db = new DB();
-            DataTable dt = db.Query("SELECT value FROM settings");
-            string[] values = dt.Rows.OfType<DataRow>().Select(k => k[0].ToString()).ToArray();
-            return values;
-        }
+
 
 
         #region Other-Settings
@@ -221,11 +219,12 @@ namespace Ferienspass
         // 07.01.2020
         private void LoadOtherSettings()
         {
-            string[] values = GetValuesFromSettings();
+            DataTable dt = GetDataTableFromSettings();
 
-            txtStartRegistrationSpan.Text = values[6];
-            txtStopRegistrationSpan.Text = values[7];
-            txtDiscount.Text = values[0];
+            txtStartRegistrationSpan.Text = GetValueFromDataTable(dt,"startregistration");
+            txtStopRegistrationSpan.Text = GetValueFromDataTable(dt,"stopregistration");
+            txtDiscount.Text = GetValueFromDataTable(dt,"discount");
+            txtBasketExpiryTime.Text = GetValueFromDataTable(dt, "basketexpirytime");
         }
 
         protected void btnChangeOtherSettings_Click(object sender, EventArgs e)
@@ -233,6 +232,7 @@ namespace Ferienspass
             txtStartRegistrationSpan.Enabled = true;
             txtStopRegistrationSpan.Enabled = true;
             txtDiscount.Enabled = true;
+            txtBasketExpiryTime.Enabled = true;
             pnlChangeOtherSettings.Visible = false;
             pnlCancelOtherSettings.Visible = true;
             pnlSaveOtherSettings.Visible = true;
@@ -242,6 +242,7 @@ namespace Ferienspass
             string newStartDate = txtStartRegistrationSpan.Text;
             string newEndDate = txtStopRegistrationSpan.Text;
             string newDiscount = txtDiscount.Text;
+            string newBasketExpiryTime = txtBasketExpiryTime.Text;
 
             if (newDiscount.Contains("%"))
             {
@@ -250,13 +251,15 @@ namespace Ferienspass
                 {
                     litAlertOtherSettings.Text = "";
                     DB db = new DB();
-                    db.Query("UPDATE settings SET VALUE=? WHERE settingId='startregistration'", newStartDate);
-                    db.Query("UPDATE settings SET VALUE=? WHERE settingId='stopregistration'", newEndDate);
-                    db.Query("UPDATE settings SET VALUE=? WHERE settingId='discount'", newDiscount);
+                    db.ExecuteNonQuery("UPDATE settings SET VALUE=? WHERE settingId='startregistration'", newStartDate);
+                    db.ExecuteNonQuery("UPDATE settings SET VALUE=? WHERE settingId='stopregistration'", newEndDate);
+                    db.ExecuteNonQuery("UPDATE settings SET VALUE=? WHERE settingId='discount'", newDiscount);
+                    db.ExecuteNonQuery("UPDATE settings SET VALUE=? WHERE settingId='basketexpirytime'", newBasketExpiryTime);
 
                     txtStartRegistrationSpan.Enabled = false;
                     txtStopRegistrationSpan.Enabled = false;
                     txtDiscount.Enabled = false;
+                    txtBasketExpiryTime.Enabled = false;
                     pnlChangeOtherSettings.Visible = true;
                     pnlCancelOtherSettings.Visible = false;
                     pnlSaveOtherSettings.Visible = false;
@@ -272,9 +275,11 @@ namespace Ferienspass
             txtStartRegistrationSpan.Enabled = false;
             txtStopRegistrationSpan.Enabled = false;
             txtDiscount.Enabled = false;
+            txtBasketExpiryTime.Enabled = false;
             pnlChangeOtherSettings.Visible = true;
             pnlCancelOtherSettings.Visible = false;
             pnlSaveOtherSettings.Visible = false;
+            LoadOtherSettings();
         }
 
 

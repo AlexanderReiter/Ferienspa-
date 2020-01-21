@@ -19,7 +19,7 @@
         </div>
 
             <div class="gvuser">
-                <asp:GridView ID="gvUser" runat="server" CssClass="table" AutoGenerateColumns="false" DataKeyNames="email" AllowPaging="true" PageSize="20" ShowHeaderWhenEmpty="True" OnRowDeleting="gvUser_RowDeleting" >
+                <asp:GridView ID="gvUser" runat="server" CssClass="table table-hover" GridLines="None" AutoGenerateColumns="false" DataKeyNames="email" AllowPaging="true" PageSize="20" ShowHeaderWhenEmpty="True" OnRowDeleting="gvUser_RowDeleting" >
                     <Columns>
                     <asp:TemplateField HeaderText="E-Mail">
                         <ItemTemplate>

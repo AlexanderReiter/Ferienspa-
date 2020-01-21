@@ -8,7 +8,7 @@
         <br />
         <asp:Literal ID="litAlert" runat="server"></asp:Literal>
         <div class="gvCourses">
-            <asp:GridView ID="gvUserCourses" runat="server" CssClass="table" AutoGenerateColumns="False" AllowPaging="True" PageSize="20" DataKeyNames="courseID"
+            <asp:GridView ID="gvUserCourses" runat="server" CssClass="table table-hover" GridLines="None" AutoGenerateColumns="False" AllowPaging="True" PageSize="20" DataKeyNames="courseID"
                 ShowHeaderWhenEmpty="true" OnRowCommand="gvUserCourses_RowCommand">
                 <Columns>
                     <asp:TemplateField HeaderText="Kursname">
@@ -175,7 +175,7 @@
     <asp:Panel ID="panSelectKids" runat="server" Visible="false">
         <div class="container">
             <div class="addCourseForm shadow p-4 mb-4 bg-white">
-                <asp:GridView ID="gvKids" runat="server" CssClass="table" AutoGenerateColumns="False" DataKeyNames="kidId" ShowHeader="false">
+                <asp:GridView ID="gvKids" runat="server" CssClass="table table-hover" GridLines="None" AutoGenerateColumns="False" DataKeyNames="kidId" ShowHeader="false">
                     <Columns>
                         <asp:TemplateField ItemStyle-Width="20px">
                             <ItemTemplate>

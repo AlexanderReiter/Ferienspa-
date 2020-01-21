@@ -22,26 +22,6 @@ namespace Ferienspass
             }
         }
 
-        public string SortExpresssion
-        {
-            set
-            {
-                if (SortExpresssion.StartsWith(value) && !SortExpresssion.EndsWith("DESC"))
-                {
-                    ViewState["sortexpression"] = value + " DESC";
-                }
-                else
-                {
-                    ViewState["sortexpression"] = value;
-                }
-            }
-
-            get
-            {
-                return (ViewState["sortexpression"] ?? string.Empty).ToString();
-            }
-        }
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -50,22 +30,59 @@ namespace Ferienspass
             }
         }
 
+        protected void txtSearchbar_TextChanged(object sender, EventArgs e)
+        {
+            Fill_gvcourses();
+        }
+
         private void Fill_gvcourses()
         {
             DB db = new DB();
-            DataTable dtCompany = db.Query("SELECT *,courseID as current_id, " +
+            string queryString = "SELECT *,courseID as current_id, " +
                 "(SELECT COUNT(*) FROM kidparticipates WHERE kidparticipates.courseId=current_id) as cntparticipants FROM courses " +
-                "LEFT JOIN organisation ON courses.organisationID = organisation.organisationID");
+                "LEFT JOIN organisation ON courses.organisationID = organisation.organisationID";
+            if (!string.IsNullOrEmpty(txtSearchbar.Text))
+            {
+                queryString += $" WHERE courses.coursename LIKE '%{txtSearchbar.Text}%' OR organisation.organisationname LIKE '%{txtSearchbar.Text}%'";
+            }
+            DataTable dtCompany = db.Query(queryString);
             DataView dvCompany = new DataView(dtCompany);
-            dvCompany.Sort = SortExpresssion;
+            dvCompany.Sort = SortExpression;
 
             gvCourses.DataSource = dvCompany;
             gvCourses.DataBind();
+            gvCourses.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
         protected void gvCourses_Sorting(object sender, GridViewSortEventArgs e)
         {
+            SortExpression = e.SortExpression;
+            Fill_gvcourses();
+        }
 
+        private string SortExpression
+        {
+            get 
+            {
+                return (ViewState["SortExpression"] ?? string.Empty).ToString();
+            }
+            set
+            {
+                if (SortExpression.StartsWith(value) && (!SortExpression.EndsWith("DESC")))
+                {
+                    ViewState["SortExpression"] = value + " DESC";
+                }
+                else
+                {
+                    ViewState["SortExpression"] = value;
+                }
+            }
+        }
+
+        protected void gvCourses_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvCourses.PageIndex = e.NewPageIndex;
+            Fill_gvcourses();
         }
 
         protected void btnNewCourse_Click(object sender, EventArgs e)
@@ -377,23 +394,5 @@ namespace Ferienspass
             return cntParticipants;
         }
 
-        protected void btnSearchCourse_Click(object sender, EventArgs e)
-        {
-            if (txtSearchbar.Text != "")
-            {
-                litSearchAlert.Text = "";
-
-
-            }
-            else
-            {
-                litSearchAlert.Text = "<div class='alert alert-danger'><strong>Fehler!</strong> Geben Sie zuerst einen Text ein, bevor Sie suchen!</div>";
-            }
-        }
-
-        protected void gvCourses_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-
-        }
     }
 }

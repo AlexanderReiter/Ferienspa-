@@ -30,6 +30,7 @@ namespace Ferienspass
 
             gvUser.DataSource = dtUser;
             gvUser.DataBind();
+            gvUser.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
         protected void gvUser_RowDeleting(object sender, GridViewDeleteEventArgs e)

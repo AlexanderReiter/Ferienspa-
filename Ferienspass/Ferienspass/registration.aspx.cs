@@ -69,7 +69,7 @@ namespace Ferienspass
                         }
                         else litAlert.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>E-Mail ist bereits vorhanden!</div></div></div>";
                     }
-                    else litAlert.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>Beide Passörter müssen übereinstimmen!</div></div></div>";
+                    else litAlert.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>Beide Passwörter müssen übereinstimmen!</div></div></div>";
                 }
                 else litAlert.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>Keine gültige E-Mail!</div></div></div>";
             }
