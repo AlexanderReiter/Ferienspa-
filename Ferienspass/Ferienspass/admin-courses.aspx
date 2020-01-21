@@ -20,8 +20,8 @@
                 OnTextChanged="txtSearchbar_TextChanged" class="form-control"></asp:TextBox>
         </div>          
         <div class="gvcourses">
-            <asp:GridView ID="gvCourses" runat="server" CssClass="table" AutoGenerateColumns="False" PageSize="20" DataKeyNames="courseID"
-                ShowHeaderWhenEmpty="True" OnRowEditing="gvCourses_RowEditing" OnPageIndexChanging="gvCourses_PageIndexChanging" OnSorting="gvCourses_Sorting" 
+            <asp:GridView ID="gvCourses" runat="server" CssClass="table table-hover" GridLines="None" AutoGenerateColumns="False" PageSize="20" DataKeyNames="courseID"
+                ShowHeaderWhenEmpty="true" OnRowEditing="gvCourses_RowEditing" OnPageIndexChanging="gvCourses_PageIndexChanging" OnSorting="gvCourses_Sorting" 
                 AllowSorting="true" AllowPaging="True" OnRowCommand="gvCourses_RowCommand" OnRowDeleting="gvCourses_RowDeleting">
                 <Columns>
                     <asp:TemplateField HeaderText="Kursname↓" SortExpression="coursename">

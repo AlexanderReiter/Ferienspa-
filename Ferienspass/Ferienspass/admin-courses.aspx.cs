@@ -51,6 +51,7 @@ namespace Ferienspass
 
             gvCourses.DataSource = dvCompany;
             gvCourses.DataBind();
+            gvCourses.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
         protected void gvCourses_Sorting(object sender, GridViewSortEventArgs e)
@@ -265,7 +266,7 @@ namespace Ferienspass
             //Falls bestätigt, dann E-Mail versenden
 
 
-            string MailText =
+            string CourseDeleteMailTExt =
               $"Sehr geehrte Damen und Herren, <br><br>der Kurs wurde leider abgesagt. Um den Grund der Absage zu erfahren, " +
               $"melden Sie sich bitte bei dem Kursmanager. Die Nummer bzw. Email-Adresse können Sie auf unserer Webseite finden." +
               $"Bitte entschuldigen Sie die Unnanehmlichkeiten." + $"" +
@@ -275,7 +276,7 @@ namespace Ferienspass
 
             foreach (DataRow dr in dtEmails.Rows)
             {
-                EmailMaker.Send((string)dr["email"], "Kursabsage", MailText);
+                EmailMaker.Send((string)dr["email"], "Kursabsage", CourseDeleteMailTExt);
             }
         }
 
