@@ -127,9 +127,17 @@
         </div>
         Rabatt (bei Anmeldung von mind. 2 Kindern):
         <div class="row">
-            <div class="col-4">
+            <div class="col-2">
                 <div class="form-group">
                     <asp:TextBox ID="txtDiscount" placeholder="Rabatt" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                </div>
+            </div>
+        </div>
+        Gültigkeitsdauer des Warenkorbes in Stunden:
+        <div class="row">
+            <div class="col-2">
+                <div class="form-group">
+                    <asp:TextBox ID="txtBasketExpiryTime" placeholder="Warenkorbdauer" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                 </div>
             </div>
             <div class="col-10">
