@@ -35,6 +35,7 @@ namespace Ferienspass
             gvNAPeople.DataSource = dt;
             gvNAPeople.DataKeyNames.Append("email");    // DataKeyNames wird gesetzt um später einfacher die email herauszufinden
             gvNAPeople.DataBind();
+            gvNAPeople.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
         protected void btnSendMail_Click(object sender, EventArgs e)

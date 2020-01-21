@@ -32,6 +32,7 @@ namespace Ferienspass
             DB db = new DB();
             gvNeighbourcities.DataSource = db.Query("SELECT * FROM neighbourcities");
             gvNeighbourcities.DataBind();
+            gvNeighbourcities.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
         protected void gvNeighbourcities_RowEditing(object sender, GridViewEditEventArgs e)
@@ -44,6 +45,7 @@ namespace Ferienspass
         {
             gvNeighbourcities.EditIndex = -1;
             Fill_gvNeighbourcities();
+            litAlertNeighbourcities.Text = "";
         }
 
         protected void gvNeighbourcities_RowUpdating(object sender, GridViewUpdateEventArgs e)
@@ -204,7 +206,9 @@ namespace Ferienspass
             pnlSaveSettings.Visible = false;
             LoadEmailSettings();
         }
+        #endregion
 
+        #region Hilfsmethoden
         private string GetValueFromDataTable(DataTable dt, string v)
         {
             for(int i=0; i < dt.Rows.Count; i++)
@@ -213,7 +217,7 @@ namespace Ferienspass
             }
             return "";
         }
-        #endregion
+        
 
         private DataTable GetDataTableFromSettings()
         {
@@ -222,6 +226,7 @@ namespace Ferienspass
             return dt;
         }
 
+        #endregion
 
         #region Other-Settings
         // Anmeldezeitraum anzeigen, ändern
