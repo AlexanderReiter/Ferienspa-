@@ -10,7 +10,7 @@ namespace Ferienspass
 {
     public partial class admin_courses : System.Web.UI.Page
     {
-        public int CustomerID
+        public int CourseID
         {
             set
             {
@@ -19,6 +19,38 @@ namespace Ferienspass
             get
             {
                 return Convert.ToInt32(ViewState["editingcustomerid"]);
+            }
+        }
+
+        private int KidID
+        {
+            get
+            {
+                return Convert.ToInt32(ViewState["DataKey"]);
+            }
+            set
+            {
+                ViewState["DataKey"] = value;
+            }
+        }
+
+        public string SortExpresssion
+        {
+            set
+            {
+                if (SortExpresssion.StartsWith(value) && !SortExpresssion.EndsWith("DESC"))
+                {
+                    ViewState["sortexpression"] = value + " DESC";
+                }
+                else
+                {
+                    ViewState["sortexpression"] = value;
+                }
+            }
+
+            get
+            {
+                return (ViewState["sortexpression"] ?? string.Empty).ToString();
             }
         }
 
@@ -115,7 +147,7 @@ namespace Ferienspass
 
         protected void gvCourses_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            CustomerID = Convert.ToInt32(gvCourses.DataKeys[e.NewEditIndex].Value);
+            CourseID = Convert.ToInt32(gvCourses.DataKeys[e.NewEditIndex].Value);
             DB db = new DB();
             DataTable dt = db.Query("SELECT * FROM courses WHERE courseId=?", gvCourses.DataKeys[e.NewEditIndex].Value);
             DataRow dr = dt.Rows[0];
@@ -238,7 +270,7 @@ namespace Ferienspass
                             "timeto=?, managername=?, organisationId=?, contactemail=?, minparticipants=?, maxparticipants=?, price=? WHERE courseId=?",
                             txtCourseName.Text, txtDesciption.InnerText, txtZIP.Text, txtCity.Text, txtStreet.Text,
                             txtNr.Text, calendar.SelectedDate, txtFrom.Text, txtTo.Text, txtManagerName.Text, ddlOrganisation.SelectedIndex, txtContactMail.Text,
-                            Convert.ToInt32(txtMinParticipants.Text), Convert.ToInt32(txtMaxParticipants.Text), Convert.ToDecimal(txtPrice.Text.Replace("€", "").Trim(' ')), CustomerID);
+                            Convert.ToInt32(txtMinParticipants.Text), Convert.ToInt32(txtMaxParticipants.Text), Convert.ToDecimal(txtPrice.Text.Replace("€", "").Trim(' ')), CourseID);
 
                         ClosePanel();
                     }
@@ -267,7 +299,7 @@ namespace Ferienspass
             //Falls bestätigt, dann E-Mail versenden
 
 
-            string MailText =
+            string CourseDeleteMailTExt =
               $"Sehr geehrte Damen und Herren, <br><br>der Kurs wurde leider abgesagt. Um den Grund der Absage zu erfahren, " +
               $"melden Sie sich bitte bei dem Kursmanager. Die Nummer bzw. Email-Adresse können Sie auf unserer Webseite finden." +
               $"Bitte entschuldigen Sie die Unnanehmlichkeiten." + $"" +
@@ -277,7 +309,7 @@ namespace Ferienspass
 
             foreach (DataRow dr in dtEmails.Rows)
             {
-                EmailMaker.Send((string)dr["email"], "Kursabsage", MailText);
+                EmailMaker.Send((string)dr["email"], "Kursabsage", CourseDeleteMailTExt);
             }
         }
 
@@ -286,12 +318,15 @@ namespace Ferienspass
             DB db = new DB();
             string MailText = txtContent.Value;
 
-            DataTable dtEmails = db.Query("SELECT DISTINCT email FROM kidparticipates LEFT JOIN kids ON kidparticipates.kidId = kids.kidId WHERE courseId=?", CustomerID);
+            DataTable dtEmails = db.Query("SELECT DISTINCT email FROM kidparticipates LEFT JOIN kids ON kidparticipates.kidId = kids.kidId WHERE courseId=?", CourseID);
 
             foreach (DataRow dr in dtEmails.Rows)
             {
                 EmailMaker.Send((string)dr["email"], txtSubject.Text, MailText);
             }
+
+            litEmail.Text = "<div class='alert alert-info'>Email wurde an Benutzer gesendet. <button type='button' name='btnShowUserWhoGotMail' runat='server' onclick='ShowUserWhoGotMail()'>Benutzer anzeigen</button></div>";
+            Fill_gvUserWhoGotMail();
 
             panSendMail.Visible = false;
             panBlockBackground.Visible = false;
@@ -314,10 +349,10 @@ namespace Ferienspass
                 case "Mail":
                     panBlockBackground.Visible = true;
                     panSendMail.Visible = true;
-                    CustomerID = Convert.ToInt32(e.CommandArgument.ToString());
+                    CourseID = Convert.ToInt32(e.CommandArgument.ToString());
                     break;
                 case "Participants":
-                    CustomerID = Convert.ToInt32(e.CommandArgument.ToString());
+                    CourseID = Convert.ToInt32(e.CommandArgument.ToString());
                     panBlockBackground.Visible = true;
                     if(GetParticipantsNumber() == 0)
                     {
@@ -365,15 +400,23 @@ namespace Ferienspass
         private void Fill_gvParticipants()
         {
             DB db = new DB();
-            gvParticipants.DataSource = db.Query("SELECT *, gender.name AS gendername FROM kids LEFT JOIN kidparticipates ON kids.kidId = kidparticipates.kidId LEFT JOIN gender ON gender.id = kids.gender WHERE courseId=?", CustomerID);
+            gvParticipants.DataSource = db.Query("SELECT *, gender.name AS gendername FROM kids LEFT JOIN kidparticipates ON kids.kidId = kidparticipates.kidId LEFT JOIN gender ON gender.id = kids.gender WHERE courseId=?", CourseID);
             gvParticipants.DataBind();
+            gvParticipants.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
-        private void Fill_gvUsers()
+        private void GetUserOfParticipant()
         {
             DB db = new DB();
-            gvUsers.DataSource = db.Query("SELECT * FROM user WHERE email=?");
-            gvUsers.DataBind();
+            DataRow dr = db.Query("SELECT * FROM user LEFT JOIN kids ON kids.email = user.email WHERE kids.kidId=?", KidID).Rows[0];
+
+            txtEmail.Text = Convert.ToString(dr["email"]);
+            txtGivenname.Text = Convert.ToString(dr["givenname"]);
+            txtSurname.Text = Convert.ToString(dr["surname"]);
+            txtUserZIP.Text = Convert.ToString(dr["zipcode"]);
+            txtUserCity.Text = Convert.ToString(dr["city"]);
+            txtUserStreet.Text = Convert.ToString(dr["streetname"]);
+            txtUserHousenumber.Text = Convert.ToString(dr["housenumber"]);
         }
 
         protected void btnClose_Click(object sender, EventArgs e)
@@ -391,9 +434,83 @@ namespace Ferienspass
         private int GetParticipantsNumber()
         {
             DB db = new DB();
-            int cntParticipants = Convert.ToInt32(db.ExecuteScalar("SELECT COUNT(*) FROM kids LEFT JOIN kidparticipates ON kids.kidId = kidparticipates.kidId WHERE courseId=?", CustomerID));
+            int cntParticipants = Convert.ToInt32(db.ExecuteScalar("SELECT COUNT(*) FROM kids LEFT JOIN kidparticipates ON kids.kidId = kidparticipates.kidId WHERE courseId=?", CourseID));
             return cntParticipants;
         }
+        
+        protected void btnSearchCourse_Click(object sender, EventArgs e)
+        {
+            if (txtSearchbar.Text != "")
+            {
+                litSearchAlert.Text = "";
 
+
+            }
+            else
+            {
+                litSearchAlert.Text = "<div class='alert alert-danger'><strong>Fehler!</strong> Geben Sie zuerst einen Text ein, bevor Sie suchen!</div>";
+            }
+        }
+
+        private string GetEmail()
+        {
+            DB db = new DB();
+            string email = Convert.ToString(db.Query("SELECT email FROM kids LEFT JOIN kidparticipates ON kids.kidId = kidparticipates.kidId WHERE courseId=?", CourseID));
+            return email;
+        }
+
+        protected void btnBackToParticipants_Click(object sender, EventArgs e)
+        {
+            panUser.Visible = false;
+            panParticipants.Visible = true;
+        }
+
+        protected void gvParticipants_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            string command = e.CommandName;
+            switch(command)
+            {
+                case "User":
+                    KidID = Convert.ToInt32(e.CommandArgument.ToString());
+                    panUser.Visible = true;
+                    panParticipants.Visible = false;
+                    GetUserOfParticipant();
+                    break;
+            }
+        }
+
+        protected void gvParticipants_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            DB db = new DB();
+            KidID = Convert.ToInt32(e.Keys[0]);
+            DataTable dtParticipate = db.Query("SELECT surname, givenname FROM kids WHERE kidId=?", KidID);
+            DataRow drParticipate = dtParticipate.Rows[0];
+
+            db.Query("DELETE FROM kidparticipates WHERE kidId=? AND courseID=?", KidID, CourseID);
+
+            Fill_gvParticipants();
+            Fill_gvcourses();
+
+            string ParticipateDeleteMailText =
+              $"Sehr geehrte Damen und Herren, <br><br>ihr Kind {drParticipate["givenname"]} {drParticipate["surname"]} wurde leider aus dem Kurs entfernt. Um den Grund des Ausschlusses zu erfahren, " +
+              $"melden Sie sich bitte bei dem Kursmanager. Die Nummer bzw. Email-Adresse können Sie auf unserer Webseite finden." +
+              $"Bitte entschuldigen Sie die Unnanehmlichkeiten." + $"" +
+              $"<br><br> Mit freundlichen Grüßen,<br>Gemeinde Mondpichl";
+
+            DataTable dtEmails = db.Query("SELECT user.email FROM user LEFT JOIN kids ON kids.email = user.email WHERE kids.kidId=?", KidID);
+
+            foreach (DataRow dr in dtEmails.Rows)
+            {
+                EmailMaker.Send((string)dr["email"], "Ausschluss Kind", ParticipateDeleteMailText);
+            }
+        }
+
+        private void Fill_gvUserWhoGotMail()
+        {
+            DB db = new DB();
+            gvUserWhoGotMail.DataSource = db.Query("SELECT * FROM user LEFT JOIN kids ON kids.email = user.email LEFT JOIN kidparticipates ON kidparticipates.kidId = kids.kidId WHERE courseId=?", CourseID);
+            gvUserWhoGotMail.DataBind();
+            gvUserWhoGotMail.HeaderRow.TableSection = TableRowSection.TableHeader;
+        }
     }
 }

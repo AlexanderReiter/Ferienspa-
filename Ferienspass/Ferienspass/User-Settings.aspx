@@ -97,7 +97,7 @@
         </div>
         <br />
         <asp:Literal ID="litGenderError" runat="server"></asp:Literal>
-        <asp:GridView ID="gvKids" runat="server" AutoGenerateColumns="false" DataKeyNames="kidId" ShowHeaderWhenEmpty="true" CssClass="table table-striped" OnRowCancelingEdit="gvKids_RowCancelingEdit" OnRowEditing="gvKids_RowEditing" OnRowCommand="gvKids_RowCommand" OnRowUpdating="gvKids_RowUpdating" OnRowDeleting="gvKids_RowDeleting" OnRowDataBound="gvKids_RowDataBound">
+        <asp:GridView ID="gvKids" runat="server" AutoGenerateColumns="false" DataKeyNames="kidId" ShowHeaderWhenEmpty="true" CssClass="table table-hover" GridLines="None" OnRowCancelingEdit="gvKids_RowCancelingEdit" OnRowEditing="gvKids_RowEditing" OnRowCommand="gvKids_RowCommand" OnRowUpdating="gvKids_RowUpdating" OnRowDeleting="gvKids_RowDeleting" OnRowDataBound="gvKids_RowDataBound">
             <Columns>
                 <asp:TemplateField HeaderText="Vorname">
                     <ItemTemplate>

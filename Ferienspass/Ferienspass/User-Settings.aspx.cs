@@ -45,6 +45,7 @@ namespace Ferienspass
             DB db = new DB();
             gvKids.DataSource = db.Query("SELECT *, gender.name AS gendername FROM kids LEFT JOIN gender ON gender.id=kids.gender WHERE email=?", User.Identity.Name);
             gvKids.DataBind();
+            gvKids.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
         protected void btnChangePassword_Click(object sender, EventArgs e)
