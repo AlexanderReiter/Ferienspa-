@@ -27,6 +27,7 @@ namespace Ferienspass
             if (!Page.IsPostBack)
             {
                 Fill_gvcourses();
+                //txtSearchbar.Attributes.Add("onkeypress", "return handleKeyDown('" + txtSearchbar.ClientID + "', event)");
             }
         }
 
