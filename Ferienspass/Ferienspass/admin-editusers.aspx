@@ -33,7 +33,7 @@
         </div>
 
             <div class="gvuser">
-                <asp:GridView ID="gvUser" runat="server" CssClass="table table-hover" GridLines="None" AutoGenerateColumns="False" DataKeyNames="email" AllowPaging="True" AllowSorting="True" 
+                <asp:GridView ID="gvUser" runat="server" CssClass="table table-hover" GridLines="None" AutoGenerateColumns="False" DataKeyNames="email" AllowPaging="True" PageSize="20" AllowSorting="True" 
                     OnSorting="gvUser_Sorting"  OnPageIndexChanging="gvUser_PageIndexChanging" ShowHeaderWhenEmpty="True" OnRowDeleting="gvUser_RowDeleting" >
                     <Columns>
                     <asp:TemplateField HeaderText="E-Mail" SortExpression="email">
