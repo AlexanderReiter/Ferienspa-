@@ -7,13 +7,29 @@
 // </automatisch generiert>
 //------------------------------------------------------------------------------
 
-namespace Ferienspass
-{
-
-
-    public partial class edit_users
-    {
-
+namespace Ferienspass {
+    
+    
+    public partial class edit_users {
+        
+        /// <summary>
+        /// txtSearchbar-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSearchbar;
+        
+        /// <summary>
+        /// btnSearchUser-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSearchUser;
+        
         /// <summary>
         /// gvUser-Steuerelement
         /// </summary>

@@ -19,8 +19,17 @@
  </script>
     
     <div class="container">
+        <br />
         <div class="row">
             <h1>User</h1>
+            <br />
+            <div class="search-container input-group mb-3">
+                <asp:TextBox ID="txtSearchbar" runat="server" placeholder="Suchen nach Email, Vorname oder Nachname" class="form-control"></asp:TextBox>
+                <div class="input-group-append">
+                    <asp:Button ID="btnSearchUser" runat="server" Text="Suche" OnClick="btnSearchUser_Click" class="btn btn-secondary"/>
+                </div>
+            </div>
+
         </div>
 
             <div class="gvuser">
