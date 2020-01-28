@@ -4,24 +4,32 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
         <br />
-        <h1>Kurse</h1>
-        <br />
+        <div class="row">
+            <h1>Kurse</h1>
+            <br />
+            <div class="search-container input-group mb-3">
+                <asp:TextBox ID="txtSearchbar" runat="server" placeholder="Suchen nach Kursname oder Organisation" class="form-control"></asp:TextBox>
+                <div class="input-group-append">
+                    <asp:Button ID="btnUserSearchCourse" runat="server" Text="Suche" OnClick="btnUserSearchCourse_Click" class="btn btn-secondary"/>
+                </div>
+            </div>
+        </div>
         <asp:Literal ID="litAlert" runat="server"></asp:Literal>
         <div class="gvCourses">
             <asp:GridView ID="gvUserCourses" runat="server" CssClass="table table-hover" GridLines="None" AutoGenerateColumns="False" AllowPaging="True" PageSize="20" DataKeyNames="courseID"
-                ShowHeaderWhenEmpty="true" OnRowCommand="gvUserCourses_RowCommand">
+                ShowHeaderWhenEmpty="true" OnRowCommand="gvUserCourses_RowCommand" AllowSorting="true" OnPageIndexChanging="gvUserCourses_PageIndexChanging" OnSorting="gvUserCourses_Sorting">
                 <Columns>
-                    <asp:TemplateField HeaderText="Kursname">
+                    <asp:TemplateField HeaderText="Kursname" SortExpression="coursename">
                         <ItemTemplate>
                             <asp:Label ID="lblCourseName" runat="server" Text='<%# Eval("coursename") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Datum">
+                    <asp:TemplateField HeaderText="Datum" SortExpression="date">
                         <ItemTemplate>
                             <asp:Label ID="lblDate" runat="server" Text='<%# Eval("date", "{0:d}") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Organisation">
+                    <asp:TemplateField HeaderText="Organisation" SortExpression="organisationname">
                         <ItemTemplate>
                             <asp:Label ID="lblOrganisation" runat="server" Text='<%# Eval("organisationname") %>'></asp:Label>
                         </ItemTemplate>

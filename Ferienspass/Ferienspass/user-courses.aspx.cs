@@ -22,23 +22,22 @@ namespace Ferienspass
             }
         }
 
-        public string SortExpresssion
+        private string SortExpression
         {
+            get
+            {
+                return (ViewState["SortExpression"] ?? string.Empty).ToString();
+            }
             set
             {
-                if (SortExpresssion.StartsWith(value) && !SortExpresssion.EndsWith("DESC"))
+                if (SortExpression.StartsWith(value) && (!SortExpression.EndsWith("DESC")))
                 {
-                    ViewState["sortexpression"] = value + " DESC";
+                    ViewState["SortExpression"] = value + " DESC";
                 }
                 else
                 {
-                    ViewState["sortexpression"] = value;
+                    ViewState["SortExpression"] = value;
                 }
-            }
-
-            get
-            {
-                return (ViewState["sortexpression"] ?? string.Empty).ToString();
             }
         }
 
@@ -51,18 +50,43 @@ namespace Ferienspass
             }
         }
 
+        protected void btnUserSearchCourse_Click(object sender, EventArgs e)
+        {
+            Fill_gvUserCourses();
+        }
+
         private void Fill_gvUserCourses()
         {
             DB db = new DB();
-            DataTable dtCompany = db.Query("SELECT *,courseID as current_id, " +
+
+            string queryString = "SELECT *,courseID as current_id, " +
                 "(SELECT COUNT(*) FROM kidparticipates WHERE kidparticipates.courseId=current_id) as cntparticipants FROM courses " +
-                "LEFT JOIN organisation ON courses.organisationID = organisation.organisationID");
+                "LEFT JOIN organisation ON courses.organisationID = organisation.organisationID";
+
+            if (!string.IsNullOrEmpty(txtSearchbar.Text))   //Suchabfrage
+            {
+                queryString += $" WHERE courses.coursename LIKE '{txtSearchbar.Text}%' OR organisation.organisationname LIKE '{txtSearchbar.Text}%'";
+            }
+
+            DataTable dtCompany = db.Query(queryString);
             DataView dvCompany = new DataView(dtCompany);
-            dvCompany.Sort = SortExpresssion;
+            dvCompany.Sort = SortExpression;
 
             gvUserCourses.DataSource = dvCompany;
             gvUserCourses.DataBind();
             gvUserCourses.HeaderRow.TableSection = TableRowSection.TableHeader;
+        }
+
+        protected void gvUserCourses_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            SortExpression = e.SortExpression;
+            Fill_gvUserCourses();
+        }
+
+        protected void gvUserCourses_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvUserCourses.PageIndex = e.NewPageIndex;
+            Fill_gvUserCourses();
         }
 
         protected void gvUserCourses_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -160,5 +184,6 @@ namespace Ferienspass
                 litAlert.Text = "<div class='alert alert-danger'><strong>Achtung!</strong> Ein/mehrere Anmeldungen wurden nicht zum Warenkorb hinzugefügt da sie sich entweder bereits dort befinden oder schon angemeldet sind.</div>";
             }
         }
+
     }
 }
