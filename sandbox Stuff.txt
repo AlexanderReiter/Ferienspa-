@@ -1,0 +1,30 @@
+mondpichl@gmx.at
+pw: DieGemeindeMondpichlIstSuper
+
+paypal-pw: Mondpichl2Pay
+
+nummer: +436703091189
+
+
+sandbox-user: 
+John Doe
+John.doe@soek.com
+pw: KennanSieAnHerrnSOEK or XU89)3[w
+
+
+sandbox-business
+Business Account
+business@soek.com
+pw: MainAccount
+
+
+API Credentials:
+
+Username:
+sb-0isri925669_api1.business.example.com
+Password:
+C4TLM3GBMME9XJRZ
+Signature:
+AQXugmPcI5E1bK.j8n3yIxEPLGV6A5cLDW8GXzX0MmWuECO5OOJ.BHqo
+SB-Client-ID:
+Aevhv9xB89aOJHVhSLT_WvcszERaoejFhazTiunNABotJKQ7imwieAJEadnx-ltO_EVjm7xKCqTF5fqy

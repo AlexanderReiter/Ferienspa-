@@ -83,7 +83,26 @@
                             <td></td>
                             <td></td>
                             <td>
-                                <asp:Button ID="btnCheckout" runat="server" Text="Kaufen" CssClass="btn btn-success float-right" OnClick="btnCheckout_Click" />
+                                <asp:Button ID="btnCheckout" runat="server" Text="Kaufen" CssClass="btn btn-success float-right" Visible="false"/>
+
+                                <asp:HiddenField ID="hiddenFieldTotal" runat="server" />
+                                <div id="paypal-button-container"></div>
+                                <script src="https://www.paypal.com/sdk/js?client-id=Aevhv9xB89aOJHVhSLT_WvcszERaoejFhazTiunNABotJKQ7imwieAJEadnx-ltO_EVjm7xKCqTF5fqy"></script>
+                                <script>
+                                    var total = document.getElementById('<%= hiddenFieldTotal.ClientID%>').value;
+                                    paypal.Buttons({
+                                        createOrder: function (data, actions) {
+                                            // This function sets up the details of the transaction, including the amount and line item details.
+                                            return actions.order.create({
+                                                purchase_units: [{
+                                                    amount: {
+                                                        value: total,
+                                                        currency: 'EUR'
+                                                    }
+                                                }]
+                                            });
+                                        }
+                                    }).render('#paypal-button-container');</script>
                             </td>
                         </tr>
                     </tbody>

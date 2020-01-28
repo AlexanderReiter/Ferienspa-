@@ -1,42 +1,57 @@
-﻿<%@ Page Language="C#"  MasterPageFile="~/admin-master.Master" AutoEventWireup="true" CodeBehind="edit-users.aspx.cs" Inherits="Ferienspass.edit_users" %>
+﻿<%@ Page Language="C#"  MasterPageFile="~/admin-master.Master" AutoEventWireup="true" CodeBehind="admin-editusers.aspx.cs" Inherits="Ferienspass.edit_users" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
 <script type="text/javascript">
+
     function Delete() {
-        if (confirm("Wollen Sie diesen User löschen?\n")) {
+        if (confirm("Wollen Sie diesen User löschen?\n"))
+        {
+
             return true;
         }
+
         return false;
     }
+
  </script>
     
     <div class="container">
+        <br />
         <div class="row">
             <h1>User</h1>
+            <br />
+            <div class="search-container input-group mb-3">
+                <asp:TextBox ID="txtSearchbar" runat="server" placeholder="Suchen nach Email, Vorname oder Nachname" class="form-control"></asp:TextBox>
+                <div class="input-group-append">
+                    <asp:Button ID="btnSearchUser" runat="server" Text="Suche" OnClick="btnSearchUser_Click" class="btn btn-secondary"/>
+                </div>
+            </div>
+
         </div>
 
             <div class="gvuser">
-                <asp:GridView ID="gvUser" runat="server" CssClass="table table-hover" GridLines="None" AutoGenerateColumns="false" DataKeyNames="email" AllowPaging="true" PageSize="20" ShowHeaderWhenEmpty="True" OnRowDeleting="gvUser_RowDeleting" >
+                <asp:GridView ID="gvUser" runat="server" CssClass="table table-hover" GridLines="None" AutoGenerateColumns="False" DataKeyNames="email" AllowPaging="True" AllowSorting="True" 
+                    OnSorting="gvUser_Sorting"  OnPageIndexChanging="gvUser_PageIndexChanging" ShowHeaderWhenEmpty="True" OnRowDeleting="gvUser_RowDeleting" >
                     <Columns>
-                    <asp:TemplateField HeaderText="E-Mail">
+                    <asp:TemplateField HeaderText="E-Mail" SortExpression="email">
                         <ItemTemplate>
                             <asp:Label ID="lblEmail" runat="server" Text='<%# Eval("email") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="User-Status">
+                    <asp:TemplateField HeaderText="User-Status" SortExpression="userstatus">
                         <ItemTemplate>
                             <asp:Label ID="lblUserStatus" runat="server" Text='<%# Eval("userstatus") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Vorname">
+                    <asp:TemplateField HeaderText="Vorname" SortExpression="givenname">
                         <ItemTemplate>
                             <asp:Label ID="lblGivenname" runat="server" Text='<%# Eval("givenname") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Nachname">
+                    <asp:TemplateField HeaderText="Nachname" SortExpression="surname">
                         <ItemTemplate>
                             <asp:Label ID="lblSurname" runat="server" Text='<%# Eval("surname") %>'></asp:Label>
                         </ItemTemplate>
@@ -66,7 +81,7 @@
                                 <asp:Label ID="lblFailedLogins" runat="server" Text='<%# Eval("failedlogins") %>'></asp:Label>
                             </ItemTemplate>                         
                         </asp:TemplateField>
-                    <asp:TemplateField HeaderText="User gesperrt">
+                    <asp:TemplateField HeaderText="User gesperrt" SortExpression="blocked">
                         <ItemTemplate>
                             <asp:Label ID="lblBlockedUser" runat="server" Text='<%# Eval("blocked") %>'></asp:Label>
                         </ItemTemplate>
