@@ -17,6 +17,25 @@
          }
     </script>
 
+    
+<%--    <script type="text/javascript" lang="javascript"> 
+
+        function handleKeyDown(obj, event) {
+            dataGridView1.Rows.forEach(SetVisibility)
+
+            function SetVisibility(row)
+            {
+                if (row.Cells["driverNo"].Value != null
+                    && row.Cells["driverNo"].Value.ToString() == textBox1.Text) {
+                    row.Visible = false;
+                }
+                else {
+                    row.Visible = true;
+                }
+            }
+        } 
+    </script>--%>
+
     <div class="container">
         <br />
 
