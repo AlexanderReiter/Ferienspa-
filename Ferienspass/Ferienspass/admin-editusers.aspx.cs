@@ -13,6 +13,7 @@ namespace Ferienspass
     {  
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Check.IsAdmin(User.Identity.Name)) Response.Redirect("logout.aspx");
             if (!Page.IsPostBack)
             {
                 Fill_gvUser();
@@ -113,5 +114,21 @@ namespace Ferienspass
             Fill_gvUser();
         }
 
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            panUser.Visible = false;
+            panBlockBackground.Visible = false;
+        }
+
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void gvUser_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            panUser.Visible = true;
+
+        }
     }
 }
