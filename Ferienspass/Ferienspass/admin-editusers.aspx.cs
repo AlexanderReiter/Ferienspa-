@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 namespace Ferienspass
 {
     public partial class edit_users : System.Web.UI.Page
-    {
+    {  
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -27,10 +27,14 @@ namespace Ferienspass
             //activeuser = 1 --> User ist aktiv 
             //actuveuser = 0 --> User ist gelöscht aus GV aber vorhanden in der Datenbank
             DataTable dtUser = db.Query("SELECT * from user WHERE activeuser = 1");
+            DataView dvUser = new DataView(dtUser);
 
             gvUser.DataSource = dtUser;
+            dvUser.Sort = SortExpression;
+            gvUser.DataSource = dvUser;
             gvUser.DataBind();
             gvUser.HeaderRow.TableSection = TableRowSection.TableHeader;
+            
         }
 
         protected void gvUser_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -54,11 +58,45 @@ namespace Ferienspass
               $"melden Sie sich bitte beim Systemmanager. Die Email-Adresse/Kontaktdaten können Sie auf unserer Webseite finden." +
               $"<br><br> Mit freundlichen Grüßen<br>Gemeinde Mondpichl";
 
-            DataTable userMail = db.Query("SELECT * FROM user WHERE activeuser = 0");
 
-            EmailMaker.Send("email", "Kursabsage", UserDeleteMailText);
+            DataTable userMail = db.Query("SELECT * FROM user WHERE email=?", e.Keys[0]);
+
+            foreach (DataRow dr in userMail.Rows)
+            {
+                EmailMaker.Send((string)dr["email"], "Löschung des Benutzers!", UserDeleteMailText);
+            }
 
 
+        }
+        public string SortExpression
+        {
+            get
+            {
+                return (ViewState["SortExpression"] ?? string.Empty).ToString();
+            }
+            set
+            {
+                if (SortExpression.StartsWith(value) && (!SortExpression.EndsWith("DESC")))
+                {
+                    ViewState["SortExpression"] = value + " DESC";
+                }
+                else
+                {
+                    ViewState["SortExpression"] = value;
+                }
+            }
+        }
+
+        protected void gvUser_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            SortExpression = e.SortExpression;
+            Fill_gvUser();
+        }
+
+        protected void gvUser_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvUser.PageIndex = e.NewPageIndex;
+            Fill_gvUser();
         }
     }
 }
