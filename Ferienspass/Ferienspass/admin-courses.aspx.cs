@@ -63,7 +63,7 @@ namespace Ferienspass
             }
         }
 
-        protected void txtSearchbar_TextChanged(object sender, EventArgs e)
+        protected void btnSearchCourse_Click(object sender, EventArgs e)
         {
             Fill_gvcourses();
         }
@@ -438,20 +438,6 @@ namespace Ferienspass
             return cntParticipants;
         }
         
-        protected void btnSearchCourse_Click(object sender, EventArgs e)
-        {
-            if (txtSearchbar.Text != "")
-            {
-                litSearchAlert.Text = "";
-
-
-            }
-            else
-            {
-                litSearchAlert.Text = "<div class='alert alert-danger'><strong>Fehler!</strong> Geben Sie zuerst einen Text ein, bevor Sie suchen!</div>";
-            }
-        }
-
         private string GetEmail()
         {
             DB db = new DB();
