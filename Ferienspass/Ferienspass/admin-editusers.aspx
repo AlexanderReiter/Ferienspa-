@@ -33,8 +33,13 @@
         </div>
 
             <div class="gvuser">
+<<<<<<< HEAD
                 <asp:GridView ID="gvUser" runat="server" CssClass="table table-hover" GridLines="None" AutoGenerateColumns="False" DataKeyNames="email" AllowPaging="True" AllowSorting="True" 
                     OnSorting="gvUser_Sorting"  OnPageIndexChanging="gvUser_PageIndexChanging" ShowHeaderWhenEmpty="True" OnRowDeleting="gvUser_RowDeleting" OnRowEditing="gvUser_RowEditing" >
+=======
+                <asp:GridView ID="gvUser" runat="server" CssClass="table table-hover" GridLines="None" AutoGenerateColumns="False" DataKeyNames="email" AllowPaging="True" PageSize="20" AllowSorting="True" 
+                    OnSorting="gvUser_Sorting"  OnPageIndexChanging="gvUser_PageIndexChanging" ShowHeaderWhenEmpty="True" OnRowDeleting="gvUser_RowDeleting" >
+>>>>>>> 320ef4e1665574128e8f36a5ab30ee7d888e8e19
                     <Columns>
                     <asp:TemplateField HeaderText="E-Mail" SortExpression="email">
                         <ItemTemplate>

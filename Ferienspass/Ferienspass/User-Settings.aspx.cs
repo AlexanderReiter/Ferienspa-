@@ -19,7 +19,8 @@ namespace Ferienspass
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!Page.IsPostBack)
+            ((user_master)this.Master).SetBasketNumber(GlobalMethods.BasketCount(User.Identity.Name));
+            if (!Page.IsPostBack)
             {
                 LoadUser();
                 Fill_gvKids();

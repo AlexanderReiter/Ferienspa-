@@ -34,26 +34,6 @@ namespace Ferienspass
             }
         }
 
-        public string SortExpresssion
-        {
-            set
-            {
-                if (SortExpresssion.StartsWith(value) && !SortExpresssion.EndsWith("DESC"))
-                {
-                    ViewState["sortexpression"] = value + " DESC";
-                }
-                else
-                {
-                    ViewState["sortexpression"] = value;
-                }
-            }
-
-            get
-            {
-                return (ViewState["sortexpression"] ?? string.Empty).ToString();
-            }
-        }
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
