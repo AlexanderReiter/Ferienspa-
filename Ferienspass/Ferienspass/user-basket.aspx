@@ -86,9 +86,6 @@
                             <td></td>
                             <td></td>
                             <td>
-                                <asp:Button ID="btnCheckout" runat="server" Text="Kaufen" CssClass="btn btn-success float-right" Style="visibility: hidden" />
-                                <input type="button" onclick="javascript:InsertChild()" />
-
                                 <asp:HiddenField ID="hiddenFieldTotal" runat="server" />
                                 <div id="paypal-button"></div>
                                 
@@ -130,39 +127,20 @@
                                             return actions.payment.execute().then(function () {
                                                 // Show a confirmation message to the buyer
                                                 window.alert('Thank you for your purchase!');
-                                                InsertChild();
+                                                //InsertChild();
                                             });
                                         }
                                     }, '#paypal-button');
 
                                     function InsertChild() {
-                                        alert("slsk");
                                         $.ajax({
                                             type: 'POST',
                                             url: 'user-basket.aspx.cs/Checkout',
-                                            data: '{ }',
-                                            contentType: 'application/json; charset=utf-8',
-                                            dataType: 'json',
                                             success: function (msg) {
                                                 // Do something interesting here.
                                             }
                                         });
-                                    }
-                                </script>
-                                
-                                <%@ Import Namespace="System.Web.Services" %>
-                                <%@ Import Namespace="Ferienspass" %>
-                                <script type="text/C#" runat="server">
-                                    [WebMethod]
-                                    private void Checkout()
-                                    {
-                                        DB db = new DB();
-                                        foreach (GridViewRow r in gvBasket.Rows)
-                                        {
-                                            db.ExecuteNonQuery("INSERT INTO kidparticipates (kidId, courseId) VALUES(?, ?)", Convert.ToInt32(gvBasket.DataKeys[r.RowIndex].Values["kidId"]), Convert.ToInt32(gvBasket.DataKeys[r.RowIndex].Values["courseId"]));
-                                        }
-                                        db.ExecuteNonQuery("DELETE FROM basket WHERE userId=?", User.Identity.Name);
-                                        //Ferienspass.user_basket.Fill_GvBasket();
+                                        alert("slsk");
                                     }
                                 </script>
                             </td>

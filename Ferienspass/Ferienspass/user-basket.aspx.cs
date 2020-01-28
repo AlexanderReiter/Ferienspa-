@@ -70,9 +70,9 @@ namespace Ferienspass
 
             if (cntCouses > 0)
             {
-                btnCheckout.Enabled = true;
+                //Disable PayPal-Button
             }
-            else btnCheckout.Enabled = false;
+            else { /*Disable PayPal-Button*/ }
         }
 
         private void CalculatePrice(DataTable dt)
@@ -156,17 +156,6 @@ namespace Ferienspass
         {
             panCourse.Visible = false;
             panBlockBackground.Visible = false;
-        }
-
-        protected void btnCheckout_Click(object sender, EventArgs e)
-        {
-            DB db = new DB();
-            foreach (GridViewRow r in gvBasket.Rows) 
-            {
-                db.ExecuteNonQuery("INSERT INTO kidparticipates (kidId, courseId) VALUES(?, ?)", Convert.ToInt32(gvBasket.DataKeys[r.RowIndex].Values["kidId"]), Convert.ToInt32(gvBasket.DataKeys[r.RowIndex].Values["courseId"]));
-            }
-            db.ExecuteNonQuery("DELETE FROM basket WHERE userId=?", User.Identity.Name);
-            Fill_GvBasket();
         }
 
         [WebMethod]
