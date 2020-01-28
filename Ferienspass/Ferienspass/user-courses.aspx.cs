@@ -8,6 +8,10 @@ using System.Web.UI.WebControls;
 
 namespace Ferienspass
 {
+    // Auswählen der Kinder + Anmelden + Liste Kurse (user kind anmelden)
+    // verified by Andi
+    // 28.01.2020
+
     public partial class user_courses : System.Web.UI.Page
     {
         public int CourseId
