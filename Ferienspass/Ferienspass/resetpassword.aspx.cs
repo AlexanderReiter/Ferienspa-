@@ -25,10 +25,13 @@ namespace Ferienspass
                 string mail = Convert.ToString(Request.QueryString["email"]);
                 string code = Convert.ToString(Request.QueryString["code"]);
                 DateTime date = Convert.ToDateTime(Request.QueryString["date"]);
-                DateTime time = new DateTime(Convert.ToInt64(Request.QueryString["time"])); // zeit ist im link als ticks
+                string timestring = Request.QueryString["time"];
+                DateTime time = new DateTime(1, 1, 1, Convert.ToInt32(timestring.Split('-')[0]),
+                                                      Convert.ToInt32(timestring.Split('-')[1]),
+                                                      Convert.ToInt32(timestring.Split('-')[2]));
                 DB db = new DB();
                 string sqlCheckCode = "SELECT * FROM resetpwcodes WHERE email=? AND code=? AND date=? AND time=?";
-                DataTable dt = db.Query(sqlCheckCode, mail, code, date, time);
+                DataTable dt = db.Query(sqlCheckCode, mail, code, date.Date, time.TimeOfDay);
                 if (dt.Rows.Count == 0)
                 {
                     Response.Redirect("login.aspx");
