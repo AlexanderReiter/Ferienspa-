@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -43,7 +44,7 @@ namespace Ferienspass
             }
         }
 
-        private void Fill_GvBasket()
+        public void Fill_GvBasket()
         {
             DB db = new DB();
             DataTable dt = db.Query("SELECT *, basket.courseId as current_id, " +
@@ -161,6 +162,18 @@ namespace Ferienspass
         {
             DB db = new DB();
             foreach (GridViewRow r in gvBasket.Rows) 
+            {
+                db.ExecuteNonQuery("INSERT INTO kidparticipates (kidId, courseId) VALUES(?, ?)", Convert.ToInt32(gvBasket.DataKeys[r.RowIndex].Values["kidId"]), Convert.ToInt32(gvBasket.DataKeys[r.RowIndex].Values["courseId"]));
+            }
+            db.ExecuteNonQuery("DELETE FROM basket WHERE userId=?", User.Identity.Name);
+            Fill_GvBasket();
+        }
+
+        [WebMethod]
+        public void Checkout()
+        {
+            DB db = new DB();
+            foreach (GridViewRow r in gvBasket.Rows)
             {
                 db.ExecuteNonQuery("INSERT INTO kidparticipates (kidId, courseId) VALUES(?, ?)", Convert.ToInt32(gvBasket.DataKeys[r.RowIndex].Values["kidId"]), Convert.ToInt32(gvBasket.DataKeys[r.RowIndex].Values["courseId"]));
             }
