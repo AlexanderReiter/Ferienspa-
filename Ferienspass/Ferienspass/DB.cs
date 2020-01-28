@@ -55,7 +55,7 @@ namespace Ferienspass
             return dt;
         }
 
-        internal int ExecuteNonQuery(string sql, params object[] parametervalues)
+        public int ExecuteNonQuery(string sql, params object[] parametervalues)
         {
             OdbcCommand cmd = CreateCommand(sql, parametervalues);
             Open();
