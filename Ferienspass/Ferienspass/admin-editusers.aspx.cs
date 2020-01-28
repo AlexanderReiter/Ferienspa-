@@ -13,6 +13,7 @@ namespace Ferienspass
     {  
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Check.IsAdmin(User.Identity.Name)) Response.Redirect("logout.aspx");
             if (!Page.IsPostBack)
             {
                 Fill_gvUser();
