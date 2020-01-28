@@ -10,6 +10,18 @@ namespace Ferienspass
 {
     public partial class user_basket : System.Web.UI.Page
     {
+        public string Total
+        {
+            set
+            {
+                hiddenFieldTotal.Value = value;
+            }
+            get
+            {
+                return hiddenFieldTotal.Value;
+            }
+        }
+
         public int CourseId
         {
             set
@@ -91,6 +103,7 @@ namespace Ferienspass
 
             float total = subtotal - discount;
             lblTotal.Text = total.ToString("F2");
+            Total = String.Format("{0:0.00}", total).Replace(',', '.');
         }
 
         protected void gvBasket_RowCommand(object sender, GridViewCommandEventArgs e)

@@ -19,6 +19,11 @@ namespace Ferienspass
             }
         }
 
+        protected void btnSearchUser_Click(object sender, EventArgs e)
+        {
+            Fill_gvUser();
+        }
+
         private void Fill_gvUser()
         {
             DB db = new DB();
@@ -26,7 +31,15 @@ namespace Ferienspass
             //Nur aktive bzw. nicht aus GV gelöschte User werden angezeigt
             //activeuser = 1 --> User ist aktiv 
             //actuveuser = 0 --> User ist gelöscht aus GV aber vorhanden in der Datenbank
-            DataTable dtUser = db.Query("SELECT * from user WHERE activeuser = 1");
+
+            string queryString = "SELECT * from user WHERE activeuser = 1";
+
+            if (!string.IsNullOrEmpty(txtSearchbar.Text))   //Suchabfrage
+            {
+                queryString += $" AND (user.email LIKE '{txtSearchbar.Text}%' OR user.givenname LIKE '{txtSearchbar.Text}%' OR user.surname LIKE '{txtSearchbar.Text}%')";
+            }
+
+            DataTable dtUser = db.Query(queryString);
             DataView dvUser = new DataView(dtUser);
 
             gvUser.DataSource = dtUser;
@@ -68,6 +81,7 @@ namespace Ferienspass
 
 
         }
+
         public string SortExpression
         {
             get
@@ -98,5 +112,6 @@ namespace Ferienspass
             gvUser.PageIndex = e.NewPageIndex;
             Fill_gvUser();
         }
+
     }
 }

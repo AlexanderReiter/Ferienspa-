@@ -26,3 +26,5 @@ Password:
 C4TLM3GBMME9XJRZ
 Signature:
 AQXugmPcI5E1bK.j8n3yIxEPLGV6A5cLDW8GXzX0MmWuECO5OOJ.BHqo
+SB-Client-ID:
+Aevhv9xB89aOJHVhSLT_WvcszERaoejFhazTiunNABotJKQ7imwieAJEadnx-ltO_EVjm7xKCqTF5fqy

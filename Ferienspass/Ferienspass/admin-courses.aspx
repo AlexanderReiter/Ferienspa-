@@ -38,7 +38,6 @@
 
     <div class="container">
         <br />
-
         <div class="row">
             <h1>Kurse</h1>
             <br />
