@@ -53,12 +53,13 @@
                 <table class="table table-hover">
                     <tbody>
                         <tr>
-                            <td style="width:60%;"></td>
+                            <td style="width: 60%;"></td>
                             <td>
                                 <h5>Zwischensumme</h5>
                             </td>
                             <td class="text-right">
-                                <h5><strong><asp:Label ID="lblSubtotal" runat="server" Text="0"></asp:Label>€</strong></h5>
+                                <h5><strong>
+                                    <asp:Label ID="lblSubtotal" runat="server" Text="0"></asp:Label>€</strong></h5>
                             </td>
                         </tr>
                         <tr>
@@ -67,7 +68,8 @@
                                 <h5>Rabatt</h5>
                             </td>
                             <td class="text-right">
-                                <h5><strong>- <asp:Label ID="lblDiscount" runat="server" Text="0"></asp:Label>€</strong></h5>
+                                <h5><strong>-
+                                    <asp:Label ID="lblDiscount" runat="server" Text="0"></asp:Label>€</strong></h5>
                             </td>
                         </tr>
                         <tr>
@@ -76,33 +78,71 @@
                                 <h4>Summe</h4>
                             </td>
                             <td class="text-right">
-                                <h4><strong><asp:Label ID="lblTotal" runat="server" Text="0"></asp:Label>€</strong></h4>
+                                <h4><strong>
+                                    <asp:Label ID="lblTotal" runat="server" Text="0"></asp:Label>€</strong></h4>
                             </td>
                         </tr>
                         <tr>
                             <td></td>
                             <td></td>
                             <td>
-                                <asp:Button ID="btnCheckout" runat="server" Text="Kaufen" CssClass="btn btn-success float-right" Visible="false"/>
-
                                 <asp:HiddenField ID="hiddenFieldTotal" runat="server" />
-                                <div id="paypal-button-container"></div>
-                                <script src="https://www.paypal.com/sdk/js?client-id=Aevhv9xB89aOJHVhSLT_WvcszERaoejFhazTiunNABotJKQ7imwieAJEadnx-ltO_EVjm7xKCqTF5fqy"></script>
+                                <div id="paypal-button"></div>
+                                
+                                <script type="text/javascript" src="/scripts/jquery-1.4.1.js"></script>
+                                <script src="https://www.paypalobjects.com/api/checkout.js"></script>
                                 <script>
-                                    var total = document.getElementById('<%= hiddenFieldTotal.ClientID%>').value;
-                                    paypal.Buttons({
-                                        createOrder: function (data, actions) {
-                                            // This function sets up the details of the transaction, including the amount and line item details.
-                                            return actions.order.create({
-                                                purchase_units: [{
+                                    var price = document.getElementById('<%= hiddenFieldTotal.ClientID%>').value;
+                                    paypal.Button.render({
+                                        // Configure environment
+                                        env: 'sandbox',
+                                        client: {
+                                            sandbox: 'Aevhv9xB89aOJHVhSLT_WvcszERaoejFhazTiunNABotJKQ7imwieAJEadnx-ltO_EVjm7xKCqTF5fqy',
+                                            production: 'demo_production_client_id'
+                                        },
+                                        // Customize button (optional)
+                                        locale: 'de_AT',
+                                        style: {
+                                            size: 'large',
+                                            color: 'gold',
+                                            shape: 'rect',
+                                        },
+
+                                        // Enable Pay Now checkout flow (optional)
+                                        commit: true,
+
+                                        // Set up a payment
+                                        payment: function (data, actions) {
+                                            return actions.payment.create({
+                                                transactions: [{
                                                     amount: {
-                                                        value: total,
+                                                        total: price,
                                                         currency: 'EUR'
                                                     }
                                                 }]
                                             });
+                                        },
+                                        // Execute the payment
+                                        onAuthorize: function (data, actions) {
+                                            return actions.payment.execute().then(function () {
+                                                // Show a confirmation message to the buyer
+                                                window.alert('Thank you for your purchase!');
+                                                //InsertChild();
+                                            });
                                         }
-                                    }).render('#paypal-button-container');</script>
+                                    }, '#paypal-button');
+
+                                    function InsertChild() {
+                                        $.ajax({
+                                            type: 'POST',
+                                            url: 'user-basket.aspx.cs/Checkout',
+                                            success: function (msg) {
+                                                // Do something interesting here.
+                                            }
+                                        });
+                                        alert("slsk");
+                                    }
+                                </script>
                             </td>
                         </tr>
                     </tbody>
@@ -120,7 +160,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="txtCourseName">Name:</label>
-                                <asp:TextBox ID="txtCourseName" CssClass="form-control"  runat="server" Enabled="false"></asp:TextBox>
+                                <asp:TextBox ID="txtCourseName" CssClass="form-control" runat="server" Enabled="false"></asp:TextBox>
                             </div>
                         </div>
                     </div>
@@ -138,19 +178,19 @@
                                 <div class="col-3">
                                     <div class="form-group">
                                         <label for="txtFrom">Von:</label>
-                                        <asp:TextBox ID="txtFrom" runat="server" CssClass="form-control" Enabled="false" TextMode="Time" format="HH:mm" ></asp:TextBox>
+                                        <asp:TextBox ID="txtFrom" runat="server" CssClass="form-control" Enabled="false" TextMode="Time" format="HH:mm"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="col-3">
                                     <div class="form-group">
                                         <label for="txtTo">Bis:</label>
-                                        <asp:TextBox ID="txtTo" runat="server" CssClass="form-control" Enabled="false" TextMode="Time" format="HH:mm" ></asp:TextBox>
+                                        <asp:TextBox ID="txtTo" runat="server" CssClass="form-control" Enabled="false" TextMode="Time" format="HH:mm"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="col-3">
                                     <div class="form-group">
                                         <label for="txtMinParticipants">Min:</label>
-                                        <asp:TextBox ID="txtMinParticipants" runat="server" CssClass="form-control" Enabled="false" ></asp:TextBox>
+                                        <asp:TextBox ID="txtMinParticipants" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="col-3">
@@ -164,13 +204,13 @@
                                 <div class="col-4">
                                     <div class="form-group">
                                         <label for="txtZIP">PLZ:</label>
-                                        <asp:TextBox ID="txtZIP" runat="server" CssClass="form-control" Enabled="false" ></asp:TextBox>
+                                        <asp:TextBox ID="txtZIP" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="col-8">
                                     <div class="form-group">
                                         <label for="txtCity">Ort:</label>
-                                        <asp:TextBox ID="txtCity" runat="server" CssClass="form-control" Enabled="false"  ></asp:TextBox>
+                                        <asp:TextBox ID="txtCity" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                                     </div>
                                 </div>
                             </div>
@@ -178,7 +218,7 @@
                                 <div class="col-8">
                                     <div class="form-group">
                                         <label for="txtStreet">Straße:</label>
-                                        <asp:TextBox ID="txtStreet" runat="server" CssClass="form-control" Enabled="false"  ></asp:TextBox>
+                                        <asp:TextBox ID="txtStreet" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="col-4">
@@ -192,7 +232,7 @@
                         <div class="col-4">
                             <div class="form-group">
                                 <br />
-                                <asp:Calendar ID="calendar" runat="server" Enabled="false" ></asp:Calendar>
+                                <asp:Calendar ID="calendar" runat="server" Enabled="false"></asp:Calendar>
                             </div>
                         </div>
                     </div>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -43,7 +44,7 @@ namespace Ferienspass
             }
         }
 
-        private void Fill_GvBasket()
+        public void Fill_GvBasket()
         {
             DB db = new DB();
             DataTable dt = db.Query("SELECT *, basket.courseId as current_id, " +
@@ -69,9 +70,9 @@ namespace Ferienspass
 
             if (cntCouses > 0)
             {
-                btnCheckout.Enabled = true;
+                //Disable PayPal-Button
             }
-            else btnCheckout.Enabled = false;
+            else { /*Disable PayPal-Button*/ }
         }
 
         private void CalculatePrice(DataTable dt)
@@ -157,10 +158,11 @@ namespace Ferienspass
             panBlockBackground.Visible = false;
         }
 
-        protected void btnCheckout_Click(object sender, EventArgs e)
+        [WebMethod]
+        public void Checkout()
         {
             DB db = new DB();
-            foreach (GridViewRow r in gvBasket.Rows) 
+            foreach (GridViewRow r in gvBasket.Rows)
             {
                 db.ExecuteNonQuery("INSERT INTO kidparticipates (kidId, courseId) VALUES(?, ?)", Convert.ToInt32(gvBasket.DataKeys[r.RowIndex].Values["kidId"]), Convert.ToInt32(gvBasket.DataKeys[r.RowIndex].Values["courseId"]));
             }
