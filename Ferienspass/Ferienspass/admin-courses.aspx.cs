@@ -74,10 +74,12 @@ namespace Ferienspass
             string queryString = "SELECT *,courseID as current_id, " +
                 "(SELECT COUNT(*) FROM kidparticipates WHERE kidparticipates.courseId=current_id) as cntparticipants FROM courses " +
                 "LEFT JOIN organisation ON courses.organisationID = organisation.organisationID";
-            if (!string.IsNullOrEmpty(txtSearchbar.Text))
+
+            if (!string.IsNullOrEmpty(txtSearchbar.Text))   //Suchabfrage
             {
-                queryString += $" WHERE courses.coursename LIKE '%{txtSearchbar.Text}%' OR organisation.organisationname LIKE '%{txtSearchbar.Text}%'";
+                queryString += $" WHERE courses.coursename LIKE '{txtSearchbar.Text}%' OR organisation.organisationname LIKE '{txtSearchbar.Text}%'";
             }
+
             DataTable dtCompany = db.Query(queryString);
             DataView dvCompany = new DataView(dtCompany);
             dvCompany.Sort = SortExpression;
