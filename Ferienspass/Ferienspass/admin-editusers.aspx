@@ -1,16 +1,21 @@
-﻿<%@ Page Language="C#"  MasterPageFile="~/admin-master.Master" AutoEventWireup="true" CodeBehind="edit-users.aspx.cs" Inherits="Ferienspass.edit_users" %>
+﻿<%@ Page Language="C#"  MasterPageFile="~/admin-master.Master" AutoEventWireup="true" CodeBehind="admin-editusers.aspx.cs" Inherits="Ferienspass.edit_users" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
 <script type="text/javascript">
+
     function Delete() {
-        if (confirm("Wollen Sie diesen User löschen?\n")) {
+        if (confirm("Wollen Sie diesen User löschen?\n"))
+        {
+
             return true;
         }
+
         return false;
     }
+
  </script>
     
     <div class="container">

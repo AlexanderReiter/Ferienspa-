@@ -73,7 +73,7 @@
     <Content Include="agb.aspx" />
     <Content Include="App_Themes\default\style.css" />
     <Content Include="dsgv.aspx" />
-    <Content Include="edit-users.aspx" />
+    <Content Include="admin-editusers.aspx" />
     <Content Include="forgotpassword.aspx" />
     <Content Include="logout.aspx" />
     <Content Include="user-basket.aspx" />
@@ -132,12 +132,12 @@
     <Compile Include="dsgv.aspx.designer.cs">
       <DependentUpon>dsgv.aspx</DependentUpon>
     </Compile>
-    <Compile Include="edit-users.aspx.cs">
-      <DependentUpon>edit-users.aspx</DependentUpon>
+    <Compile Include="admin-editusers.aspx.cs">
+      <DependentUpon>admin-editusers.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="edit-users.aspx.designer.cs">
-      <DependentUpon>edit-users.aspx</DependentUpon>
+    <Compile Include="admin-editusers.aspx.designer.cs">
+      <DependentUpon>admin-editusers.aspx</DependentUpon>
     </Compile>
     <Compile Include="EmailMaker.cs" />
     <Compile Include="DB.cs" />

@@ -45,21 +45,19 @@ namespace Ferienspass
             db.Query("UPDATE user SET activeuser = 0 WHERE email=?", e.Keys[0]);
             gvUser.EditIndex = -1;
 
-
-
             Fill_gvUser();
 
-            //Falls bestätigt, dann E-Mail versenden
+            //Falls bestätigt, dann E - Mail versenden
 
-            //string UserDeleteMailText =
-            //  $"Sehr geehrter Ferienspaß-Benutzer, <br><br> Ihr Benutzer wurde aus unserem System entfernt . Um den Grund der Löschung zu erfahren, " +
-            //  $"melden Sie sich bitte beim Systemmanager. Die Email-Adresse/Kontaktdaten können Sie auf unserer Webseite finden." +              
-            //  $"<br><br> Mit freundlichen Grüßen,<br>Gemeinde Mondpichl";
+            string UserDeleteMailText =
+              $"Sehr geehrter Ferienspaß-Benutzer, <br><br> Ihr Benutzer wurde aus unserem System entfernt . Um den Grund der Löschung zu erfahren, " +
+              $"melden Sie sich bitte beim Systemmanager. Die Email-Adresse/Kontaktdaten können Sie auf unserer Webseite finden." +
+              $"<br><br> Mit freundlichen Grüßen<br>Gemeinde Mondpichl";
 
-            //DataTable userMail = db.Query("SELECT * FROM user WHERE email=?", e.Values[0]);
+            DataTable userMail = db.Query("SELECT * FROM user WHERE activeuser = 0");
 
-            //EmailMaker.Send(Convert.ToString(userMail), "Löschung des Benutzers!", UserDeleteMailText);
-            
+            EmailMaker.Send("email", "Kursabsage", UserDeleteMailText);
+
 
         }
     }
