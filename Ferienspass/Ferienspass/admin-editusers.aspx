@@ -33,18 +33,9 @@
         </div>
 
         <div class="gvuser">
-
             <asp:GridView ID="gvUser" runat="server" CssClass="table table-hover" GridLines="None" AutoGenerateColumns="False" DataKeyNames="email" AllowPaging="True" AllowSorting="True"
-                OnSorting="gvUser_Sorting" OnPageIndexChanging="gvUser_PageIndexChanging" ShowHeaderWhenEmpty="True" OnRowDeleting="gvUser_RowDeleting" OnRowEditing="gvUser_RowEditing">
-
-<<<<<<< HEAD
+                OnSorting="gvUser_Sorting" OnPageIndexChanging="gvUser_PageIndexChanging" ShowHeaderWhenEmpty="True" OnRowDeleting="gvUser_RowDeleting" OnRowEditing="gvUser_RowEditing" OnRowDataBound="gvUser_RowDataBound">
                 <Columns>
-=======
-                <asp:GridView ID="gvUser" runat="server" CssClass="table table-hover" GridLines="None" AutoGenerateColumns="False" DataKeyNames="email" AllowPaging="True" AllowSorting="True" 
-                    OnSorting="gvUser_Sorting"  OnPageIndexChanging="gvUser_PageIndexChanging" ShowHeaderWhenEmpty="True" OnRowDeleting="gvUser_RowDeleting" OnRowEditing="gvUser_RowEditing" OnRowDataBound="gvUser_RowDataBound">
-                
-                    <Columns>
->>>>>>> c20f2129e926509e8f400f53b467839db685543c
                     <asp:TemplateField HeaderText="E-Mail" SortExpression="email">
                         <ItemTemplate>
                             <asp:Label ID="lblEmail" runat="server" Text='<%# Eval("email") %>'></asp:Label>
@@ -148,7 +139,6 @@
                     </div>
 
                     <div class="col">
-<<<<<<< HEAD
                         <div class="form-group">
                             <label for="txt">User gesperrt:</label>
                             <asp:TextBox ID="txtBlocked" runat="server" CssClass="form-control"></asp:TextBox>
@@ -156,8 +146,6 @@
                     </div>
 
                     <div class="col">
-=======
->>>>>>> c20f2129e926509e8f400f53b467839db685543c
                         <div class="form-group">
                             <label for="txt">Fehlgeschlagene Logins:</label>
                             <asp:TextBox ID="txtFailedLogins" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>

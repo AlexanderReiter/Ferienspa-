@@ -42,7 +42,7 @@ namespace Ferienspass
                     //create reset link
                     DateTime rightnow = DateTime.Now;
                     string VerificationCode = Password.GenerateSalt();
-                    VerificationCode.Replace('+', 'o');
+                    VerificationCode = VerificationCode.Replace('+', 'o');
                     string sqlVerificationCode = "INSERT INTO resetpwcodes (email, code, date, time) VALUES (?,?,?,?)";
                     db.ExecuteNonQuery(sqlVerificationCode, user, VerificationCode, rightnow.Date, rightnow.TimeOfDay);
                     string time = rightnow.TimeOfDay.ToString();
