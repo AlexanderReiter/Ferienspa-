@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-     <script type="text/javascript">
+     _<script type="text/javascript">
         function Delete() {
             if (confirm("Sind Sie sicher, dass der Kurs gelöscht werden soll?\n")) {
                 return true;
@@ -15,10 +15,7 @@
             document.getElementById('<%=panUserWhoGotMail.ClientID%>').style.visibility = "visible";
             document.getElementById('<%=panBlockBackgroundJavascript.ClientID%>').style.visibility = "visible";
          }
-    </script>
-
-    
-<%--    <script type="text/javascript" lang="javascript"> 
+    </script><%--    <script type="text/javascript" lang="javascript"> 
 
         function handleKeyDown(obj, event) {
             dataGridView1.Rows.forEach(SetVisibility)
@@ -34,9 +31,7 @@
                 }
             }
         } 
-    </script>--%>
-
-    <div class="container">
+    </script>--%><div class="container">
         <br />
         <div class="row">
             <h1>Kurse</h1>
@@ -94,7 +89,7 @@
             </asp:GridView>
         </div>
     </div>
-    <asp:Panel ID="panBlockBackground" runat="server" CssClass="panBlockBackground sticky" Visible="false"></asp:Panel>
+     .<asp:Panel ID="panBlockBackground" runat="server" CssClass="panBlockBackground sticky" Visible="false"></asp:Panel>
     <asp:Panel ID="panBlockBackgroundJavascript" runat="server" CssClass="panBlockBackground sticky" style="visibility:hidden"></asp:Panel>
     <asp:Panel ID="panCourse" runat="server" Visible="false">
         <div class="container">
