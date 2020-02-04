@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#"  MasterPageFile="~/admin-master.Master" AutoEventWireup="true" CodeBehind="admin-editusers.aspx.cs" Inherits="Ferienspass.edit_users" %>
+﻿<%@ Page Language="C#"  MasterPageFile="~/admin-master.Master" AutoEventWireup="true" CodeBehind="admin-editusers.aspx.cs" Theme="default" Inherits="Ferienspass.edit_users" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 

@@ -79,8 +79,6 @@ namespace Ferienspass
             {
                 EmailMaker.Send((string)dr["email"], "Löschung des Benutzers!", UserDeleteMailText);
             }
-
-
         }
 
         public string SortExpression
@@ -128,7 +126,7 @@ namespace Ferienspass
         protected void gvUser_RowEditing(object sender, GridViewEditEventArgs e)
         {
             panUser.Visible = true;
-
+            panBlockBackground.Visible = true;
         }
     }
 }
