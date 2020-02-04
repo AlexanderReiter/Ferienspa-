@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-     _<script type="text/javascript">
+     <script type="text/javascript">
         function Delete() {
             if (confirm("Sind Sie sicher, dass der Kurs gelöscht werden soll?\n")) {
                 return true;
@@ -15,23 +15,9 @@
             document.getElementById('<%=panUserWhoGotMail.ClientID%>').style.visibility = "visible";
             document.getElementById('<%=panBlockBackgroundJavascript.ClientID%>').style.visibility = "visible";
          }
-    </script><%--    <script type="text/javascript" lang="javascript"> 
-
-        function handleKeyDown(obj, event) {
-            dataGridView1.Rows.forEach(SetVisibility)
-
-            function SetVisibility(row)
-            {
-                if (row.Cells["driverNo"].Value != null
-                    && row.Cells["driverNo"].Value.ToString() == textBox1.Text) {
-                    row.Visible = false;
-                }
-                else {
-                    row.Visible = true;
-                }
-            }
-        } 
-    </script>--%><div class="container">
+    </script>
+    
+    <div class="container">
         <br />
         <div class="row">
             <h1>Kurse</h1>
