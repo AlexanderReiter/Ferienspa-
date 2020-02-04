@@ -16,7 +16,7 @@ namespace Ferienspass
             if (!Check.IsAdmin(User.Identity.Name)) Response.Redirect("logout.aspx");
             if (!Page.IsPostBack)
             {
-                Fill_gvUser();
+                Fill_gvUser(); 
             }
         }
 
