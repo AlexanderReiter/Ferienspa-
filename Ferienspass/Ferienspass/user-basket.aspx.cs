@@ -9,6 +9,13 @@ using System.Web.UI.WebControls;
 
 namespace Ferienspass
 {
+    // Alle ausgewählten Kurse
+    // Rabatt und Endpreis berechnen und anzeigen
+    // Bestätigen (hinfällig, da bei paypal inbegriffen)
+    // Verified by Andi
+    // 28.01.2020
+
+
     public partial class user_basket : System.Web.UI.Page
     {
         public string Total
