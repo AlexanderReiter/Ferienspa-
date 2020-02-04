@@ -40,6 +40,7 @@ namespace Ferienspass
                 queryString += $" AND (user.email LIKE '{txtSearchbar.Text}%' OR user.givenname LIKE '{txtSearchbar.Text}%' OR user.surname LIKE '{txtSearchbar.Text}%')";
             }
 
+
             DataTable dtUser = db.Query(queryString);
             DataView dvUser = new DataView(dtUser);
 
@@ -130,9 +131,8 @@ namespace Ferienspass
         {
             if (txtGivenname.Text == string.Empty) return false;
             if (txtSurname.Text == string.Empty) return false;
-            if (Convert.ToInt32(txtUserstatus.Text) < 0 ) return false;
+            if (txtUserstatus.Text == string.Empty) return false;
             if (Convert.ToInt32(txtFailedLogins.Text) < 0) return false;
-            if (Convert.ToInt32(txtBlocked.Text) < 0) return false;
             if (txtZIP.Text == string.Empty) return false;
             if (txtCity.Text == string.Empty) return false;
             if (txtStreet.Text == string.Empty) return false;
@@ -147,8 +147,8 @@ namespace Ferienspass
             if (AllFilledOrSelected())
             {
                 DB db = new DB();
-               db.ExecuteNonQuery("UPDATE user SET givenname=?, surname=?, userstatus=?, failedlogins=?, blocked=?, zipcode=?, city=?, streetname=?, housenumber=? WHERE email=?", 
-                    txtGivenname.Text, txtSurname.Text, Convert.ToInt32(txtUserstatus.Text), Convert.ToInt32(txtFailedLogins.Text), Convert.ToInt32(txtBlocked.Text), txtZIP.Text, txtCity.Text, txtStreet.Text, txtNr.Text, txtEmail.Text);
+               db.ExecuteNonQuery("UPDATE user SET givenname=?, surname=?, userstatus=?, failedlogins=?, zipcode=?, city=?, streetname=?, housenumber=? WHERE email=?", 
+                    txtGivenname.Text, txtSurname.Text, Convert.ToInt32(txtUserstatus.Text), Convert.ToInt32(txtFailedLogins.Text),  txtZIP.Text, txtCity.Text, txtStreet.Text, txtNr.Text, txtEmail.Text);
             
 
                 ClosePanel();
@@ -172,7 +172,6 @@ namespace Ferienspass
             txtSurname.Text = (string)dr["surname"];
             txtUserstatus.Text = Convert.ToString((int)dr["userstatus"]);
             txtFailedLogins.Text = Convert.ToString((int)dr["failedlogins"]);
-            txtBlocked.Text = Convert.ToString((int)dr["blocked"]);
             txtZIP.Text = (string)dr["zipcode"];
             txtCity.Text = (string)dr["city"];
             txtStreet.Text = (string)dr["streetname"];
@@ -184,6 +183,18 @@ namespace Ferienspass
             btnSave.Visible = true;
         }
 
-       
+        protected void gvUser_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                if ((e.Row.FindControl("lblUserStatus") as Label).Text == "0")
+                    (e.Row.FindControl("lblUserStatus") as Label).Text = "Admin";
+                else if ((e.Row.FindControl("lblUserStatus") as Label).Text == "1")
+                    (e.Row.FindControl("lblUserStatus") as Label).Text = "Parent";
+               
+            }
+
+
+        }
     }
 }

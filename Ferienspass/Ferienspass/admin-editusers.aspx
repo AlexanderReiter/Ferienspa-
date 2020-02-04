@@ -35,7 +35,7 @@
             <div class="gvuser">
 
                 <asp:GridView ID="gvUser" runat="server" CssClass="table table-hover" GridLines="None" AutoGenerateColumns="False" DataKeyNames="email" AllowPaging="True" AllowSorting="True" 
-                    OnSorting="gvUser_Sorting"  OnPageIndexChanging="gvUser_PageIndexChanging" ShowHeaderWhenEmpty="True" OnRowDeleting="gvUser_RowDeleting" OnRowEditing="gvUser_RowEditing" >
+                    OnSorting="gvUser_Sorting"  OnPageIndexChanging="gvUser_PageIndexChanging" ShowHeaderWhenEmpty="True" OnRowDeleting="gvUser_RowDeleting" OnRowEditing="gvUser_RowEditing" OnRowDataBound="gvUser_RowDataBound">
                 
                     <Columns>
                     <asp:TemplateField HeaderText="E-Mail" SortExpression="email">
@@ -83,11 +83,7 @@
                                 <asp:Label ID="lblFailedLogins" runat="server" Text='<%# Eval("failedlogins") %>'></asp:Label>
                             </ItemTemplate>                         
                         </asp:TemplateField>
-                    <asp:TemplateField HeaderText="User gesperrt" SortExpression="blocked">
-                        <ItemTemplate>
-                            <asp:Label ID="lblBlockedUser" runat="server" Text='<%# Eval("blocked") %>'></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>
+
 
                   <asp:TemplateField HeaderText="">
                             <ItemTemplate>
@@ -139,13 +135,6 @@
                         <div class="form-group">
                             <label for="txtUserstatus">Userstatus:</label>
                             <asp:TextBox ID="txtUserstatus" runat="server" CssClass="form-control"></asp:TextBox>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                         <div class="form-group">
-                            <label for="txt">User gesperrt:</label>
-                            <asp:TextBox ID="txtBlocked" runat="server" CssClass="form-control" ></asp:TextBox>
                         </div>
                     </div>
 
