@@ -132,8 +132,8 @@
                 <div class="row row-cols-3">
                     <div class="col">
                         <div class="form-group">
-                            <label for="txtUserstatus">Userstatus:</label>
-                            <asp:TextBox ID="txtUserstatus" runat="server" CssClass="form-control"></asp:TextBox>
+                            <label for="ddlUserStatus">Userstatus:</label>
+                            <asp:DropDownList ID="ddlUserStatus" runat="server" CssClass="form-control" Width ="100%"></asp:DropDownList>
                         </div>
                     </div>
 

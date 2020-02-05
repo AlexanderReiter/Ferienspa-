@@ -105,13 +105,17 @@ namespace Ferienspass
         protected global::System.Web.UI.WebControls.TextBox txtSurname;
 
         /// <summary>
+<<<<<<< HEAD
+        /// ddlUserStatus control.
+=======
         /// txtUserstatus-Steuerelement
+>>>>>>> 005deafdbfd7431ebb5e795d1769cd6128d450a4
         /// </summary>
         /// <remarks>
         /// Automatisch generiertes Feld
         /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUserstatus;
+        protected global::System.Web.UI.WebControls.DropDownList ddlUserStatus;
 
         /// <summary>
         /// txtBlocked-Steuerelement
