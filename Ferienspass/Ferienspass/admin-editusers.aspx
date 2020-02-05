@@ -29,7 +29,6 @@
                     <asp:Button ID="btnSearchUser" runat="server" Text="Suche" OnClick="btnSearchUser_Click" class="btn btn-secondary" />
                 </div>
             </div>
-
         </div>
 
         <div class="gvuser">
