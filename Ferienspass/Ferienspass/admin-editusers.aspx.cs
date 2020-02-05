@@ -37,7 +37,7 @@ namespace Ferienspass
 
             if (!string.IsNullOrEmpty(txtSearchbar.Text))   //Suchabfrage
             {
-                queryString += $" AND (user.email LIKE '{txtSearchbar.Text}%' OR user.givenname LIKE '{txtSearchbar.Text}%' OR user.surname LIKE '{txtSearchbar.Text}%')";
+                queryString += $" AND (user.email LIKE '%{txtSearchbar.Text}%' OR user.givenname LIKE '%{txtSearchbar.Text}%' OR user.surname LIKE '%{txtSearchbar.Text}%')";
             }
 
 

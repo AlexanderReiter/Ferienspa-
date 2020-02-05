@@ -57,7 +57,7 @@ namespace Ferienspass
 
             if (!string.IsNullOrEmpty(txtSearchbar.Text))   //Suchabfrage
             {
-                queryString += $" WHERE courses.coursename LIKE '{txtSearchbar.Text}%' OR organisation.organisationname LIKE '{txtSearchbar.Text}%'";
+                queryString += $" WHERE courses.coursename LIKE '%{txtSearchbar.Text}%' OR organisation.organisationname LIKE '%{txtSearchbar.Text}%'";
             }
 
             DataTable dtCompany = db.Query(queryString);
