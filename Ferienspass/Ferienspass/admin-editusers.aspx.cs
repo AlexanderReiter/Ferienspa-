@@ -52,6 +52,18 @@ namespace Ferienspass
             
         }
 
+        private void Fill_ddlUserStatus()
+        {
+            DB db = new DB();
+            DataTable dtUserStatus = db.Query("Select * FROM statusofuser");
+            dtUserStatus.DefaultView.Sort = "statusofuserid ASC";
+            ddlUserStatus.DataSource = dtUserStatus;
+            ddlUserStatus.DataValueField = "statusofuserid";
+            ddlUserStatus.DataTextField = "statusname";
+            ddlUserStatus.DataBind();
+            
+        }
+
         protected void gvUser_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             //User wird mittgeteit, dass er gelöscht wird 
@@ -131,7 +143,7 @@ namespace Ferienspass
         {
             if (txtGivenname.Text == string.Empty) return false;
             if (txtSurname.Text == string.Empty) return false;
-            if (txtUserstatus.Text == string.Empty) return false;
+            if (ddlUserStatus.SelectedIndex == 0) return false;
             if (Convert.ToInt32(txtFailedLogins.Text) < 0) return false;
             if (txtZIP.Text == string.Empty) return false;
             if (txtCity.Text == string.Empty) return false;
@@ -148,7 +160,7 @@ namespace Ferienspass
             {
                 DB db = new DB();
                db.ExecuteNonQuery("UPDATE user SET givenname=?, surname=?, userstatus=?, failedlogins=?, zipcode=?, city=?, streetname=?, housenumber=? WHERE email=?", 
-                    txtGivenname.Text, txtSurname.Text, Convert.ToInt32(txtUserstatus.Text), Convert.ToInt32(txtFailedLogins.Text),  txtZIP.Text, txtCity.Text, txtStreet.Text, txtNr.Text, txtEmail.Text);
+                    txtGivenname.Text, txtSurname.Text, ddlUserStatus.SelectedIndex, Convert.ToInt32(txtFailedLogins.Text),  txtZIP.Text, txtCity.Text, txtStreet.Text, txtNr.Text, txtEmail.Text);
             
 
                 ClosePanel();
@@ -169,13 +181,15 @@ namespace Ferienspass
 
             txtEmail.Text = (string)dr["email"];
             txtGivenname.Text = (string)dr["givenname"];
-            txtSurname.Text = (string)dr["surname"];
-            txtUserstatus.Text = Convert.ToString((int)dr["userstatus"]);
+            txtSurname.Text = (string)dr["surname"];           
             txtFailedLogins.Text = Convert.ToString((int)dr["failedlogins"]);
             txtZIP.Text = (string)dr["zipcode"];
             txtCity.Text = (string)dr["city"];
             txtStreet.Text = (string)dr["streetname"];
             txtNr.Text = (string)dr["housenumber"];
+
+
+            Fill_ddlUserStatus();          
 
 
             panUser.Visible = true;
@@ -193,8 +207,6 @@ namespace Ferienspass
                     (e.Row.FindControl("lblUserStatus") as Label).Text = "Parent";
                
             }
-
-
         }
     }
 }

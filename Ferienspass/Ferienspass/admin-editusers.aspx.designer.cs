@@ -105,13 +105,13 @@ namespace Ferienspass
         protected global::System.Web.UI.WebControls.TextBox txtSurname;
 
         /// <summary>
-        /// txtUserstatus control.
+        /// ddlUserStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUserstatus;
+        protected global::System.Web.UI.WebControls.DropDownList ddlUserStatus;
 
         /// <summary>
         /// txtFailedLogins control.

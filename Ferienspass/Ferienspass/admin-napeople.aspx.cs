@@ -53,7 +53,7 @@ namespace Ferienspass
                 
                 litEmailStatus.Text= "<div class='row'><div class='col'><div class='alert alert-success'>E-mail erfolgreich gesendet!</div></div></div>";
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 litEmailStatus.Text = "<div class='row'><div class='col'><div class='alert alert-danger'>E-mail senden fehlgeschlagen!</div></div></div>";
             }
