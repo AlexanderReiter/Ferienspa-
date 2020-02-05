@@ -40,6 +40,7 @@ namespace Ferienspass
                 queryString += $" AND (user.email LIKE '{txtSearchbar.Text}%' OR user.givenname LIKE '{txtSearchbar.Text}%' OR user.surname LIKE '{txtSearchbar.Text}%')";
             }
 
+
             DataTable dtUser = db.Query(queryString);
             DataView dvUser = new DataView(dtUser);
 
@@ -79,8 +80,6 @@ namespace Ferienspass
             {
                 EmailMaker.Send((string)dr["email"], "Löschung des Benutzers!", UserDeleteMailText);
             }
-
-
         }
 
         public string SortExpression
@@ -114,20 +113,87 @@ namespace Ferienspass
             Fill_gvUser();
         }
 
-        protected void btnCancel_Click(object sender, EventArgs e)
+        protected void ClosePanel()
         {
+            litAlert.Text = string.Empty;
             panUser.Visible = false;
             panBlockBackground.Visible = false;
+
+            Fill_gvUser();
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            ClosePanel();
+        }
+
+        private bool AllFilledOrSelected()
+        {
+            if (txtGivenname.Text == string.Empty) return false;
+            if (txtSurname.Text == string.Empty) return false;
+            if (txtUserstatus.Text == string.Empty) return false;
+            if (Convert.ToInt32(txtFailedLogins.Text) < 0) return false;
+            if (txtZIP.Text == string.Empty) return false;
+            if (txtCity.Text == string.Empty) return false;
+            if (txtStreet.Text == string.Empty) return false;
+            if (txtNr.Text == string.Empty) return false;
+
+
+            return true;
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            if (AllFilledOrSelected())
+            {
+                DB db = new DB();
+               db.ExecuteNonQuery("UPDATE user SET givenname=?, surname=?, userstatus=?, failedlogins=?, zipcode=?, city=?, streetname=?, housenumber=? WHERE email=?", 
+                    txtGivenname.Text, txtSurname.Text, Convert.ToInt32(txtUserstatus.Text), Convert.ToInt32(txtFailedLogins.Text),  txtZIP.Text, txtCity.Text, txtStreet.Text, txtNr.Text, txtEmail.Text);
+            
 
+                ClosePanel();
+            }
+
+            else
+            {
+                litAlert.Text = "<div class='alert aler-danger><strong>Fehler!<strong> Alle Felder müssen mit zulässigen Werten ausgefüllt werden.</div>";
+            }
         }
 
         protected void gvUser_RowEditing(object sender, GridViewEditEventArgs e)
         {
+            
+            DB db = new DB();
+            DataTable dt = db.Query("SELECT * FROM user WHERE email=?", gvUser.DataKeys[e.NewEditIndex].Value);
+            DataRow dr = dt.Rows[0];
+
+            txtEmail.Text = (string)dr["email"];
+            txtGivenname.Text = (string)dr["givenname"];
+            txtSurname.Text = (string)dr["surname"];
+            txtUserstatus.Text = Convert.ToString((int)dr["userstatus"]);
+            txtFailedLogins.Text = Convert.ToString((int)dr["failedlogins"]);
+            txtZIP.Text = (string)dr["zipcode"];
+            txtCity.Text = (string)dr["city"];
+            txtStreet.Text = (string)dr["streetname"];
+            txtNr.Text = (string)dr["housenumber"];
+
+
             panUser.Visible = true;
+            panBlockBackground.Visible = true;
+            btnSave.Visible = true;
+        }
+
+        protected void gvUser_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                if ((e.Row.FindControl("lblUserStatus") as Label).Text == "0")
+                    (e.Row.FindControl("lblUserStatus") as Label).Text = "Admin";
+                else if ((e.Row.FindControl("lblUserStatus") as Label).Text == "1")
+                    (e.Row.FindControl("lblUserStatus") as Label).Text = "Parent";
+               
+            }
+
 
         }
     }
