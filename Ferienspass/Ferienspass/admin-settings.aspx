@@ -38,15 +38,15 @@
                 </asp:TemplateField>
                 <asp:TemplateField>
                     <HeaderTemplate>
-                        <asp:LinkButton ID="btnAddCity" runat="server" CommandName="Add" ForeColor="Black" ><i class="fa fa-plus-square"></i></asp:LinkButton>
+                        <asp:LinkButton ID="btnAddCity" runat="server" CommandName="Add" ToolTip="Partnergemeinde hinzufügen" ForeColor="Black" ><i class="fa fa-plus-square"></i></asp:LinkButton>
                     </HeaderTemplate>
                     <ItemTemplate>
-                        <asp:LinkButton ID="btnEditCity" runat="server" CommandName="Edit" ForeColor="Black"><i class="fas fa-pen"></i></asp:LinkButton>
-                        <asp:LinkButton ID="btnDeleteCity" runat="server" CommandName="Delete" OnClientClick="return Delete()" ForeColor="Black"><i class="fa fa-trash"></i></asp:LinkButton>
+                        <asp:LinkButton ID="btnEditCity" runat="server" CommandName="Edit" ToolTip="Partnergemeinde bearbeiten" ForeColor="Black"><i class="fas fa-pen"></i></asp:LinkButton>
+                        <asp:LinkButton ID="btnDeleteCity" runat="server" CommandName="Delete" ToolTip="Partnergemeinde entfernen" OnClientClick="return Delete()" ForeColor="Black"><i class="fa fa-trash"></i></asp:LinkButton>
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <asp:LinkButton ID="btnUpdateCity" runat="server" CommandName="Update" ForeColor="Black"><i class="fa fa-check"></i></asp:LinkButton>
-                        <asp:LinkButton ID="btnCancelCity" runat="server" CommandName="Cancel" ForeColor="Black"><i class="fa fa-times"></i></asp:LinkButton>
+                        <asp:LinkButton ID="btnUpdateCity" runat="server" CommandName="Update" ToolTip="Änderungen speichern" ForeColor="Black"><i class="fa fa-check"></i></asp:LinkButton>
+                        <asp:LinkButton ID="btnCancelCity" runat="server" CommandName="Cancel" ToolTip="Abbrechen" ForeColor="Black"><i class="fa fa-times"></i></asp:LinkButton>
                     </EditItemTemplate>
                 </asp:TemplateField>
             </Columns>

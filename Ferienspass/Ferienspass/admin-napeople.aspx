@@ -27,7 +27,7 @@
                         <asp:BoundField DataField="housenumber" HeaderText="Nr." />
                         <asp:TemplateField HeaderText="">
                             <ItemTemplate>
-                                <asp:LinkButton ID="btnSendMail" runat="server" OnClick="btnSendMail_Click" ForeColor="Black"><i class="fas fa-envelope" style='font-size:24px;'></i></asp:LinkButton>
+                                <asp:LinkButton ID="btnSendMail" runat="server" OnClick="btnSendMail_Click" ToolTip="Infomail senden" ForeColor="Black"><i class="fas fa-envelope" style='font-size:24px;'></i></asp:LinkButton>
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
