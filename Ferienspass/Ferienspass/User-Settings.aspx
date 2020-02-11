@@ -133,15 +133,15 @@
                 </asp:TemplateField>
                 <asp:TemplateField>
                     <HeaderTemplate>
-                        <asp:LinkButton ID="btnAddChild" runat="server" CommandName="Add" ForeColor="Black" ><i class="fa fa-plus-square"></i></asp:LinkButton>
+                        <asp:LinkButton ID="btnAddChild" runat="server" CommandName="Add" ToolTip="Kind hinzufügen" ForeColor="Black" ><i class="fa fa-plus-square"></i></asp:LinkButton>
                     </HeaderTemplate>
                     <ItemTemplate>
-                        <asp:LinkButton ID="btnEditChild" runat="server" CommandName="Edit" ForeColor="Black"><i class="fas fa-pen"></i></asp:LinkButton>
-                        <asp:LinkButton ID="btnDeleteChild" runat="server" CommandName="Delete" ForeColor="Black"><i class="fa fa-trash"></i></asp:LinkButton>
+                        <asp:LinkButton ID="btnEditChild" runat="server" CommandName="Edit" ToolTip="Kind bearbeiten" ForeColor="Black"><i class="fas fa-pen"></i></asp:LinkButton>
+                        <asp:LinkButton ID="btnDeleteChild" runat="server" CommandName="Delete" ToolTip="Kind entfernen" ForeColor="Black"><i class="fa fa-trash"></i></asp:LinkButton>
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <asp:LinkButton ID="btnUpdateChild" runat="server" CommandName="Update" ForeColor="Black"><i class="fa fa-check"></i></asp:LinkButton>
-                        <asp:LinkButton ID="btnCancelChild" runat="server" CommandName="Cancel" ForeColor="Black"><i class="fa fa-times"></i></asp:LinkButton>
+                        <asp:LinkButton ID="btnUpdateChild" runat="server" CommandName="Update" ToolTip="Änderungen speichern" ForeColor="Black"><i class="fa fa-check"></i></asp:LinkButton>
+                        <asp:LinkButton ID="btnCancelChild" runat="server" CommandName="Cancel" ToolTip="Abbrechen" ForeColor="Black"><i class="fa fa-times"></i></asp:LinkButton>
                     </EditItemTemplate>
                 </asp:TemplateField>
             </Columns>

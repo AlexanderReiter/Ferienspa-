@@ -29,7 +29,6 @@
                     <asp:Button ID="btnSearchUser" runat="server" Text="Suche" OnClick="btnSearchUser_Click" class="btn btn-secondary" />
                 </div>
             </div>
-
         </div>
 
         <div class="gvuser">
@@ -88,8 +87,8 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="">
                         <ItemTemplate>
-                            <asp:LinkButton ID="btnUpdate" runat="server" CommandName="Edit" ForeColor="Black"><i class='fas fa-pen' style='font-size:24px;'></i></asp:LinkButton>
-                            <asp:LinkButton ID="btnDelete" runat="server" CommandName="Delete" OnClientClick="return Delete()" ForeColor="Black"><i class='fas fa-trash' style='font-size:24px'></i></asp:LinkButton>
+                            <asp:LinkButton ID="btnUpdate" runat="server" CommandName="Edit" ToolTip="User bearbeiten" ForeColor="Black"><i class='fas fa-pen' style='font-size:24px;'></i></asp:LinkButton>
+                            <asp:LinkButton ID="btnDelete" runat="server" CommandName="Delete" ToolTip="User löschen" OnClientClick="return Delete()" ForeColor="Black"><i class='fas fa-trash' style='font-size:24px'></i></asp:LinkButton>
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
