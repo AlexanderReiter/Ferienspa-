@@ -75,17 +75,12 @@
                             <asp:Label ID="lblNr" runat="server" Text='<%# Eval("housenumber") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Fehlgeschlagene Logins">
+                    <asp:TemplateField HeaderText="Blockiert">
                         <ItemTemplate>
-                            <asp:Label ID="lblFailedLogins" runat="server" Text='<%# Eval("failedlogins") %>'></asp:Label>
+                            <asp:Label ID="lblFailedLogins" runat="server" Text='<%# Eval("blocked") %>'></asp:Label>
                         </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="User gesperrt" SortExpression="blocked">
-                        <ItemTemplate>
-                            <asp:Label ID="lblBlockedUser" runat="server" Text='<%# Eval("blocked") %>'></asp:Label>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="">
+                    </asp:TemplateField>                   
+                    <asp:TemplateField>
                         <ItemTemplate>
                             <asp:LinkButton ID="btnUpdate" runat="server" CommandName="Edit" ToolTip="User bearbeiten" ForeColor="Black"><i class='fas fa-pen' style='font-size:24px;'></i></asp:LinkButton>
                             <asp:LinkButton ID="btnDelete" runat="server" CommandName="Delete" ToolTip="User löschen" OnClientClick="return Delete()" ForeColor="Black"><i class='fas fa-trash' style='font-size:24px'></i></asp:LinkButton>
@@ -133,16 +128,12 @@
                     <div class="col">
                         <div class="form-group">
                             <label for="ddlUserStatus">Userstatus:</label>
-                            <asp:DropDownList ID="ddlUserStatus" runat="server" CssClass="form-control" Width ="100%"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlUserStatus" runat="server" CssClass="form-control" Width ="100%">
+                                <asp:ListItem Text="Parent" Value="1"></asp:ListItem>
+                                <asp:ListItem Text="Admin" Value="0"></asp:ListItem>
+                            </asp:DropDownList>
                         </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="form-group">
-                            <label for="txt">User gesperrt:</label>
-                            <asp:TextBox ID="txtBlocked" runat="server" CssClass="form-control"></asp:TextBox>
-                        </div>
-                    </div>
+                    </div>                  
 
                     <div class="col">
                         <div class="form-group">

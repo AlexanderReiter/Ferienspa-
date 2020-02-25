@@ -61,7 +61,7 @@ namespace Ferienspass
             ddlUserStatus.DataValueField = "statusofuserid";
             ddlUserStatus.DataTextField = "statusname";
             ddlUserStatus.DataBind();
-            
+
         }
 
         protected void gvUser_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -143,12 +143,14 @@ namespace Ferienspass
         {
             if (txtGivenname.Text == string.Empty) return false;
             if (txtSurname.Text == string.Empty) return false;
-            if (ddlUserStatus.SelectedIndex == 0) return false;
-            if (Convert.ToInt32(txtFailedLogins.Text) < 0) return false;
+            if (ddlUserStatus.SelectedIndex < 0 || ddlUserStatus.SelectedIndex > 1) return false;
+            if (Convert.ToInt32(txtFailedLogins.Text) < 0 || Convert.ToInt32(txtFailedLogins.Text) > 3) return false;
             if (txtZIP.Text == string.Empty) return false;
             if (txtCity.Text == string.Empty) return false;
             if (txtStreet.Text == string.Empty) return false;
             if (txtNr.Text == string.Empty) return false;
+
+       
 
 
             return true;
@@ -187,6 +189,7 @@ namespace Ferienspass
             txtCity.Text = (string)dr["city"];
             txtStreet.Text = (string)dr["streetname"];
             txtNr.Text = (string)dr["housenumber"];
+            ddlUserStatus.SelectedValue = Convert.ToString(dr["userstatus"]);
 
 
             Fill_ddlUserStatus();          
