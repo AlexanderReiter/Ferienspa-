@@ -62,13 +62,13 @@
                     </asp:TemplateField>
                     <asp:TemplateField>
                         <HeaderTemplate>
-                            <asp:LinkButton ID="btnNewCourse" runat="server" OnClick="btnNewCourse_Click" ForeColor="Black"><i class='fas fa-plus-square' style='font-size:24px;'></i></asp:LinkButton>
+                            <asp:LinkButton ID="btnNewCourse" runat="server" OnClick="btnNewCourse_Click" ToolTip="Kurs hinzufügen" ForeColor="Black"><i class='fas fa-plus-square' style='font-size:24px;'></i></asp:LinkButton>
                         </HeaderTemplate>
                         <ItemTemplate>
-                            <asp:LinkButton ID="btnUpdate" runat="server" CommandName="Edit" ForeColor="Black"><i class='fas fa-pen' style='font-size:24px;'></i></asp:LinkButton>
-                            <asp:LinkButton ID="btnMail" runat="server" CommandName="Mail" CommandArgument='<%# Eval("courseID") %>' ForeColor="Black"><i class="fas fa-envelope" style='font-size:24px;'></i></asp:LinkButton>
-                            <asp:LinkButton ID="btnDelete" runat="server" CommandName="Delete" OnClientClick="return Delete()" ForeColor="Black"><i class='fas fa-trash' style='font-size:24px'></i></asp:LinkButton>
-                            <asp:LinkButton ID="btnShowParticipants" runat="server" ForeColor="Black" CommandName="Participants" CommandArgument='<%# Eval("courseID") %>'><i class="fas fa-search" style='font-size:24px;'></i></asp:LinkButton>
+                            <asp:LinkButton ID="btnUpdate" runat="server" CommandName="Edit" ToolTip="Kurs bearbeiten" ForeColor="Black"><i class='fas fa-pen' style='font-size:24px;'></i></asp:LinkButton>
+                            <asp:LinkButton ID="btnMail" runat="server" CommandName="Mail" ToolTip="Mail senden" CommandArgument='<%# Eval("courseID") %>' ForeColor="Black"><i class="fas fa-envelope" style='font-size:24px;'></i></asp:LinkButton>
+                            <asp:LinkButton ID="btnDelete" runat="server" CommandName="Delete" ToolTip="Kurs löschen" OnClientClick="return Delete()" ForeColor="Black"><i class='fas fa-trash' style='font-size:24px'></i></asp:LinkButton>
+                            <asp:LinkButton ID="btnShowParticipants" runat="server" ToolTip="Teilnehmer anzeigen" CommandName="Participants" ForeColor="Black" CommandArgument='<%# Eval("courseID") %>'><i class="fas fa-search" style='font-size:24px;'></i></asp:LinkButton>
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
