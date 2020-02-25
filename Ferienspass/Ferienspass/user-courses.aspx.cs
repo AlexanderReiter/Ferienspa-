@@ -122,6 +122,7 @@ namespace Ferienspass
                     txtNr.Text = (string)dr["housenumber"];
                     DateTime date = Convert.ToDateTime(dr["date"]);
                     calendar.SelectedDate = date;
+                    calendar.VisibleDate = date;
                     txtManagerName.Text = (string)dr["managername"];
                     txtContactMail.Text = (string)dr["contactemail"];
                     txtPrice.Text = "€ " + Convert.ToString((decimal)dr["price"]);
