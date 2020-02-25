@@ -15,6 +15,19 @@
             document.getElementById('<%=panUserWhoGotMail.ClientID%>').style.visibility = "visible";
             document.getElementById('<%=panBlockBackgroundJavascript.ClientID%>').style.visibility = "visible";
          }
+
+         function PrintPanel() {
+             var getPanel = document.getElementById("<%= panParticipants.ClientID%>")
+             var MainWindow = window.open('', '', 'height=500,width=800');
+             MainWindow.document.write("<html><head><title>Print Page</title></head><body>");
+             MainWindow.document.write(getPanel.innerHTML);
+             MainWindow.document.write("</body></html>");
+             MainWindow.document.close();
+             setTimeout(function () {
+                 MainWindow.print();
+             }, 500);
+             return false;
+         }
     </script>
     
     <div class="container">
@@ -262,7 +275,10 @@
                                 <asp:Label ID="lblBirthday" runat="server" Text='<%# Eval("birthday", "{0:dd/MM/yyyy}") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField>
+                        <asp:TemplateField >
+                            <HeaderTemplate>
+                                <asp:LinkButton ID="btnPrintDownload" runat="server" OnClientClick="return PrintPanel();" ForeColor="Black"><i class="fas fa-print" style='font-size:24px;'></i></asp:LinkButton>
+                            </HeaderTemplate>
                             <ItemTemplate>
                                 <asp:LinkButton ID="btnShowUser" runat="server" ForeColor="Black" CommandName="User" CommandArgument='<%# Eval("kidID") %>'><i class="fas fa-user" style="font-size: 24px"></i></asp:LinkButton>
                                 <asp:LinkButton ID="btnDeleteParticipant" runat="server" ForeColor="Black" CommandName="Delete"><i class="fas fa-trash" style="font-size: 24px"></i></asp:LinkButton>
