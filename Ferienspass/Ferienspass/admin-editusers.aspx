@@ -75,12 +75,12 @@
                             <asp:Label ID="lblNr" runat="server" Text='<%# Eval("housenumber") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Fehlgeschlagene Logins">
+                    <asp:TemplateField HeaderText="Blockiert">
                         <ItemTemplate>
-                            <asp:Label ID="lblFailedLogins" runat="server" Text='<%# Eval("failedlogins") %>'></asp:Label>
+                            <asp:Label ID="lblFailedLogins" runat="server" Text='<%# Eval("blocked") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>                   
-                    <asp:TemplateField HeaderText="">
+                    <asp:TemplateField>
                         <ItemTemplate>
                             <asp:LinkButton ID="btnUpdate" runat="server" CommandName="Edit" ToolTip="User bearbeiten" ForeColor="Black"><i class='fas fa-pen' style='font-size:24px;'></i></asp:LinkButton>
                             <asp:LinkButton ID="btnDelete" runat="server" CommandName="Delete" ToolTip="User löschen" OnClientClick="return Delete()" ForeColor="Black"><i class='fas fa-trash' style='font-size:24px'></i></asp:LinkButton>
