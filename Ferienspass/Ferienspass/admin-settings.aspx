@@ -14,9 +14,10 @@
 
 
     <div class="container">
-        <h3>Unsere Nachbargemeinden</h3> <br />
+        <br />
+        <h3>Unsere Nachbargemeinden</h3>
         <asp:Literal ID="litAlertNeighbourcities" runat="server"></asp:Literal>
-        <asp:GridView ID="gvNeighbourcities" runat="server" AutoGenerateColumns="false" ShowHeaderWhenEmpty="true" CssClass="table table-hover" GridLines="None" Width="50%"
+        <asp:GridView ID="gvNeighbourcities" runat="server" AutoGenerateColumns="false" ShowHeaderWhenEmpty="true" CssClass="table table-hover" GridLines="None" Width="30%"
             OnRowEditing="gvNeighbourcities_RowEditing" OnRowCancelingEdit="gvNeighbourcities_RowCancelingEdit" OnRowDeleting="gvNeighbourcities_RowDeleting"
             OnRowCommand="gvNeighbourcities_RowCommand" OnRowUpdating="gvNeighbourcities_RowUpdating">
             <Columns>
@@ -38,20 +39,23 @@
                 </asp:TemplateField>
                 <asp:TemplateField>
                     <HeaderTemplate>
-                        <asp:LinkButton ID="btnAddCity" runat="server" CommandName="Add" ForeColor="Black" ><i class="fa fa-plus-square"></i></asp:LinkButton>
+                        <asp:LinkButton ID="btnAddCity" runat="server" CommandName="Add" ToolTip="Partnergemeinde hinzufügen" ForeColor="Black" CssClass="float-right"><i class="fa fa-plus-square"></i></asp:LinkButton>
                     </HeaderTemplate>
                     <ItemTemplate>
-                        <asp:LinkButton ID="btnEditCity" runat="server" CommandName="Edit" ForeColor="Black"><i class="fas fa-pen"></i></asp:LinkButton>
-                        <asp:LinkButton ID="btnDeleteCity" runat="server" CommandName="Delete" OnClientClick="return Delete()" ForeColor="Black"><i class="fa fa-trash"></i></asp:LinkButton>
+                        <div class="float-right">
+                            <asp:LinkButton ID="btnEditCity" runat="server" CommandName="Edit" ToolTip="Partnergemeinde bearbeiten" ForeColor="Black"><i class="fas fa-pen"></i></asp:LinkButton>
+                            <asp:LinkButton ID="btnDeleteCity" runat="server" CommandName="Delete" ToolTip="Partnergemeinde entfernen" OnClientClick="return Delete()" ForeColor="Black"><i class="fa fa-trash"></i></asp:LinkButton>
+                        </div>
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <asp:LinkButton ID="btnUpdateCity" runat="server" CommandName="Update" ForeColor="Black"><i class="fa fa-check"></i></asp:LinkButton>
-                        <asp:LinkButton ID="btnCancelCity" runat="server" CommandName="Cancel" ForeColor="Black"><i class="fa fa-times"></i></asp:LinkButton>
+                        <div class="float-right">
+                            <asp:LinkButton ID="btnUpdateCity" runat="server" CommandName="Update" ToolTip="Änderungen speichern" ForeColor="Black"><i class="fa fa-check"></i></asp:LinkButton>
+                            <asp:LinkButton ID="btnCancelCity" runat="server" CommandName="Cancel" ToolTip="Abbrechen" ForeColor="Black"><i class="fa fa-times"></i></asp:LinkButton>
+                        </div>
                     </EditItemTemplate>
                 </asp:TemplateField>
             </Columns>
         </asp:GridView> 
-        <br />
         <br />
 
         <h3>Email-Einstellungen</h3>

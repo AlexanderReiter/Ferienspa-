@@ -15,6 +15,9 @@ using Ferienspass;
 /// </summary>
 namespace Ferienspass
 {
+    // User Kind anlegen
+    // Verified by Andi
+    // 28.01.2020
     public partial class User_Settings : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)

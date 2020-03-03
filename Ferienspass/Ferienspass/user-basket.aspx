@@ -41,8 +41,8 @@
                 </asp:TemplateField>
                 <asp:TemplateField>
                     <ItemTemplate>
-                        <asp:LinkButton ID="btnShowParticipants" runat="server" ForeColor="Black" CommandName="ShowDetails" CommandArgument='<%# Eval("courseID") %>'><i class="fas fa-list-ul" style='font-size:24px;'></i></asp:LinkButton>
-                        <asp:LinkButton ID="btnRemoveFromBasket" runat="server" ForeColor="Black" CommandName="Remove" CommandArgument='<%# Eval("courseID") + "," + Eval("kidId") %>'><i class="fas fa-trash" style='font-size:24px;'></i></asp:LinkButton>
+                        <asp:LinkButton ID="btnShowParticipants" runat="server" ToolTip="Kurs anzeigen" ForeColor="Black" CommandName="ShowDetails" CommandArgument='<%# Eval("courseID") %>'><i class="fas fa-list-ul" style='font-size:24px;'></i></asp:LinkButton>
+                        <asp:LinkButton ID="btnRemoveFromBasket" runat="server" ToolTip="Kurs entfernen" ForeColor="Black" CommandName="Remove" CommandArgument='<%# Eval("courseID") + "," + Eval("kidId") %>'><i class="fas fa-trash" style='font-size:24px;'></i></asp:LinkButton>
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>

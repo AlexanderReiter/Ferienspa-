@@ -20,7 +20,7 @@ namespace Ferienspass
         {
             if (User.Identity.Name == "registration") Response.Redirect("~/registration.aspx");
             else if (User.Identity.Name == "pwforgotten") Response.Redirect("~/forgotpassword.aspx");
-            else if (Check.IsAdmin(User.Identity.Name)) Response.Redirect("~/admin-home.aspx");
+            else if (Check.IsAdmin(User.Identity.Name)) Response.Redirect("~/admin-courses.aspx");
             else if (Check.IsUser(User.Identity.Name)) Response.Redirect("~/user-home.aspx");
         }
     }

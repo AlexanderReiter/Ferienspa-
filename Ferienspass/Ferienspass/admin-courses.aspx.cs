@@ -2,6 +2,8 @@
 using System;
 using System.Data;
 using System.Globalization;
+using System.IO;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -57,7 +59,7 @@ namespace Ferienspass
 
             if (!string.IsNullOrEmpty(txtSearchbar.Text))   //Suchabfrage
             {
-                queryString += $" WHERE courses.coursename LIKE '{txtSearchbar.Text}%' OR organisation.organisationname LIKE '{txtSearchbar.Text}%'";
+                queryString += $" WHERE courses.coursename LIKE '%{txtSearchbar.Text}%' OR organisation.organisationname LIKE '%{txtSearchbar.Text}%'";
             }
 
             DataTable dtCompany = db.Query(queryString);
@@ -148,6 +150,7 @@ namespace Ferienspass
             txtNr.Text = (string)dr["housenumber"];
             DateTime date = Convert.ToDateTime(dr["date"]);
             calendar.SelectedDate = date;
+            calendar.VisibleDate = date;
             txtManagerName.Text = (string)dr["managername"];
             txtContactMail.Text = (string)dr["contactemail"];
             txtPrice.Text = "€ " + Convert.ToString((decimal)dr["price"]);
@@ -483,6 +486,11 @@ namespace Ferienspass
             gvUserWhoGotMail.DataSource = db.Query("SELECT * FROM user LEFT JOIN kids ON kids.email = user.email LEFT JOIN kidparticipates ON kidparticipates.kidId = kids.kidId WHERE courseId=?", CourseID);
             gvUserWhoGotMail.DataBind();
             gvUserWhoGotMail.HeaderRow.TableSection = TableRowSection.TableHeader;
+        }
+
+        protected void btnPrintDownload_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

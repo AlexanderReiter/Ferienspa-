@@ -15,27 +15,21 @@
             document.getElementById('<%=panUserWhoGotMail.ClientID%>').style.visibility = "visible";
             document.getElementById('<%=panBlockBackgroundJavascript.ClientID%>').style.visibility = "visible";
          }
+
+         function PrintPanel() {
+             var getPanel = document.getElementById("<%= panParticipants.ClientID%>")
+             var MainWindow = window.open('', '', 'height=500,width=800');
+             MainWindow.document.write("<html><head><title>Print Page</title></head><body>");
+             MainWindow.document.write(getPanel.innerHTML);
+             MainWindow.document.write("</body></html>");
+             MainWindow.document.close();
+             setTimeout(function () {
+                 MainWindow.print();
+             }, 500);
+             return false;
+         }
     </script>
-
     
-<%--    <script type="text/javascript" lang="javascript"> 
-
-        function handleKeyDown(obj, event) {
-            dataGridView1.Rows.forEach(SetVisibility)
-
-            function SetVisibility(row)
-            {
-                if (row.Cells["driverNo"].Value != null
-                    && row.Cells["driverNo"].Value.ToString() == textBox1.Text) {
-                    row.Visible = false;
-                }
-                else {
-                    row.Visible = true;
-                }
-            }
-        } 
-    </script>--%>
-
     <div class="container">
         <br />
         <div class="row">
@@ -81,20 +75,22 @@
                     </asp:TemplateField>
                     <asp:TemplateField>
                         <HeaderTemplate>
-                            <asp:LinkButton ID="btnNewCourse" runat="server" OnClick="btnNewCourse_Click" ForeColor="Black"><i class='fas fa-plus-square' style='font-size:24px;'></i></asp:LinkButton>
+                            <asp:LinkButton ID="btnNewCourse" runat="server" OnClick="btnNewCourse_Click" ToolTip="Kurs hinzufügen" ForeColor="Black" CssClass="float-right"><i class='fas fa-plus-square' style='font-size:24px;'></i></asp:LinkButton>
                         </HeaderTemplate>
                         <ItemTemplate>
-                            <asp:LinkButton ID="btnUpdate" runat="server" CommandName="Edit" ForeColor="Black"><i class='fas fa-pen' style='font-size:24px;'></i></asp:LinkButton>
-                            <asp:LinkButton ID="btnMail" runat="server" CommandName="Mail" CommandArgument='<%# Eval("courseID") %>' ForeColor="Black"><i class="fas fa-envelope" style='font-size:24px;'></i></asp:LinkButton>
-                            <asp:LinkButton ID="btnDelete" runat="server" CommandName="Delete" OnClientClick="return Delete()" ForeColor="Black"><i class='fas fa-trash' style='font-size:24px'></i></asp:LinkButton>
-                            <asp:LinkButton ID="btnShowParticipants" runat="server" ForeColor="Black" CommandName="Participants" CommandArgument='<%# Eval("courseID") %>'><i class="fas fa-search" style='font-size:24px;'></i></asp:LinkButton>
+                            <div class="float-right">
+                                <asp:LinkButton ID="btnUpdate" runat="server" CommandName="Edit" ToolTip="Kurs bearbeiten" ForeColor="Black"><i class='fas fa-pen' style='font-size:24px;'></i></asp:LinkButton>
+                                <asp:LinkButton ID="btnMail" runat="server" CommandName="Mail" ToolTip="Mail senden" CommandArgument='<%# Eval("courseID") %>' ForeColor="Black"><i class="fas fa-envelope" style='font-size:24px;'></i></asp:LinkButton>
+                                <asp:LinkButton ID="btnDelete" runat="server" CommandName="Delete" ToolTip="Kurs löschen" OnClientClick="return Delete()" ForeColor="Black"><i class='fas fa-trash' style='font-size:24px'></i></asp:LinkButton>
+                                <asp:LinkButton ID="btnShowParticipants" runat="server" ToolTip="Teilnehmer anzeigen" CommandName="Participants" ForeColor="Black" CommandArgument='<%# Eval("courseID") %>'><i class="fas fa-search" style='font-size:24px;'></i></asp:LinkButton>
+                            </div>
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
             </asp:GridView>
         </div>
     </div>
-    <asp:Panel ID="panBlockBackground" runat="server" CssClass="panBlockBackground sticky" Visible="false"></asp:Panel>
+     .<asp:Panel ID="panBlockBackground" runat="server" CssClass="panBlockBackground sticky" Visible="false"></asp:Panel>
     <asp:Panel ID="panBlockBackgroundJavascript" runat="server" CssClass="panBlockBackground sticky" style="visibility:hidden"></asp:Panel>
     <asp:Panel ID="panCourse" runat="server" Visible="false">
         <div class="container">
@@ -281,7 +277,10 @@
                                 <asp:Label ID="lblBirthday" runat="server" Text='<%# Eval("birthday", "{0:dd/MM/yyyy}") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField>
+                        <asp:TemplateField >
+                            <HeaderTemplate>
+                                <asp:LinkButton ID="btnPrintDownload" runat="server" OnClientClick="return PrintPanel();" ForeColor="Black"><i class="fas fa-print" style='font-size:24px;'></i></asp:LinkButton>
+                            </HeaderTemplate>
                             <ItemTemplate>
                                 <asp:LinkButton ID="btnShowUser" runat="server" ForeColor="Black" CommandName="User" CommandArgument='<%# Eval("kidID") %>'><i class="fas fa-user" style="font-size: 24px"></i></asp:LinkButton>
                                 <asp:LinkButton ID="btnDeleteParticipant" runat="server" ForeColor="Black" CommandName="Delete"><i class="fas fa-trash" style="font-size: 24px"></i></asp:LinkButton>

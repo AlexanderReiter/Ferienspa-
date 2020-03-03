@@ -8,6 +8,10 @@ using System.Web.UI.WebControls;
 
 namespace Ferienspass
 {
+    // Auswählen der Kinder + Anmelden + Liste Kurse (user kind anmelden)
+    // verified by Andi
+    // 28.01.2020
+
     public partial class user_courses : System.Web.UI.Page
     {
         public int CourseId
@@ -65,7 +69,7 @@ namespace Ferienspass
 
             if (!string.IsNullOrEmpty(txtSearchbar.Text))   //Suchabfrage
             {
-                queryString += $" WHERE courses.coursename LIKE '{txtSearchbar.Text}%' OR organisation.organisationname LIKE '{txtSearchbar.Text}%'";
+                queryString += $" WHERE courses.coursename LIKE '%{txtSearchbar.Text}%' OR organisation.organisationname LIKE '%{txtSearchbar.Text}%'";
             }
 
             DataTable dtCompany = db.Query(queryString);
@@ -118,6 +122,7 @@ namespace Ferienspass
                     txtNr.Text = (string)dr["housenumber"];
                     DateTime date = Convert.ToDateTime(dr["date"]);
                     calendar.SelectedDate = date;
+                    calendar.VisibleDate = date;
                     txtManagerName.Text = (string)dr["managername"];
                     txtContactMail.Text = (string)dr["contactemail"];
                     txtPrice.Text = "€ " + Convert.ToString((decimal)dr["price"]);
