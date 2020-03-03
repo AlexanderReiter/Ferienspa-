@@ -60,6 +60,24 @@ namespace Ferienspass
         protected global::System.Web.UI.WebControls.HiddenField hiddenFieldTotal;
 
         /// <summary>
+        /// hiddenFieldUser-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hiddenFieldUser;
+
+        /// <summary>
+        /// btnCheckout-Steuerelement
+        /// </summary>
+        /// <remarks>
+        /// Automatisch generiertes Feld
+        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCheckout;
+
+        /// <summary>
         /// panBlockBackground-Steuerelement
         /// </summary>
         /// <remarks>

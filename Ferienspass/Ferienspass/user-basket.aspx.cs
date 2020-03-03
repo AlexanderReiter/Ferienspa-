@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Services;
 using System.Web.UI;
@@ -27,6 +29,18 @@ namespace Ferienspass
             get
             {
                 return hiddenFieldTotal.Value;
+            }
+        }
+
+        public string UserName
+        {
+            set
+            {
+                hiddenFieldUser.Value = value;
+            }
+            get
+            {
+                return hiddenFieldUser.Value;
             }
         }
 
@@ -112,6 +126,7 @@ namespace Ferienspass
             float total = subtotal - discount;
             lblTotal.Text = total.ToString("F2");
             Total = String.Format("{0:0.00}", total).Replace(',', '.');
+            UserName = User.Identity.Name;
         }
 
         protected void gvBasket_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -166,15 +181,18 @@ namespace Ferienspass
         }
 
         [WebMethod]
-        public void Checkout()
+        public static string Checkout(string sendData)// string sendData)
         {
             DB db = new DB();
-            foreach (GridViewRow r in gvBasket.Rows)
-            {
-                db.ExecuteNonQuery("INSERT INTO kidparticipates (kidId, courseId) VALUES(?, ?)", Convert.ToInt32(gvBasket.DataKeys[r.RowIndex].Values["kidId"]), Convert.ToInt32(gvBasket.DataKeys[r.RowIndex].Values["courseId"]));
-            }
-            db.ExecuteNonQuery("DELETE FROM basket WHERE userId=?", User.Identity.Name);
-            Fill_GvBasket();
+
+            db.ExecuteNonQuery("INSERT INTO kidparticipates (kidparticipates.kidId, kidparticipates.courseId) SELECT basket.kidId, basket.courseId FROM basket WHERE basket.userId=?", sendData);
+            //foreach (GridViewRow r in gvBasket.Rows)
+            //{
+            //    db.ExecuteNonQuery("INSERT INTO kidparticipates (kidId, courseId) VALUES(?, ?)", Convert.ToInt32(gvBasket.DataKeys[r.RowIndex].Values["kidId"]), Convert.ToInt32(gvBasket.DataKeys[r.RowIndex].Values["courseId"]));
+            //}
+
+            db.ExecuteNonQuery("DELETE FROM basket WHERE userId=?", sendData);
+            return sendData;
         }
     }
 }
