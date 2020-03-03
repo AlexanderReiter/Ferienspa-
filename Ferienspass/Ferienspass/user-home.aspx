@@ -23,8 +23,9 @@
                 </p>
                 <asp:GridView ID="gvNextDates" runat="server" class="table table-bordered table-sm" AutoGenerateColumns="False">
                     <Columns>
+                        <asp:BoundField DataField="date" HeaderText="Datum" DataFormatString="{0:dd/MM/yyyy}" />
                         <asp:BoundField DataField="givenname" HeaderText="Kind" />
-                        <asp:BoundField DataField="coursename" HeaderText="Course" />
+                        <asp:BoundField DataField="coursename" HeaderText="Kurs" />
                         <asp:BoundField DataField="description" HeaderText="Beschreibung" />
                         <asp:BoundField DataField="zipcode" HeaderText="PLZ" />
                         <asp:BoundField DataField="city" HeaderText="Ort" />
@@ -39,6 +40,7 @@
                 </p>
                 <asp:GridView ID="gvSelectedDate" runat="server" class="table table-bordered table-sm" AutoGenerateColumns="False">
                     <Columns>
+                        <asp:BoundField DataField="date" HeaderText="Datum" DataFormatString="{0:dd/MM/yyyy}" />
                         <asp:BoundField DataField="givenname" HeaderText="Kind" />
                         <asp:BoundField DataField="coursename" HeaderText="Kurs" />
                         <asp:BoundField DataField="description" HeaderText="Beschreibung" />
