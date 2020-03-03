@@ -87,12 +87,16 @@
                             <td></td>
                             <td>
                                 <asp:HiddenField ID="hiddenFieldTotal" runat="server" />
+                                <asp:HiddenField ID="hiddenFieldUser" runat="server" />
                                 <div id="paypal-button"></div>
+                                <div id="test">
+                                    <asp:Button ID="btnCheckout" runat="server" OnClientClick="InsertChild();" />
+                                </div>
                                 
-                                <script type="text/javascript" src="/scripts/jquery-1.4.1.js"></script>
                                 <script src="https://www.paypalobjects.com/api/checkout.js"></script>
                                 <script>
                                     var price = document.getElementById('<%= hiddenFieldTotal.ClientID%>').value;
+                                    var user = document.getElementById('<%= hiddenFieldUser.ClientID%>').value;
                                     paypal.Button.render({
                                         // Configure environment
                                         env: 'sandbox',
@@ -127,7 +131,7 @@
                                             return actions.payment.execute().then(function () {
                                                 // Show a confirmation message to the buyer
                                                 window.alert('Thank you for your purchase!');
-                                                //InsertChild();
+                                                InsertChild();
                                             });
                                         }
                                     }, '#paypal-button');
@@ -135,12 +139,15 @@
                                     function InsertChild() {
                                         $.ajax({
                                             type: 'POST',
-                                            url: 'user-basket.aspx.cs/Checkout',
+                                            url: 'user-basket.aspx/Checkout',
+                                            data: "{sendData: '" + user + "'}",
+                                            contentType: "application/json; charset=utf-8",
+                                            dataType: "json",
                                             success: function (msg) {
-                                                // Do something interesting here.
+                                                alert(msg.d);
                                             }
                                         });
-                                        alert("slsk");
+                                        //alert("finish");
                                     }
                                 </script>
                             </td>
