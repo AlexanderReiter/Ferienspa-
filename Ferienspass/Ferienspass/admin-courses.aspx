@@ -223,6 +223,7 @@
                 <div class="row">
                     <div class="col">
                         <h1>E-Mail</h1>
+                        <asp:Label ID="lblCourseID" runat="server"></asp:Label>
                     </div>
                 </div>
                 <div class="row">
@@ -236,7 +237,7 @@
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
-                            <label for="txtSubject">Betreff:</label>
+                            <label for="txtSubject">Nachricht:</label>
                             <textarea class="form-control" rows="20" id="txtContent" runat="server" name="text"></textarea>
                         </div>
                     </div>

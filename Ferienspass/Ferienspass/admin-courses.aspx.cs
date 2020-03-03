@@ -335,6 +335,9 @@ namespace Ferienspass
                     panBlockBackground.Visible = true;
                     panSendMail.Visible = true;
                     CourseID = Convert.ToInt32(e.CommandArgument.ToString());
+                    
+                    lblCourseID.Text = String.Format("("+GetCourseNameByID(CourseID)+")");
+                    lblCourseID.CssClass = "h3";
                     break;
                 case "Participants":
                     CourseID = Convert.ToInt32(e.CommandArgument.ToString());
@@ -350,6 +353,14 @@ namespace Ferienspass
                     Fill_gvParticipants();
                     break;
             }
+        }
+
+        private string GetCourseNameByID(int courseID)
+        {
+            DB db = new DB();
+            string sqlGetCourseName = "SELECT DISTINCT coursename FROM courses WHERE courseId = ?";
+            string coursename = db.ExecuteScalar(sqlGetCourseName, courseID).ToString();
+            return coursename;
         }
 
         protected void txtPrice_TextChanged(object sender, EventArgs e)
