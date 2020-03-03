@@ -267,17 +267,16 @@ namespace Ferienspass
         protected global::System.Web.UI.WebControls.Panel panSendMail;
 
         /// <summary>
-        /// txtSubject control.
-        /// lblCourseID-Steuerelement
+        /// lblCourseID control.
         /// </summary>
         /// <remarks>
-        /// Automatisch generiertes Feld
-        /// Zum Ändern Felddeklaration aus der Designerdatei in eine Code-Behind-Datei verschieben.
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCourseID;
 
         /// <summary>
-        /// txtSubject-Steuerelement
+        /// txtSubject control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.

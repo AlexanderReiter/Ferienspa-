@@ -20,6 +20,7 @@
              var getPanel = document.getElementById("<%= panParticipants.ClientID%>")
              var MainWindow = window.open('', '', 'height=500,width=1000');
              MainWindow.document.write("<html><head><title>Print Page</title></head><body>");
+             MainWindow.document.write("<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' integrity='sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh' crossorigin='anonymous'>")
              MainWindow.document.write("<style type='text/css' media='print'>");
              MainWindow.document.write(".printview{ display: none; }");
              MainWindow.document.write("</style >");
@@ -258,7 +259,7 @@
     </asp:Panel>
     <asp:Panel ID="panParticipants" runat="server" Visible="false">
         <div class="container">
-            <div class="addCourseForm shadow p-4 mb-4 bg-white">
+            <div class="addCourseForm p-4 mb-4 bg-white">
                 <asp:GridView ID="gvParticipants" runat="server" AutoGenerateColumns="false" ShowHeaderWhenEmpty="true" DataKeyNames="kidID" CssClass="table table-hover" GridLines="None" OnRowCommand="gvParticipants_RowCommand" OnRowDeleting="gvParticipants_RowDeleting">
                     <Columns>
                         <asp:TemplateField HeaderText="Vorname">
