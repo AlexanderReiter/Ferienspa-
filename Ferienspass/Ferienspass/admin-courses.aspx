@@ -18,8 +18,11 @@
 
          function PrintPanel() {
              var getPanel = document.getElementById("<%= panParticipants.ClientID%>")
-             var MainWindow = window.open('', '', 'height=500,width=800');
+             var MainWindow = window.open('', '', 'height=500,width=1000');
              MainWindow.document.write("<html><head><title>Print Page</title></head><body>");
+             MainWindow.document.write("<style type='text/css' media='print'>");
+             MainWindow.document.write(".printview{ display: none; }");
+             MainWindow.document.write("</style >");
              MainWindow.document.write(getPanel.innerHTML);
              MainWindow.document.write("</body></html>");
              MainWindow.document.close();
@@ -288,7 +291,7 @@
                         </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
-                <asp:Button ID="btnClose" runat="server" Text="Schließen" CssClass="btn btn-secondary btn-lg" OnClick="btnClose_Click" />
+                <asp:Button ID="btnClose" runat="server" Text="Schließen" CssClass="btn btn-secondary btn-lg printview" OnClick="btnClose_Click" />
             </div>
         </div>
     </asp:Panel>
