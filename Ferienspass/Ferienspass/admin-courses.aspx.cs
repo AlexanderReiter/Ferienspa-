@@ -2,6 +2,8 @@
 using System;
 using System.Data;
 using System.Globalization;
+using System.IO;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -484,6 +486,11 @@ namespace Ferienspass
             gvUserWhoGotMail.DataSource = db.Query("SELECT * FROM user LEFT JOIN kids ON kids.email = user.email LEFT JOIN kidparticipates ON kidparticipates.kidId = kids.kidId WHERE courseId=?", CourseID);
             gvUserWhoGotMail.DataBind();
             gvUserWhoGotMail.HeaderRow.TableSection = TableRowSection.TableHeader;
+        }
+
+        protected void btnPrintDownload_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
