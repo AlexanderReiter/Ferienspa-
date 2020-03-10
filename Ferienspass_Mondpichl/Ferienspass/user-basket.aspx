@@ -89,9 +89,6 @@
                                 <asp:HiddenField ID="hiddenFieldTotal" runat="server" />
                                 <asp:HiddenField ID="hiddenFieldUser" runat="server" />
                                 <div id="paypal-button"></div>
-                                <div id="test">
-                                    <asp:Button ID="btnCheckout" runat="server" OnClientClick="InsertChild();" />
-                                </div>
                                 
                                 <script src="https://www.paypalobjects.com/api/checkout.js"></script>
                                 <script>
@@ -144,7 +141,8 @@
                                             contentType: "application/json; charset=utf-8",
                                             dataType: "json",
                                             success: function (msg) {
-                                                alert(msg.d);
+                                                //alert(msg.d);
+                                                location.replace("user-home.aspx");
                                             }
                                         });
                                         //alert("finish");

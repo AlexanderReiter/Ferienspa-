@@ -192,6 +192,7 @@ namespace Ferienspass
             //}
 
             db.ExecuteNonQuery("DELETE FROM basket WHERE userId=?", sendData);
+            
             return sendData;
         }
     }
